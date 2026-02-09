@@ -53,20 +53,37 @@ export default function ExecutiveOverview() {
                   {d.leasesSigned.priorDay}
                 </span>
               </div>
-              <div className="text-[10px] font-heading text-slate-600 mt-1 w-full text-white">
+              <div className="text-[12px] font-heading text-slate-600 mt-1 w-full text-white">
                 {d.leasesSigned.pendingText}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.leasesSigned.weeklyBars.map((bar, i) => (
-                <div key={i} className="flex flex-col items-center gap-0.5">
-                  <div
-                    className="w-3 bg-slate-200 rounded-t-sm"
-                    style={{ height: `${(bar.value / 100) * 40}px` }}
-                  />
-                  <span className="text-[7px] text-slate-500">{bar.day}</span>
-                </div>
-              ))}
+            <div className="flex items-center justify-center w-[140px] h-[105px]">
+              <div className="flex items-end gap-[5px] h-14 shrink-0 ">
+                {[
+                  { h: "52px", day: "S" },
+                  { h: "34px", day: "S" },
+                  { h: "46px", day: "M" },
+                  { h: "53px", day: "T" },
+                  { h: "46px", day: "W" },
+                  { h: "34px", day: "T" },
+                  { h: "45px", day: "F", isSpecial: true },
+                ].map((bar, i) => (
+                  <div key={i} className="flex flex-col items-center gap-0.5">
+                    <div
+                      className={`w-[8px] rounded-full ${!bar.isSpecial ? "bg-[#E9ECF1]" : ""}`}
+                      style={{
+                        height: bar.h,
+                        background: bar.isSpecial
+                          ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)"
+                          : undefined,
+                      }}
+                    />
+                    <span className="text-[9px] text-white font-400">
+                      {bar.day}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
@@ -101,8 +118,12 @@ export default function ExecutiveOverview() {
             </div>
             <div className="h-2 bg-white/60 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-sky-700 to-purple-500 rounded-full"
-                style={{ width: `${d.leasePacing.progressPercent}%` }}
+                className="h-full rounded-full"
+                style={{
+                  width: `${d.leasePacing.progressPercent}%`,
+                  background:
+                    "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)",
+                }}
               />
             </div>
           </div>
@@ -146,21 +167,32 @@ export default function ExecutiveOverview() {
           </div>
           <div className="flex items-start justify-between mt-1">
             <div>
-              <div className="text-4xl font-bold font-heading text-slate-800 text-white">
+              <div className="text-[35px] font-bold font-heading text-slate-800 text-white">
                 {d.inventory.value}
               </div>
               <div className="text-[10px] font-heading text-slate-600 text-white">
                 {d.inventory.agedPercent} aged {d.inventory.agedDays}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.inventory.bars.map((v, i) => (
-                <div
-                  key={i}
-                  className="w-3 bg-sky-800/50 rounded-t-sm"
-                  style={{ height: `${(v / 100) * 40}px` }}
-                />
-              ))}
+            <div className="flex items-center justify-center w-[80px] h-[65px]">
+              <div className="flex items-end gap-[5px] h-12 shrink-0">
+                {[
+                  { h: "46px" },
+                  { h: "34px" },
+                  { h: "46px", isSplit: true },
+                ].map((bar, i) => (
+                  <div
+                    key={i}
+                    className="w-[8px] rounded-full"
+                    style={{
+                      height: bar.h,
+                      background: bar.isSplit
+                        ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%) top / 100% 23px no-repeat, #E9ECF1"
+                        : "#E9ECF1",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
