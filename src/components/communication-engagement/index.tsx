@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/page-header";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import DonutChart from "@/components/charts/donut-chart";
 import DataTable from "@/components/tables/data-tables";
 import { createColumnHelper } from "@tanstack/react-table";

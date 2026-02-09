@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PageHeader from "@/components/layout/page-header";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import StackedBarChart from "@/components/charts/stacked-bar-chart";
 import FutureLeaseChart from "@/components/charts/future-lease-chart";
 import DataTable from "@/components/tables/data-tables";

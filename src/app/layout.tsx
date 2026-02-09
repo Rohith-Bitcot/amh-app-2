@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Familjen_Grotesk, Inter } from "next/font/google";
-import Sidebar from "@/components/layout/Sidebar";
-import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/sidebar";
+import Header from "@/components/layout/header";
 import "./globals.css";
 
 const familjenGrotesk = Familjen_Grotesk({

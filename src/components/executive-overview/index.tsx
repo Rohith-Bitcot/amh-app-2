@@ -1,12 +1,12 @@
 "use client";
 
 import PageHeader from "@/components/layout/page-header";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import KpiCard from "@/components/ui/kpi-card";
 import MetricCard from "@/components/ui/metric-card";
 import TabGroup from "@/components/ui/tab-group";
 import RadarChartComponent from "@/components/charts/radar-chart-component";
-import FunnelConversionChart from "@/components/charts/funnnel-conversation-chart";
+import FunnelConversionChart from "@/components/charts/funnel-conversation-chart";
 import LeadCountBarChart from "@/components/charts/lead-count-bar-chart";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import {

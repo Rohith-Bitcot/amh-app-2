@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PageHeader from "@/components/layout/page-header";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/card";
 import TabGroup from "@/components/ui/tab-group";
 import StackedBarChart from "@/components/charts/stacked-bar-chart";
 import LineChartComponent from "@/components/charts/line-chart-component";

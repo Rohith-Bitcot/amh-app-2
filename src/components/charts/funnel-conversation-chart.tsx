@@ -46,7 +46,8 @@ export default function FunnelConversionChart({
   const barCount = data.length;
   const totalBarWidthRatio = 0.55;
   const barWidth = barCount > 0 ? (chartW * totalBarWidthRatio) / barCount : 0;
-  const gap = barCount > 1 ? (chartW * (1 - totalBarWidthRatio)) / (barCount - 1) : 0;
+  const gap =
+    barCount > 1 ? (chartW * (1 - totalBarWidthRatio)) / (barCount - 1) : 0;
 
   const bars = data.map((d, i) => {
     const x = margin.left + i * (barWidth + gap);
@@ -122,7 +123,8 @@ export default function FunnelConversionChart({
             if (i === 0 || !bar.conversionPct) return null;
             const prev = bars[i - 1];
             const cx = prev.x + prev.w + gap / 2;
-            const labelY = Math.min(prev.y, bar.y) + Math.abs(prev.y - bar.y) / 2 + 10;
+            const labelY =
+              Math.min(prev.y, bar.y) + Math.abs(prev.y - bar.y) / 2 + 10;
 
             return (
               <g key={`conv-${i}`}>

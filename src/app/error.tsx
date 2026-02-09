@@ -1,5 +1,5 @@
 "use client";
-import Error from "@/components/ui/Error";
+import ErrorComponent from "@/components/ui/error-component";
 
 interface ErrorsPropsType {
   error: Error;
@@ -7,7 +7,7 @@ interface ErrorsPropsType {
 }
 
 const ErrorPage = ({ error, reset }: ErrorsPropsType) => {
-  return <Error error={error} reset={reset} />;
+  return <ErrorComponent error={error} reset={reset} />;
 };
 
 export default ErrorPage;
