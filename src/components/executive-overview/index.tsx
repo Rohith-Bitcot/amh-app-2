@@ -18,7 +18,7 @@ import {
   performanceTableData,
 } from "@/data/executive-overview";
 import { useFilterStore } from "@/store/use-filter-store";
-import { CHART_COLORS } from "@/utils/constants";
+import { LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
 
 import { useState } from "react";
 const d = kpiCards;
@@ -59,15 +59,7 @@ export default function ExecutiveOverview() {
             </div>
             <div className="flex items-center justify-center w-[140px] h-[105px]">
               <div className="flex items-end gap-[5px] h-14 shrink-0 ">
-                {[
-                  { h: "52px", day: "S" },
-                  { h: "34px", day: "S" },
-                  { h: "46px", day: "M" },
-                  { h: "53px", day: "T" },
-                  { h: "46px", day: "W" },
-                  { h: "34px", day: "T" },
-                  { h: "45px", day: "F", isSpecial: true },
-                ].map((bar, i) => (
+                {LEASES_SIGNED_BAR_DATA.map((bar, i) => (
                   <div key={i} className="flex flex-col items-center gap-0.5">
                     <div
                       className={`w-[8px] rounded-full ${!bar.isSpecial ? "bg-[#E9ECF1]" : ""}`}
@@ -228,20 +220,26 @@ export default function ExecutiveOverview() {
             data={radarChartData}
             radars={[
               {
-                dataKey: "current",
-                color: CHART_COLORS.primary,
-                name: "Current",
-                fillOpacity: 0.3,
+                dataKey: "application",
+                color: "#66EA9D",
+                name: "Application",
+                fillOpacity: 0.4,
               },
               {
-                dataKey: "benchmark",
-                color: CHART_COLORS.tertiary,
-                name: "Benchmark",
-                fillOpacity: 0.1,
+                dataKey: "leads",
+                color: "#E1EA66",
+                name: "Leads",
+                fillOpacity: 0.4,
+              },
+              {
+                dataKey: "leases",
+                color: "#EA8566",
+                name: "Leases",
+                fillOpacity: 0.4,
               },
             ]}
             angleKey="metric"
-            height={250}
+            height={300}
           />
         </Card>
 

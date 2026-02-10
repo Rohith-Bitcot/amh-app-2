@@ -89,3 +89,13 @@ export function getHeatmapColor(value: number): string {
   if (value >= 1) return "bg-rose-50";
   return "bg-white";
 }
+
+export const LEASES_SIGNED_BAR_DATA = [
+  { h: "52px", day: "S" },
+  { h: "34px", day: "S" },
+  { h: "46px", day: "M" },
+  { h: "53px", day: "T" },
+  { h: "46px", day: "W" },
+  { h: "34px", day: "T" },
+  { h: "45px", day: "F", isSpecial: true },
+];

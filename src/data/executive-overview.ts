@@ -89,12 +89,11 @@ export const funnelConversionsData = [
 ];
 
 export const radarChartData = [
-  { metric: "Web Traffic", current: 85, benchmark: 70 },
-  { metric: "Tour Rate", current: 72, benchmark: 65 },
-  { metric: "App Rate", current: 68, benchmark: 60 },
-  { metric: "Approval", current: 90, benchmark: 75 },
-  { metric: "Close Rate", current: 78, benchmark: 70 },
-  { metric: "Retention", current: 82, benchmark: 72 },
+  { metric: "0-7", application: 40, leads: 65, leases: 80 },
+  { metric: "8-14", application: 55, leads: 40, leases: 60 },
+  { metric: "15-30", application: 75, leads: 60, leases: 45 },
+  { metric: "30-60", application: 60, leads: 82, leases: 70 },
+  { metric: "60+", application: 85, leads: 50, leases: 65 },
 ];
 
 export const leadCountByDOMData = [
