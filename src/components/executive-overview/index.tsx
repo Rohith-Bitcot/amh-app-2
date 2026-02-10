@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/page-header";
+import Image from "next/image";
 import Card from "@/components/ui/card";
 import KpiCard from "@/components/ui/kpi-card";
 import MetricCard from "@/components/ui/metric-card";
@@ -291,20 +292,27 @@ export default function ExecutiveOverview() {
 
       {/* Performance Overview Table */}
       <Card title="Performance Overview" noPadding>
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
+          <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="bg-gradient-to-r from-sky-700 to-sky-600">
-                {performanceTableData.headers.map((header) => (
+              <tr className="bg-[#2A85C0]">
+                {performanceTableData.headers.map((header, i) => (
                   <th
                     key={header}
-                    className={`px-4 py-3 text-xs font-medium font-heading text-left ${
-                      header === performanceTableData.highlightedHeader
-                        ? "bg-orange-500/80 text-white"
-                        : "text-white"
-                    }`}
+                    className="px-4 py-3 text-[13px] font-bold font-heading text-white first:rounded-tl-lg last:rounded-tr-lg"
                   >
-                    {header}
+                    <div
+                      className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-center"}`}
+                    >
+                      {header}
+                      <Image
+                        src="/assets/svgs/sort.svg"
+                        alt="sort"
+                        width={10}
+                        height={10}
+                        className="opacity-80"
+                      />
+                    </div>
                   </th>
                 ))}
               </tr>
@@ -313,29 +321,19 @@ export default function ExecutiveOverview() {
               {performanceTableData.rows.map((row, index) => (
                 <tr
                   key={row.metric}
-                  className={`border-b border-neutral-200 ${
-                    index % 2 === 0 ? "bg-white" : "bg-sky-50"
+                  className={`border-b border-neutral-100 last:border-0 ${
+                    index % 2 === 0 ? "bg-white" : "bg-[#F4F9FF]"
                   }`}
                 >
-                  <td className="px-4 py-3 text-neutral-800 text-sm font-medium font-heading">
+                  <td className="px-4 py-3 text-neutral-600 text-[13px] font-medium font-heading">
                     {row.metric}
                   </td>
                   {performanceTableData.headers.slice(1).map((header) => {
                     const val = row[header as keyof typeof row] as string;
-                    const isYoY = header === "YoY";
-                    const isNegative = isYoY && val?.startsWith("-");
-                    const isHighlighted =
-                      header === performanceTableData.highlightedHeader;
                     return (
                       <td
                         key={header}
-                        className={`px-4 py-3 text-sm font-normal font-heading text-right ${
-                          isHighlighted
-                            ? "bg-orange-50 text-neutral-800 font-medium"
-                            : isNegative
-                              ? "text-red-600"
-                              : "text-neutral-800"
-                        }`}
+                        className="px-4 py-3 text-[13px] font-bold font-heading text-neutral-800 text-center border-l border-neutral-100"
                       >
                         {val}
                       </td>

@@ -65,7 +65,12 @@ export default function MetricCard({
           </h3>
         </div>
         <button className="text-neutral-400 hover:text-neutral-600 transition-colors mt-0.5">
-          <Info className="w-4 h-4" />
+          <Image
+            src="/assets/svgs/about.svg"
+            alt="About"
+            width={11}
+            height={11}
+          />
         </button>
       </div>
 
