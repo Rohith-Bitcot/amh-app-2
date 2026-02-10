@@ -10,7 +10,6 @@ import {
   Cell,
   LabelList,
 } from "recharts";
-import { chartTheme } from "@/utils/chart-theme";
 
 interface LeadCountDataPoint {
   range: string;
@@ -25,35 +24,59 @@ interface LeadCountBarChartProps {
 
 export default function LeadCountBarChart({
   data,
-  height = 250,
+  height = 300,
 }: LeadCountBarChartProps) {
   return (
-    <ResponsiveContainer width="100%" height={height}>
-      <BarChart data={data} margin={{ top: 20, right: 20, bottom: 5, left: 0 }}>
-        <CartesianGrid {...chartTheme.grid} vertical={false} />
-        <XAxis
-          dataKey="range"
-          tick={chartTheme.axis.tick}
-          axisLine={{ stroke: "#e5e5e5" }}
-          tickLine={false}
-        />
-        <YAxis tick={chartTheme.axis.tick} axisLine={false} tickLine={false} />
-        <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={36}>
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={entry.color} />
-          ))}
-          <LabelList
-            dataKey="value"
-            position="top"
-            style={{
-              fontSize: 13,
-              fontWeight: 700,
-              fontFamily: "'Familjen Grotesk', sans-serif",
-              fill: "#374151",
-            }}
+    <div className="flex justify-center w-full">
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart
+          data={data}
+          margin={{ top: 30, right: 10, bottom: 20, left: -10 }}
+        >
+          <CartesianGrid
+            vertical={false}
+            stroke="#C9CBCD"
+            strokeWidth={0.57}
+            strokeDasharray="0"
           />
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+          <XAxis
+            dataKey="range"
+            tick={{
+              fill: "#838689",
+              fontSize: 12,
+              fontFamily: "'Familjen Grotesk', sans-serif",
+            }}
+            axisLine={{ stroke: "#C9CBCD", strokeWidth: 0.57 }}
+            tickLine={false}
+            dy={10}
+          />
+          <YAxis
+            tick={{
+              fill: "#838689",
+              fontSize: 12,
+              fontFamily: "'Familjen Grotesk', sans-serif",
+            }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Bar dataKey="value" radius={[6, 6, 0, 0]} barSize={40}>
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+            <LabelList
+              dataKey="value"
+              position="top"
+              offset={10}
+              style={{
+                fontSize: 13,
+                fontWeight: 700,
+                fontFamily: "'Familjen Grotesk', sans-serif",
+                fill: "#374151",
+              }}
+            />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
