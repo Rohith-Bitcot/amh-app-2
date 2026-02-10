@@ -37,14 +37,14 @@ export default function FunnelConversionChart({
     return () => observer.disconnect();
   }, []);
 
-  const margin = { top: 55, right: 15, bottom: 35, left: 15 };
+  const margin = { top: 65, right: 15, bottom: 35, left: 15 }; // Adjusted top for callouts
   const chartW = width - margin.left - margin.right;
-  const chartH = height - margin.top - margin.bottom;
+  const chartH = height - margin.top - margin.bottom + 20; // Increased height significantly
   const maxValue = Math.max(...data.map((d) => d.value));
 
   // Calculate bar positions
   const barCount = data.length;
-  const totalBarWidthRatio = 0.55;
+  const totalBarWidthRatio = 0.5;
   const barWidth = barCount > 0 ? (chartW * totalBarWidthRatio) / barCount : 0;
   const gap =
     barCount > 1 ? (chartW * (1 - totalBarWidthRatio)) / (barCount - 1) : 0;
@@ -52,30 +52,35 @@ export default function FunnelConversionChart({
   const bars = data.map((d, i) => {
     const x = margin.left + i * (barWidth + gap);
     const barH = maxValue > 0 ? (d.value / maxValue) * chartH : 0;
-    const y = margin.top + chartH - barH;
+    const y = margin.top + chartH - barH - 20; // Shifted up to compensate for increased height
     return { ...d, x, y, w: barWidth, h: barH };
   });
 
-  const baseline = margin.top + chartH;
+  const baseline = margin.top + chartH - 20;
 
-  // Funnel polygon points
+  // Funnel backdrop points - tracing the tops of all bars
+  const funnelTopPoints = bars
+    .map((bar) => `${bar.x},${bar.y} ${bar.x + bar.w},${bar.y}`)
+    .join(" ");
   const funnelPoints =
     bars.length > 1
-      ? `${bars[0].x},${bars[0].y} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${bars[bars.length - 1].y} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${baseline} ${bars[0].x},${baseline}`
+      ? `${funnelTopPoints} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${baseline} ${bars[0].x},${baseline}`
       : "";
 
   return (
     <div ref={containerRef} style={{ width: "100%", height }}>
       {width > 0 && (
         <svg width={width} height={height}>
+          <defs>
+            <linearGradient id="funnelGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="37.17%" stopColor="#DFE5EE" />
+              <stop offset="100%" stopColor="#CADFFF" />
+            </linearGradient>
+          </defs>
+
           {/* Funnel backdrop */}
           {funnelPoints && (
-            <polygon
-              points={funnelPoints}
-              fill="rgba(190, 210, 230, 0.15)"
-              stroke="rgba(170, 190, 210, 0.25)"
-              strokeWidth={1}
-            />
+            <polygon points={funnelPoints} fill="url(#funnelGradient)" />
           )}
 
           {/* Bars */}
@@ -86,15 +91,15 @@ export default function FunnelConversionChart({
                 y={bar.y}
                 width={bar.w}
                 height={bar.h}
-                rx={4}
+                rx={0} // Square corners for figma accuracy
                 fill={bar.color}
               />
               {/* Value label inside bar */}
               <text
                 x={bar.x + bar.w / 2}
-                y={bar.y + bar.h / 2 + 7}
+                y={bar.y + bar.h / 2 + 5}
                 textAnchor="middle"
-                fontSize={18}
+                fontSize={12}
                 fontWeight={700}
                 fill="white"
                 fontFamily="'Familjen Grotesk', sans-serif"
@@ -123,8 +128,9 @@ export default function FunnelConversionChart({
             if (i === 0 || !bar.conversionPct) return null;
             const prev = bars[i - 1];
             const cx = prev.x + prev.w + gap / 2;
-            const labelY =
-              Math.min(prev.y, bar.y) + Math.abs(prev.y - bar.y) / 2 + 10;
+            // Center the label vertically in the backdrop area
+            const backdropTopAtCx = (prev.y + bar.y) / 2;
+            const labelY = (backdropTopAtCx + baseline) / 2;
 
             return (
               <g key={`conv-${i}`}>
@@ -158,41 +164,39 @@ export default function FunnelConversionChart({
           {/* Dashed callout boxes */}
           {bars.map((bar, i) => {
             if (!bar.callout) return null;
-            const boxW = bar.w + 16;
-            const boxH = 40;
-            const boxX = bar.x + bar.w / 2 - boxW / 2;
-            const boxY = bar.y - boxH - 8;
+            const boxW = bar.w; // Matched width with bar
+            const boxH = 55; // Increased height
+            const boxX = bar.x;
+            const boxY = bar.y - boxH; // Removed gap
 
             return (
               <g key={`callout-${i}`}>
-                <rect
-                  x={boxX}
-                  y={boxY}
-                  width={boxW}
-                  height={boxH}
-                  rx={6}
-                  fill="white"
-                  stroke="#94a3b8"
+                {/* 3-sided dashed border (Left, Top, Right) */}
+                <polyline
+                  points={`${boxX},${boxY + boxH} ${boxX},${boxY} ${boxX + boxW},${boxY} ${boxX + boxW},${boxY + boxH}`}
+                  fill="none"
+                  stroke="#66B1EA"
                   strokeWidth={1.5}
                   strokeDasharray="6 4"
                 />
                 <text
                   x={bar.x + bar.w / 2}
-                  y={boxY + 15}
+                  y={boxY - 8}
                   textAnchor="middle"
-                  fontSize={11}
-                  fill="#16a34a"
+                  fontSize={9}
+                  fontWeight={500}
+                  fill="#66B1EA"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {bar.callout.label}
                 </text>
                 <text
                   x={bar.x + bar.w / 2}
-                  y={boxY + 32}
+                  y={boxY + boxH / 2 + 6}
                   textAnchor="middle"
                   fontSize={16}
                   fontWeight={700}
-                  fill="#374151"
+                  fill="#66B1EA"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {bar.callout.value}

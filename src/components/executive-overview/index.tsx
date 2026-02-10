@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/page-header";
+import Image from "next/image";
 import Card from "@/components/ui/card";
 import KpiCard from "@/components/ui/kpi-card";
 import MetricCard from "@/components/ui/metric-card";
@@ -18,7 +19,7 @@ import {
   performanceTableData,
 } from "@/data/executive-overview";
 import { useFilterStore } from "@/store/use-filter-store";
-import { CHART_COLORS } from "@/utils/constants";
+import { LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
 
 import { useState } from "react";
 const d = kpiCards;
@@ -53,20 +54,29 @@ export default function ExecutiveOverview() {
                   {d.leasesSigned.priorDay}
                 </span>
               </div>
-              <div className="text-[10px] font-heading text-slate-600 mt-1 w-full text-white">
+              <div className="text-[12px] font-heading text-slate-600 mt-1 w-full text-white">
                 {d.leasesSigned.pendingText}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.leasesSigned.weeklyBars.map((bar, i) => (
-                <div key={i} className="flex flex-col items-center gap-0.5">
-                  <div
-                    className="w-3 bg-slate-200 rounded-t-sm"
-                    style={{ height: `${(bar.value / 100) * 40}px` }}
-                  />
-                  <span className="text-[7px] text-slate-500">{bar.day}</span>
-                </div>
-              ))}
+            <div className="flex items-center justify-center w-[140px] h-[105px]">
+              <div className="flex items-end gap-[5px] h-14 shrink-0 ">
+                {LEASES_SIGNED_BAR_DATA.map((bar, i) => (
+                  <div key={i} className="flex flex-col items-center gap-0.5">
+                    <div
+                      className={`w-[8px] rounded-full ${!bar.isSpecial ? "bg-[#E9ECF1]" : ""}`}
+                      style={{
+                        height: bar.h,
+                        background: bar.isSpecial
+                          ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)"
+                          : undefined,
+                      }}
+                    />
+                    <span className="text-[9px] text-white font-400">
+                      {bar.day}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
@@ -101,8 +111,12 @@ export default function ExecutiveOverview() {
             </div>
             <div className="h-2 bg-white/60 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-sky-700 to-purple-500 rounded-full"
-                style={{ width: `${d.leasePacing.progressPercent}%` }}
+                className="h-full rounded-full"
+                style={{
+                  width: `${d.leasePacing.progressPercent}%`,
+                  background:
+                    "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)",
+                }}
               />
             </div>
           </div>
@@ -146,21 +160,32 @@ export default function ExecutiveOverview() {
           </div>
           <div className="flex items-start justify-between mt-1">
             <div>
-              <div className="text-4xl font-bold font-heading text-slate-800 text-white">
+              <div className="text-[35px] font-bold font-heading text-slate-800 text-white">
                 {d.inventory.value}
               </div>
               <div className="text-[10px] font-heading text-slate-600 text-white">
                 {d.inventory.agedPercent} aged {d.inventory.agedDays}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.inventory.bars.map((v, i) => (
-                <div
-                  key={i}
-                  className="w-3 bg-sky-800/50 rounded-t-sm"
-                  style={{ height: `${(v / 100) * 40}px` }}
-                />
-              ))}
+            <div className="flex items-center justify-center w-[80px] h-[65px]">
+              <div className="flex items-end gap-[5px] h-12 shrink-0">
+                {[
+                  { h: "46px" },
+                  { h: "34px" },
+                  { h: "46px", isSplit: true },
+                ].map((bar, i) => (
+                  <div
+                    key={i}
+                    className="w-[8px] rounded-full"
+                    style={{
+                      height: bar.h,
+                      background: bar.isSplit
+                        ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%) top / 100% 23px no-repeat, #E9ECF1"
+                        : "#E9ECF1",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
@@ -196,20 +221,26 @@ export default function ExecutiveOverview() {
             data={radarChartData}
             radars={[
               {
-                dataKey: "current",
-                color: CHART_COLORS.primary,
-                name: "Current",
-                fillOpacity: 0.3,
+                dataKey: "application",
+                color: "#66EA9D",
+                name: "Application",
+                fillOpacity: 0.4,
               },
               {
-                dataKey: "benchmark",
-                color: CHART_COLORS.tertiary,
-                name: "Benchmark",
-                fillOpacity: 0.1,
+                dataKey: "leads",
+                color: "#E1EA66",
+                name: "Leads",
+                fillOpacity: 0.4,
+              },
+              {
+                dataKey: "leases",
+                color: "#EA8566",
+                name: "Leases",
+                fillOpacity: 0.4,
               },
             ]}
             angleKey="metric"
-            height={250}
+            height={300}
           />
         </Card>
 
@@ -226,12 +257,12 @@ export default function ExecutiveOverview() {
           </h2>
           <TabGroup
             tabs={[
-              { label: "Communities", value: "communities" },
-              { label: "Properties", value: "properties" },
+              { label: "Per posted day", value: "perPostedDay" },
+              { label: "Total counts", value: "totalCounts" },
             ]}
             activeTab={demandViewMode}
             onTabChange={(v) =>
-              setDemandViewMode(v as "communities" | "properties")
+              setDemandViewMode(v as "perPostedDay" | "totalCounts")
             }
             variant="pill"
           />
@@ -261,20 +292,27 @@ export default function ExecutiveOverview() {
 
       {/* Performance Overview Table */}
       <Card title="Performance Overview" noPadding>
-        <div className="overflow-x-auto">
-          <table className="w-full">
+        <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
+          <table className="w-full border-collapse text-left">
             <thead>
-              <tr className="bg-gradient-to-r from-sky-700 to-sky-600">
-                {performanceTableData.headers.map((header) => (
+              <tr className="bg-[#2A85C0]">
+                {performanceTableData.headers.map((header, i) => (
                   <th
                     key={header}
-                    className={`px-4 py-3 text-xs font-medium font-heading text-left ${
-                      header === performanceTableData.highlightedHeader
-                        ? "bg-orange-500/80 text-white"
-                        : "text-white"
-                    }`}
+                    className="px-4 py-3 text-[13px] font-bold font-heading text-white first:rounded-tl-lg last:rounded-tr-lg"
                   >
-                    {header}
+                    <div
+                      className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-center"}`}
+                    >
+                      {header}
+                      <Image
+                        src="/assets/svgs/sort.svg"
+                        alt="sort"
+                        width={10}
+                        height={10}
+                        className="opacity-80"
+                      />
+                    </div>
                   </th>
                 ))}
               </tr>
@@ -283,29 +321,19 @@ export default function ExecutiveOverview() {
               {performanceTableData.rows.map((row, index) => (
                 <tr
                   key={row.metric}
-                  className={`border-b border-neutral-200 ${
-                    index % 2 === 0 ? "bg-white" : "bg-sky-50"
+                  className={`border-b border-neutral-100 last:border-0 ${
+                    index % 2 === 0 ? "bg-white" : "bg-[#F4F9FF]"
                   }`}
                 >
-                  <td className="px-4 py-3 text-neutral-800 text-sm font-medium font-heading">
+                  <td className="px-4 py-3 text-neutral-600 text-[13px] font-medium font-heading">
                     {row.metric}
                   </td>
                   {performanceTableData.headers.slice(1).map((header) => {
                     const val = row[header as keyof typeof row] as string;
-                    const isYoY = header === "YoY";
-                    const isNegative = isYoY && val?.startsWith("-");
-                    const isHighlighted =
-                      header === performanceTableData.highlightedHeader;
                     return (
                       <td
                         key={header}
-                        className={`px-4 py-3 text-sm font-normal font-heading text-right ${
-                          isHighlighted
-                            ? "bg-orange-50 text-neutral-800 font-medium"
-                            : isNegative
-                              ? "text-red-600"
-                              : "text-neutral-800"
-                        }`}
+                        className="px-4 py-3 text-[13px] font-bold font-heading text-neutral-800 text-center border-l border-neutral-100"
                       >
                         {val}
                       </td>
