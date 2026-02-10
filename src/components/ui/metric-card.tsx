@@ -2,7 +2,6 @@
 
 import {
   Area,
-  AreaChart,
   Line,
   ResponsiveContainer,
   XAxis,
@@ -61,7 +60,7 @@ export default function MetricCard({
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-bold font-heading text-neutral-800">
+          <h3 className="text-[15px] font-bold font-heading text-neutral-800">
             {title}
           </h3>
         </div>
@@ -71,22 +70,25 @@ export default function MetricCard({
       </div>
 
       {/* KPI Summary Box */}
-      <div className="bg-gradient-to-b from-[#6CA9D3] to-[#CCE9FF] rounded-xl p-3 text-white">
+      <div className="bg-gradient-to-b from-[#6CA9D3] to-[#CCE3FF] rounded-xl p-[14px] text-white shadow-[0px_3px_12px_rgba(0,0,0,0.06)]">
         {/* Top: label + big number + sub-metrics */}
-        <div className="flex items-start justify-between">
+        <div className="flex items-center justify-start gap-10 mb-0.5 font-medium">
           <div>
-            <div className="text-[10px] font-heading opacity-80">
+            <div className="text-[14px] font-heading font-medium mb-0.5">
               {kpiLabel}
             </div>
-            <div className="text-5xl font-bold font-heading leading-tight">
+            <div className="text-[56px] font-bold font-heading leading-tight">
               {kpiValue}
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center gap-0.5 mt-1">
+          <div className="flex flex-col gap-2 mt-4">
             {subMetrics.map((m) => (
-              <div key={m.label} className="text-[11px] font-heading">
-                <span className="opacity-80">{m.label}</span>{" "}
-                <span className="font-semibold">{m.value}</span>
+              <div
+                key={m.label}
+                className="text-[17px] font-heading flex items-center gap-2 leading-tight"
+              >
+                <span className="opacity-90 whitespace-nowrap">{m.label}</span>
+                <span className="font-bold">{m.value}</span>
               </div>
             ))}
           </div>
@@ -95,15 +97,25 @@ export default function MetricCard({
         {/* Comparison rows */}
         {comparisons.map((row) => (
           <div key={row.label}>
-            <div className="border-t border-white/20 my-2" />
-            <div className="flex items-center text-[10px] font-heading">
-              <span className="opacity-70 min-w-[72px]">{row.label}</span>
-              <span className="font-semibold min-w-[44px]">{row.total}</span>
-              {row.breakdowns.map((b) => (
-                <span key={b.label} className="ml-3 opacity-80">
-                  {b.label} <span className="font-semibold">{b.value}</span>
-                </span>
-              ))}
+            <div className="border-t border-white/55 my-2.5" />
+            <div className="flex items-center text-[15px] font-heading gap-5">
+              <span className="opacity-90 min-w-[90px] font-medium">
+                {row.label}
+              </span>
+              <span className="font-bold min-w-[55px] text-[15px]">
+                {row.total}
+              </span>
+              <div className="flex gap-4">
+                {row.breakdowns.map((b) => (
+                  <span
+                    key={b.label}
+                    className="opacity-100 flex items-baseline gap-1"
+                  >
+                    <span className="text-[15px] opacity-90">{b.label}</span>
+                    <span className="text-[15px] font-bold">{b.value}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}

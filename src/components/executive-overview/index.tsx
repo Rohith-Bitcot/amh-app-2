@@ -256,12 +256,12 @@ export default function ExecutiveOverview() {
           </h2>
           <TabGroup
             tabs={[
-              { label: "Communities", value: "communities" },
-              { label: "Properties", value: "properties" },
+              { label: "Per posted day", value: "perPostedDay" },
+              { label: "Total counts", value: "totalCounts" },
             ]}
             activeTab={demandViewMode}
             onTabChange={(v) =>
-              setDemandViewMode(v as "communities" | "properties")
+              setDemandViewMode(v as "perPostedDay" | "totalCounts")
             }
             variant="pill"
           />

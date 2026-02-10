@@ -24,7 +24,7 @@ interface LeadCountBarChartProps {
 
 export default function LeadCountBarChart({
   data,
-  height = 300,
+  // height = 300,
 }: LeadCountBarChartProps) {
   return (
     <div className="flex justify-center w-full">
