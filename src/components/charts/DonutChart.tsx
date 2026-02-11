@@ -1,7 +1,7 @@
 "use client";
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { chartTheme } from "@/utils/chart-theme";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface DonutChartProps {
   data: { name: string; value: number }[];
@@ -27,7 +27,13 @@ function renderSegmentLabel(props: any) {
 
   return (
     <g>
-      <text x={x} y={y - 4} textAnchor={textAnchor} fontSize={8} fill="#a3a3a3">
+      <text
+        x={x}
+        y={y - 4}
+        textAnchor={textAnchor}
+        fontSize={8}
+        fill="#a3a3a3"
+      >
         {name}
       </text>
       <text
@@ -72,10 +78,7 @@ export default function DonutChart({
             labelLine={false}
           >
             {data.map((_, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={colors[index % colors.length]}
-              />
+              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
             ))}
           </Pie>
           {!showLabels && (
@@ -90,7 +93,7 @@ export default function DonutChart({
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {children}
         </div>
-      ) : centerLabel || centerValue ? (
+      ) : (centerLabel || centerValue) ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           {centerValue && (
             <span className="text-xl font-bold font-heading text-neutral-800">

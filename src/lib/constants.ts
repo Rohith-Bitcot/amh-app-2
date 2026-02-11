@@ -1,29 +1,16 @@
-import { NavItem } from "@/types/dashboard";
-import { Home, GitBranch, Activity, MessageSquare } from "lucide-react";
+import { Home, GitBranch, Activity, MessageSquare, type LucideIcon } from "lucide-react";
 
-export const PRIVATE_PATH = {
-  EXECUTIVE_OVERVIEW: "/executive-overview",
-  PROPERTY_HEALTH: "/property-health",
-  FUNNEL_JOURNEY: "/funnel-journey",
-  COMMUNICATION_ENGAGEMENT: "/communication-engagement",
-};
-
-export const PUBLIC_PATH = {};
-
-export const ROUTES_PATH = {
-  ...PRIVATE_PATH,
-  ...PUBLIC_PATH,
-};
+export interface NavItem {
+  label: string;
+  href: string;
+  icon: LucideIcon;
+}
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Executive Overview", href: "/executive-overview", icon: Home },
   { label: "Funnel Journey", href: "/funnel-journey", icon: GitBranch },
   { label: "Property Health", href: "/property-health", icon: Activity },
-  {
-    label: "Communication & Engagement",
-    href: "/communication-engagement",
-    icon: MessageSquare,
-  },
+  { label: "Communication & Engagement", href: "/communication-engagement", icon: MessageSquare },
 ];
 
 export const CHART_COLORS = {
@@ -89,13 +76,3 @@ export function getHeatmapColor(value: number): string {
   if (value >= 1) return "bg-rose-50";
   return "bg-white";
 }
-
-export const LEASES_SIGNED_BAR_DATA = [
-  { h: "52px", day: "S" },
-  { h: "34px", day: "S" },
-  { h: "46px", day: "M" },
-  { h: "53px", day: "T" },
-  { h: "46px", day: "W" },
-  { h: "34px", day: "T" },
-  { h: "45px", day: "F", isSpecial: true },
-];

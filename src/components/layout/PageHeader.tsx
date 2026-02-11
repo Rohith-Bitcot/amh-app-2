@@ -8,7 +8,7 @@ export default function PageHeader({ title, showFilter = true, onFilterClick }: 
   return (
     <div className="flex items-center justify-between mb-5">
       <div className="flex flex-col gap-0.5">
-        <h1 className="text-sky-700 text-3xl font-bold font-heading capitalize leading-8">
+        <h1 className="text-sky-700 text-xl sm:text-2xl lg:text-3xl font-bold font-heading capitalize leading-tight sm:leading-8">
           {title}
         </h1>
         <div className="flex items-center gap-1">

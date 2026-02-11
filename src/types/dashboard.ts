@@ -1,5 +1,3 @@
-import { type LucideIcon } from "lucide-react";
-
 export interface KpiData {
   label: string;
   value: number | string;
@@ -81,9 +79,3 @@ export interface ActivityLogRow {
   source: string;
   comment: string;
 }
-
-export type NavItem = {
-  label: string;
-  href: string;
-  icon: LucideIcon;
-};

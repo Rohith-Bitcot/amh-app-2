@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { chartTheme } from "@/utils/chart-theme";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface StackedBarChartProps {
   data: Record<string, unknown>[];

@@ -10,7 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { chartTheme } from "@/utils/chart-theme";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface FutureLeaseChartProps {
   data: Record<string, unknown>[];
@@ -32,22 +32,9 @@ export default function FutureLeaseChart({
         <span className="flex items-center gap-1.5">
           <svg width="12" height="12">
             <defs>
-              <pattern
-                id="legend-hatch"
-                patternUnits="userSpaceOnUse"
-                width="4"
-                height="4"
-                patternTransform="rotate(45)"
-              >
+              <pattern id="legend-hatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
                 <rect width="4" height="4" fill="#1B3A5C" />
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="4"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
+                <line x1="0" y1="0" x2="0" y2="4" stroke="white" strokeWidth="1.5" />
               </pattern>
             </defs>
             <rect width="12" height="12" rx="2" fill="url(#legend-hatch)" />
@@ -61,11 +48,7 @@ export default function FutureLeaseChart({
       </div>
 
       <ResponsiveContainer width="100%" height={height}>
-        <ComposedChart
-          data={data}
-          margin={{ top: 10, right: 20, bottom: 5, left: 0 }}
-          barCategoryGap="12%"
-        >
+        <ComposedChart data={data} margin={{ top: 10, right: 20, bottom: 5, left: 0 }} barCategoryGap="12%">
           <defs>
             <pattern
               id="hatchPattern"
@@ -75,14 +58,7 @@ export default function FutureLeaseChart({
               patternTransform="rotate(45)"
             >
               <rect width="6" height="6" fill="#1B3A5C" />
-              <line
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="6"
-                stroke="white"
-                strokeWidth="2"
-              />
+              <line x1="0" y1="0" x2="0" y2="6" stroke="white" strokeWidth="2" />
             </pattern>
           </defs>
           <CartesianGrid {...chartTheme.grid} vertical={false} />
@@ -92,11 +68,7 @@ export default function FutureLeaseChart({
             axisLine={{ stroke: "#e5e5e5" }}
             tickLine={false}
           />
-          <YAxis
-            tick={chartTheme.axis.tick}
-            axisLine={false}
-            tickLine={false}
-          />
+          <YAxis tick={chartTheme.axis.tick} axisLine={false} tickLine={false} />
           <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
           <Bar
             dataKey="leaseExpiration"

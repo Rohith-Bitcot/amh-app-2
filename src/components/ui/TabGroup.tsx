@@ -12,13 +12,13 @@ interface TabGroupProps {
 export default function TabGroup({ tabs, activeTab, onTabChange, variant = "default" }: TabGroupProps) {
   if (variant === "pill") {
     return (
-      <div className="flex items-center bg-sky-50 rounded-lg p-0.5">
+      <div className="flex items-center bg-sky-50 rounded-lg p-0.5 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.value}
             onClick={() => onTabChange(tab.value)}
             className={cn(
-              "px-3 py-1.5 text-xs font-medium font-heading rounded-md transition-all capitalize",
+              "px-3 py-1.5 text-xs font-medium font-heading rounded-md transition-all capitalize whitespace-nowrap",
               activeTab === tab.value
                 ? "bg-sky-700 text-white shadow-sm"
                 : "text-sky-700 hover:bg-sky-100"
@@ -32,13 +32,13 @@ export default function TabGroup({ tabs, activeTab, onTabChange, variant = "defa
   }
 
   return (
-    <div className="flex items-center gap-0.5">
+    <div className="flex items-center gap-0.5 overflow-x-auto">
       {tabs.map((tab) => (
         <button
           key={tab.value}
           onClick={() => onTabChange(tab.value)}
           className={cn(
-            "px-4 py-2 text-sm font-medium font-heading border-b-2 transition-all capitalize",
+            "px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium font-heading border-b-2 transition-all capitalize whitespace-nowrap",
             activeTab === tab.value
               ? "border-sky-700 text-sky-700"
               : "border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300"

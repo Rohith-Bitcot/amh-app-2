@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { chartTheme } from "@/utils/chart-theme";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface BarChartComponentProps {
   data: Record<string, unknown>[];
@@ -34,14 +34,8 @@ export default function BarChartComponent({
   if (layout === "vertical") {
     return (
       <ResponsiveContainer width="100%" height={height}>
-        <BarChart
-          data={data}
-          layout="vertical"
-          margin={{ top: 5, right: 20, bottom: 5, left: 60 }}
-        >
-          {showGrid && (
-            <CartesianGrid {...chartTheme.grid} horizontal={false} />
-          )}
+        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 60 }}>
+          {showGrid && <CartesianGrid {...chartTheme.grid} horizontal={false} />}
           <XAxis type="number" tick={chartTheme.axis.tick} />
           <YAxis
             type="category"

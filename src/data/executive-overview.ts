@@ -46,54 +46,20 @@ export const kpiCards = {
 };
 
 export const funnelConversionsData = [
-  {
-    stage: "Leads",
-    value: 375,
-    color: "#1B3A5C",
-    conversionPct: null,
-    priorYearPct: null,
-  },
-  {
-    stage: "Unique\nShowings",
-    value: 300,
-    color: "#E8975D",
-    conversionPct: "64%",
-    priorYearPct: "23% PY",
-    pyPositive: true,
-  },
-  {
-    stage: "Applications",
-    value: 187,
-    color: "#7BB3D6",
-    conversionPct: "49%",
-    priorYearPct: "12% PY",
-    pyPositive: true,
-    callout: { label: "No Showing", value: 32 },
-  },
-  {
-    stage: "Approved",
-    value: 102,
-    color: "#7BC47F",
-    conversionPct: "34%",
-    priorYearPct: "-6% PY",
-    pyPositive: false,
-  },
-  {
-    stage: "Leases",
-    value: 38,
-    color: "#6B5B8A",
-    conversionPct: "31%",
-    priorYearPct: "10% PY",
-    pyPositive: true,
-  },
+  { stage: "Leads", value: 375, color: "#1B3A5C", conversionPct: null, priorYearPct: null },
+  { stage: "Unique\nShowings", value: 300, color: "#E8975D", conversionPct: "64%", priorYearPct: "23% PY", pyPositive: true },
+  { stage: "Applications", value: 187, color: "#7BB3D6", conversionPct: "49%", priorYearPct: "12% PY", pyPositive: true, callout: { label: "No Showing", value: 32 } },
+  { stage: "Approved", value: 102, color: "#7BC47F", conversionPct: "34%", priorYearPct: "-6% PY", pyPositive: false },
+  { stage: "Leases", value: 38, color: "#6B5B8A", conversionPct: "31%", priorYearPct: "10% PY", pyPositive: true },
 ];
 
 export const radarChartData = [
-  { metric: "0-7", application: 40, leads: 65, leases: 80 },
-  { metric: "8-14", application: 55, leads: 40, leases: 60 },
-  { metric: "15-30", application: 75, leads: 60, leases: 45 },
-  { metric: "30-60", application: 60, leads: 82, leases: 70 },
-  { metric: "60+", application: 85, leads: 50, leases: 65 },
+  { metric: "Web Traffic", current: 85, benchmark: 70 },
+  { metric: "Tour Rate", current: 72, benchmark: 65 },
+  { metric: "App Rate", current: 68, benchmark: 60 },
+  { metric: "Approval", current: 90, benchmark: 75 },
+  { metric: "Close Rate", current: 78, benchmark: 70 },
+  { metric: "Retention", current: 82, benchmark: 72 },
 ];
 
 export const leadCountByDOMData = [
@@ -108,6 +74,7 @@ export const leadCountByDOMData = [
 export const demandOverviewData = [
   {
     title: "New Accounts Creation Per Posted Day",
+    pills: [{ label: "444.14" }, { label: "Monitored" }],
     kpiLabel: "New Accounts T7",
     kpiValue: "2.7",
     subMetrics: [
@@ -115,22 +82,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "3.4" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+0.25",
-        breakdowns: [
-          { label: "CS", value: "+0.7" },
-          { label: "FM", value: "+0.2" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+0.14",
-        breakdowns: [
-          { label: "CS", value: "+0.5" },
-          { label: "FM", value: "+0.4" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+0.25", breakdowns: [{ label: "CS", value: "+0.7" }, { label: "FM", value: "+0.2" }] },
+      { label: "Vs Last Year", total: "+0.14", breakdowns: [{ label: "CS", value: "+0.5" }, { label: "FM", value: "+0.4" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -153,22 +106,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "4.8" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+0.18",
-        breakdowns: [
-          { label: "CS", value: "+0.3" },
-          { label: "FM", value: "+0.1" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+0.32",
-        breakdowns: [
-          { label: "CS", value: "+0.4" },
-          { label: "FM", value: "+0.6" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+0.18", breakdowns: [{ label: "CS", value: "+0.3" }, { label: "FM", value: "+0.1" }] },
+      { label: "Vs Last Year", total: "+0.32", breakdowns: [{ label: "CS", value: "+0.4" }, { label: "FM", value: "+0.6" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -191,22 +130,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "195" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+12",
-        breakdowns: [
-          { label: "CS", value: "+8" },
-          { label: "FM", value: "+4" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+22",
-        breakdowns: [
-          { label: "CS", value: "+10" },
-          { label: "FM", value: "+12" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+12", breakdowns: [{ label: "CS", value: "+8" }, { label: "FM", value: "+4" }] },
+      { label: "Vs Last Year", total: "+22", breakdowns: [{ label: "CS", value: "+10" }, { label: "FM", value: "+12" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -229,22 +154,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "145" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+8",
-        breakdowns: [
-          { label: "CS", value: "+5" },
-          { label: "FM", value: "+3" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+15",
-        breakdowns: [
-          { label: "CS", value: "+7" },
-          { label: "FM", value: "+8" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+8", breakdowns: [{ label: "CS", value: "+5" }, { label: "FM", value: "+3" }] },
+      { label: "Vs Last Year", total: "+15", breakdowns: [{ label: "CS", value: "+7" }, { label: "FM", value: "+8" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -267,22 +178,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "48" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+4",
-        breakdowns: [
-          { label: "CS", value: "+2" },
-          { label: "FM", value: "+2" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+6",
-        breakdowns: [
-          { label: "CS", value: "+3" },
-          { label: "FM", value: "+3" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+4", breakdowns: [{ label: "CS", value: "+2" }, { label: "FM", value: "+2" }] },
+      { label: "Vs Last Year", total: "+6", breakdowns: [{ label: "CS", value: "+3" }, { label: "FM", value: "+3" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -305,22 +202,8 @@ export const demandOverviewData = [
       { label: "Fully Marketing", value: "108" },
     ],
     comparisons: [
-      {
-        label: "Vs Previous T7",
-        total: "+6",
-        breakdowns: [
-          { label: "CS", value: "+3" },
-          { label: "FM", value: "+3" },
-        ],
-      },
-      {
-        label: "Vs Last Year",
-        total: "+10",
-        breakdowns: [
-          { label: "CS", value: "+4" },
-          { label: "FM", value: "+6" },
-        ],
-      },
+      { label: "Vs Previous T7", total: "+6", breakdowns: [{ label: "CS", value: "+3" }, { label: "FM", value: "+3" }] },
+      { label: "Vs Last Year", total: "+10", breakdowns: [{ label: "CS", value: "+4" }, { label: "FM", value: "+6" }] },
     ],
     chartTitle: "Current Year Vs Last Year Full Marketed",
     chartData: [
@@ -339,82 +222,16 @@ export const performanceTableData = {
   headers: ["Geo", "2023", "2024", "2025", "YoY"],
   highlightedHeader: "2025",
   rows: [
-    {
-      metric: "Distinct Properties Marketed",
-      "2023": "1,454",
-      "2024": "3,588",
-      "2025": "4,245",
-      YoY: "5%",
-    },
-    {
-      metric: "Distinct Coming Soon",
-      "2023": "3,588",
-      "2024": "$4,214",
-      "2025": "2,154",
-      YoY: "-2%",
-    },
-    {
-      metric: "Distinct Fully Marketed",
-      "2023": "2,154",
-      "2024": "$4,214",
-      "2025": "3,588",
-      YoY: "-2%",
-    },
-    {
-      metric: "Marketed Days",
-      "2023": "4,245",
-      "2024": "$4,214",
-      "2025": "548",
-      YoY: "12%",
-    },
-    {
-      metric: "Coming Soon Days",
-      "2023": "3,588",
-      "2024": "2,154",
-      "2025": "3,588",
-      YoY: "12%",
-    },
-    {
-      metric: "Fully Marketed Days",
-      "2023": "548",
-      "2024": "4,245",
-      "2025": "2,154",
-      YoY: "5%",
-    },
-    {
-      metric: "Fully Marketed Days %",
-      "2023": "3,588",
-      "2024": "4,245",
-      "2025": "1,554",
-      YoY: "5%",
-    },
-    {
-      metric: "Fully Marketed Days per Fully Marketed Property",
-      "2023": "4,245",
-      "2024": "2,154",
-      "2025": "3,588",
-      YoY: "-2%",
-    },
-    {
-      metric: "Leads",
-      "2023": "2,154",
-      "2024": "4,245",
-      "2025": "4,245",
-      YoY: "-2%",
-    },
-    {
-      metric: "Total Interest",
-      "2023": "3,588",
-      "2024": "2,154",
-      "2025": "3,588",
-      YoY: "12%",
-    },
-    {
-      metric: "Distinct Interest",
-      "2023": "548",
-      "2024": "3,588",
-      "2025": "2,154",
-      YoY: "12%",
-    },
+    { metric: "Distinct Properties Marketed", "2023": "1,454", "2024": "3,588", "2025": "4,245", "YoY": "5%" },
+    { metric: "Distinct Coming Soon", "2023": "3,588", "2024": "$4,214", "2025": "2,154", "YoY": "-2%" },
+    { metric: "Distinct Fully Marketed", "2023": "2,154", "2024": "$4,214", "2025": "3,588", "YoY": "-2%" },
+    { metric: "Marketed Days", "2023": "4,245", "2024": "$4,214", "2025": "548", "YoY": "12%" },
+    { metric: "Coming Soon Days", "2023": "3,588", "2024": "2,154", "2025": "3,588", "YoY": "12%" },
+    { metric: "Fully Marketed Days", "2023": "548", "2024": "4,245", "2025": "2,154", "YoY": "5%" },
+    { metric: "Fully Marketed Days %", "2023": "3,588", "2024": "4,245", "2025": "1,554", "YoY": "5%" },
+    { metric: "Fully Marketed Days per Fully Marketed Property", "2023": "4,245", "2024": "2,154", "2025": "3,588", "YoY": "-2%" },
+    { metric: "Leads", "2023": "2,154", "2024": "4,245", "2025": "4,245", "YoY": "-2%" },
+    { metric: "Total Interest", "2023": "3,588", "2024": "2,154", "2025": "3,588", "YoY": "12%" },
+    { metric: "Distinct Interest", "2023": "548", "2024": "3,588", "2025": "2,154", "YoY": "12%" },
   ],
 };

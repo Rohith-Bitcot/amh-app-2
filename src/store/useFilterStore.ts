@@ -3,17 +3,17 @@
 import { create } from "zustand";
 
 interface FilterState {
-  demandViewMode: "perPostedDay" | "totalCounts";
+  demandViewMode: "communities" | "properties";
   funnelTab: "unique-showings" | "application" | "leases";
   selectedDistricts: string[];
-  setDemandViewMode: (mode: "perPostedDay" | "totalCounts") => void;
+  setDemandViewMode: (mode: "communities" | "properties") => void;
   setFunnelTab: (tab: "unique-showings" | "application" | "leases") => void;
   setSelectedDistricts: (districts: string[]) => void;
   resetFilters: () => void;
 }
 
 export const useFilterStore = create<FilterState>((set) => ({
-  demandViewMode: "perPostedDay",
+  demandViewMode: "communities",
   funnelTab: "unique-showings",
   selectedDistricts: [],
   setDemandViewMode: (mode) => set({ demandViewMode: mode }),
@@ -21,7 +21,7 @@ export const useFilterStore = create<FilterState>((set) => ({
   setSelectedDistricts: (districts) => set({ selectedDistricts: districts }),
   resetFilters: () =>
     set({
-      demandViewMode: "perPostedDay",
+      demandViewMode: "communities",
       funnelTab: "unique-showings",
       selectedDistricts: [],
     }),
