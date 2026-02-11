@@ -63,11 +63,11 @@ export default function ExecutiveOverview() {
                 {LEASES_SIGNED_BAR_DATA.map((bar, i) => (
                   <div key={i} className="flex flex-col items-center gap-0.5">
                     <div
-                      className={`w-[8px] rounded-full ${!bar.isSpecial ? "bg-[#E9ECF1]" : ""}`}
+                      className={`w-[6px] rounded-full ${!bar.isSpecial ? "bg-[#E9ECF1]" : ""}`}
                       style={{
                         height: bar.h,
                         background: bar.isSpecial
-                          ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)"
+                          ? "linear-gradient(to bottom, transparent 30%, #01497B 30%), repeating-linear-gradient(135deg, #EAA466, #EAA466 1px, #01497B 1px, #01497B 2px)"
                           : undefined,
                       }}
                     />
