@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/cards";
 import StackedBarChart from "@/components/charts/StackedBarChart";
 import FutureLeaseChart from "@/components/charts/FutureLeaseChart";
 import DataTable from "@/components/tables/DataTable";
@@ -17,30 +17,70 @@ import {
 import { CHART_COLORS } from "@/lib/constants";
 
 const stackedBars = [
-  { dataKey: "holdRecentApp", color: CHART_COLORS.stacked[0], name: "Hold Recent App" },
-  { dataKey: "holdRecentPhotos", color: CHART_COLORS.stacked[1], name: "Hold Recent Photos" },
-  { dataKey: "marketingReview", color: CHART_COLORS.stacked[2], name: "Marketing Review" },
-  { dataKey: "marketingOldPics", color: CHART_COLORS.stacked[3], name: "Marketing Old Pics" },
-  { dataKey: "dispoReview", color: CHART_COLORS.stacked[4], name: "Dispo Review" },
+  {
+    dataKey: "holdRecentApp",
+    color: CHART_COLORS.stacked[0],
+    name: "Hold Recent App",
+  },
+  {
+    dataKey: "holdRecentPhotos",
+    color: CHART_COLORS.stacked[1],
+    name: "Hold Recent Photos",
+  },
+  {
+    dataKey: "marketingReview",
+    color: CHART_COLORS.stacked[2],
+    name: "Marketing Review",
+  },
+  {
+    dataKey: "marketingOldPics",
+    color: CHART_COLORS.stacked[3],
+    name: "Marketing Old Pics",
+  },
+  {
+    dataKey: "dispoReview",
+    color: CHART_COLORS.stacked[4],
+    name: "Dispo Review",
+  },
 ];
 
-const drilldownColumnHelper = createColumnHelper<(typeof propertyDrilldownData)[0]>();
+const drilldownColumnHelper =
+  createColumnHelper<(typeof propertyDrilldownData)[0]>();
 const drilldownColumns = [
-  drilldownColumnHelper.accessor("propertyId", { header: "Property ID", enableSorting: true }),
-  drilldownColumnHelper.accessor("category", { header: "Category", enableSorting: true }),
+  drilldownColumnHelper.accessor("propertyId", {
+    header: "Property ID",
+    enableSorting: true,
+  }),
+  drilldownColumnHelper.accessor("category", {
+    header: "Category",
+    enableSorting: true,
+  }),
   drilldownColumnHelper.accessor("dom", { header: "DOM", enableSorting: true }),
-  drilldownColumnHelper.accessor("websitePageviews", { header: "Website Pageviews" }),
+  drilldownColumnHelper.accessor("websitePageviews", {
+    header: "Website Pageviews",
+  }),
   drilldownColumnHelper.accessor("interests", { header: "Interests" }),
   drilldownColumnHelper.accessor("showings", { header: "Showings" }),
   drilldownColumnHelper.accessor("applications", { header: "Applications" }),
   drilldownColumnHelper.accessor("approvalPercent", { header: "Approval %" }),
-  drilldownColumnHelper.accessor("stageDeclinePercent", { header: "Stage Decline %" }),
+  drilldownColumnHelper.accessor("stageDeclinePercent", {
+    header: "Stage Decline %",
+  }),
 ];
 
-const categoryHeaders = ["DOM Range", "Hold Recent App", "Hold Recent Photos", "Marketing Review", "Marketing Old Pics", "Dispo Review"];
+const categoryHeaders = [
+  "DOM Range",
+  "Hold Recent App",
+  "Hold Recent Photos",
+  "Marketing Review",
+  "Marketing Old Pics",
+  "Dispo Review",
+];
 
 export default function PropertyHealth() {
-  const [expandedDistricts, setExpandedDistricts] = useState<Set<string>>(new Set(["District A"]));
+  const [expandedDistricts, setExpandedDistricts] = useState<Set<string>>(
+    new Set(["District A"]),
+  );
 
   const toggleDistrict = (district: string) => {
     setExpandedDistricts((prev) => {
@@ -69,25 +109,34 @@ export default function PropertyHealth() {
       <Card noPadding>
         {/* Tab row */}
         <div className="flex overflow-x-auto bg-gradient-to-r from-sky-700 to-sky-600 rounded-t-md">
-          {["Year", "OSHA Categories", "Hold recent/app", "Hold recent/photos", "Marketing review", "Marketing old pics", "Dispo review"].map(
-            (tab, i) => (
-              <div
-                key={tab}
-                className={`px-3 sm:px-4 py-3 text-white text-[10px] sm:text-xs font-medium font-heading whitespace-nowrap ${
-                  i === 0 ? "bg-white/10" : ""
-                }`}
-              >
-                {tab}
-              </div>
-            )
-          )}
+          {[
+            "Year",
+            "OSHA Categories",
+            "Hold recent/app",
+            "Hold recent/photos",
+            "Marketing review",
+            "Marketing old pics",
+            "Dispo review",
+          ].map((tab, i) => (
+            <div
+              key={tab}
+              className={`px-3 sm:px-4 py-3 text-white text-[10px] sm:text-xs font-medium font-heading whitespace-nowrap ${
+                i === 0 ? "bg-white/10" : ""
+              }`}
+            >
+              {tab}
+            </div>
+          ))}
         </div>
 
         {/* District sections */}
         {districtTableData.map((district) => {
           const isExpanded = expandedDistricts.has(district.district);
           return (
-            <div key={district.district} className="border-b border-neutral-200">
+            <div
+              key={district.district}
+              className="border-b border-neutral-200"
+            >
               {/* District header row */}
               <button
                 className="w-full flex items-center gap-2 px-4 py-3 bg-sky-50 hover:bg-sky-100 transition-colors text-left"
@@ -159,7 +208,10 @@ export default function PropertyHealth() {
       </Card>
 
       {/* Future Leases Expiration & Upcoming Delivery */}
-      <Card title="Future Lease Expiration & Upcoming Delivery (T 13M)" subtitle="Vs. Projected Absorption">
+      <Card
+        title="Future Lease Expiration & Upcoming Delivery (T 13M)"
+        subtitle="Vs. Projected Absorption"
+      >
         <FutureLeaseChart data={futureExpirationData} height={300} />
       </Card>
     </div>

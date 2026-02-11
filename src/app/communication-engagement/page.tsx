@@ -1,7 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/cards";
 import DonutChart from "@/components/charts/DonutChart";
 import DataTable from "@/components/tables/DataTable";
 import { createColumnHelper } from "@tanstack/react-table";
@@ -16,8 +16,14 @@ import {
 // Message drilldown columns
 const msgColumnHelper = createColumnHelper<(typeof messageDrilldownData)[0]>();
 const messageColumns = [
-  msgColumnHelper.accessor("propertyId", { header: "Property ID", enableSorting: true }),
-  msgColumnHelper.accessor("leadName", { header: "Lead Info", enableSorting: true }),
+  msgColumnHelper.accessor("propertyId", {
+    header: "Property ID",
+    enableSorting: true,
+  }),
+  msgColumnHelper.accessor("leadName", {
+    header: "Lead Info",
+    enableSorting: true,
+  }),
   msgColumnHelper.accessor("date", { header: "Date", enableSorting: true }),
   msgColumnHelper.accessor("messageType", { header: "Message Type" }),
   msgColumnHelper.accessor("sentimentCategory", {
@@ -30,7 +36,9 @@ const messageColumns = [
         Inquiry: "text-sky-600 bg-sky-50",
       };
       return (
-        <span className={`px-2 py-0.5 rounded text-xs font-medium ${colorMap[value] || "text-neutral-600"}`}>
+        <span
+          className={`px-2 py-0.5 rounded text-xs font-medium ${colorMap[value] || "text-neutral-600"}`}
+        >
           {value}
         </span>
       );
@@ -42,9 +50,18 @@ const messageColumns = [
 // Activity log columns
 const activityColumnHelper = createColumnHelper<(typeof activityLogData)[0]>();
 const activityColumns = [
-  activityColumnHelper.accessor("propertyId", { header: "Property ID", enableSorting: true }),
-  activityColumnHelper.accessor("leadName", { header: "Lead Info", enableSorting: true }),
-  activityColumnHelper.accessor("date", { header: "Date", enableSorting: true }),
+  activityColumnHelper.accessor("propertyId", {
+    header: "Property ID",
+    enableSorting: true,
+  }),
+  activityColumnHelper.accessor("leadName", {
+    header: "Lead Info",
+    enableSorting: true,
+  }),
+  activityColumnHelper.accessor("date", {
+    header: "Date",
+    enableSorting: true,
+  }),
   activityColumnHelper.accessor("event", { header: "Event" }),
   activityColumnHelper.accessor("source", { header: "Source" }),
   activityColumnHelper.accessor("comment", { header: "Comment" }),
@@ -122,12 +139,15 @@ export default function CommunicationEngagement() {
                   </td>
                   {sentimentFields.map((field) => {
                     const value = row[field.key as keyof typeof row] as number;
-                    const colorClass = field.key === "total" ? "" : getHeatmapColor(value);
+                    const colorClass =
+                      field.key === "total" ? "" : getHeatmapColor(value);
                     return (
                       <td
                         key={field.key}
                         className={`px-3 py-2.5 text-sm font-heading text-center ${colorClass} ${
-                          field.key === "total" ? "font-medium text-neutral-800" : "text-neutral-700"
+                          field.key === "total"
+                            ? "font-medium text-neutral-800"
+                            : "text-neutral-700"
                         }`}
                       >
                         {field.key === "total" ? value : `${value}%`}

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
-import Card from "@/components/ui/Card";
+import Card from "@/components/ui/cards";
 import TabGroup from "@/components/ui/TabGroup";
 import StackedBarChart from "@/components/charts/StackedBarChart";
 import LineChartComponent from "@/components/charts/LineChartComponent";
@@ -47,8 +47,14 @@ function MiniTable({
     <div className="bg-white rounded-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.10)] p-3 sm:p-4">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 mb-3">
         <div>
-          <h3 className="text-sm font-bold font-heading text-neutral-800">{title}</h3>
-          {subtitle && <p className="text-[10px] font-heading text-neutral-500">{subtitle}</p>}
+          <h3 className="text-sm font-bold font-heading text-neutral-800">
+            {title}
+          </h3>
+          {subtitle && (
+            <p className="text-[10px] font-heading text-neutral-500">
+              {subtitle}
+            </p>
+          )}
         </div>
         {toggle && (
           <div className="flex bg-gray-100 rounded-full text-[10px] font-heading">
@@ -71,7 +77,10 @@ function MiniTable({
           <thead>
             <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
               {columns.map((col) => (
-                <th key={col} className="px-3 py-2 text-white text-xs font-medium font-heading text-left whitespace-nowrap">
+                <th
+                  key={col}
+                  className="px-3 py-2 text-white text-xs font-medium font-heading text-left whitespace-nowrap"
+                >
                   {col}
                 </th>
               ))}
@@ -79,9 +88,15 @@ function MiniTable({
           </thead>
           <tbody>
             {rows.map((row, idx) => (
-              <tr key={idx} className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}>
+              <tr
+                key={idx}
+                className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}
+              >
                 {columns.map((col) => (
-                  <td key={col} className="px-3 py-2 text-sm font-heading text-neutral-700 whitespace-nowrap">
+                  <td
+                    key={col}
+                    className="px-3 py-2 text-sm font-heading text-neutral-700 whitespace-nowrap"
+                  >
                     {row[col]}
                   </td>
                 ))}
@@ -109,18 +124,29 @@ export default function FunnelJourney() {
             {leadCountsData.map((item) => (
               <div key={item.source} className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold font-heading text-neutral-800">{item.source}</span>
-                  <span className="text-sm font-heading text-neutral-600">{item.leads.toLocaleString()} Leads</span>
+                  <span className="text-sm font-bold font-heading text-neutral-800">
+                    {item.source}
+                  </span>
+                  <span className="text-sm font-heading text-neutral-600">
+                    {item.leads.toLocaleString()} Leads
+                  </span>
                 </div>
                 <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all"
-                    style={{ width: `${item.regRate}%`, backgroundColor: item.color }}
+                    style={{
+                      width: `${item.regRate}%`,
+                      backgroundColor: item.color,
+                    }}
                   />
                 </div>
                 <div className="flex items-center justify-between text-[10px] font-heading">
-                  <span style={{ color: item.color }} className="font-semibold">{item.regRate}% Reg. Rate</span>
-                  <span className="text-neutral-500">Avg Time to AMH Account Confirmation {item.avgConfirmTime}</span>
+                  <span style={{ color: item.color }} className="font-semibold">
+                    {item.regRate}% Reg. Rate
+                  </span>
+                  <span className="text-neutral-500">
+                    Avg Time to AMH Account Confirmation {item.avgConfirmTime}
+                  </span>
                 </div>
               </div>
             ))}
@@ -153,15 +179,24 @@ export default function FunnelJourney() {
         {/* Timing Distribution - range/bullet chart */}
         <Card title="Timing Distribution (Day/Hs)">
           <div className="flex items-center gap-4 mb-4 text-xs font-heading">
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#20A4FF]/40" /> Actual</span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#20A4FF]/40" />{" "}
+              Actual
+            </span>
           </div>
           <div className="space-y-5">
             {timingDistributionData.map((item) => (
               <div key={item.stage} className="space-y-1">
                 <div className="flex items-center justify-between text-xs font-heading">
-                  <span className="text-neutral-700 font-medium">{item.stage}</span>
-                  <span className="text-neutral-800 font-bold">{item.actual} {item.unit}</span>
+                  <span className="text-neutral-700 font-medium">
+                    {item.stage}
+                  </span>
+                  <span className="text-neutral-800 font-bold">
+                    {item.actual} {item.unit}
+                  </span>
                 </div>
                 <div className="relative h-5 bg-gray-100 rounded-full overflow-hidden">
                   {/* Actual bar */}
@@ -188,7 +223,12 @@ export default function FunnelJourney() {
         <MiniTable
           title="Lead Counts by Source"
           columns={["Source", "T7", "PW", "PY"]}
-          rows={leadCountsBySourceData.map((r) => ({ Source: r.source, T7: r.t7, PW: r.pw, PY: r.py }))}
+          rows={leadCountsBySourceData.map((r) => ({
+            Source: r.source,
+            T7: r.t7,
+            PW: r.pw,
+            PY: r.py,
+          }))}
         />
       </div>
 
@@ -196,15 +236,25 @@ export default function FunnelJourney() {
       <Card title="Timing Stages" subtitle="Performance across active listings">
         <div className="flex flex-wrap gap-3 mb-3">
           {timingStagesLegend.map((item) => (
-            <span key={item.key} className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600">
-              <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
+            <span
+              key={item.key}
+              className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600"
+            >
+              <span
+                className="w-2.5 h-2.5 rounded-sm"
+                style={{ backgroundColor: item.color }}
+              />
               {item.label}
             </span>
           ))}
         </div>
         <StackedBarChart
           data={timingStagesData}
-          bars={timingStagesLegend.map((l) => ({ dataKey: l.key, color: l.color, name: l.label }))}
+          bars={timingStagesLegend.map((l) => ({
+            dataKey: l.key,
+            color: l.color,
+            name: l.label,
+          }))}
           xAxisKey="month"
           height={320}
         />
@@ -216,8 +266,10 @@ export default function FunnelJourney() {
           <table className="w-full">
             <thead>
               <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
-                <th className="px-4 py-3 text-white text-xs font-medium font-heading text-left">Geo</th>
-                {leasingConversionsData.headers.slice(1).map((group) => (
+                <th className="px-4 py-3 text-white text-xs font-medium font-heading text-left">
+                  Geo
+                </th>
+                {leasingConversionsData.headers.slice(1).map((group) =>
                   group.columns.map((col, ci) => (
                     <th
                       key={`${group.group}-${col}`}
@@ -227,20 +279,34 @@ export default function FunnelJourney() {
                     >
                       {ci === 0 ? (
                         <div>
-                          <div className="text-[9px] opacity-70 mb-0.5">{group.group}</div>
+                          <div className="text-[9px] opacity-70 mb-0.5">
+                            {group.group}
+                          </div>
                           {col}
                         </div>
-                      ) : col}
+                      ) : (
+                        col
+                      )}
                     </th>
-                  ))
-                ))}
+                  )),
+                )}
               </tr>
             </thead>
             <tbody>
               {leasingConversionsData.rows.map((row, idx) => (
-                <tr key={row.geo} className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}>
-                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800">{row.geo}</td>
-                  {[row.uniqueShowing, row.appStartSubmit, row.approval, row.approvalToLease].map((group, gi) => (
+                <tr
+                  key={row.geo}
+                  className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}
+                >
+                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800">
+                    {row.geo}
+                  </td>
+                  {[
+                    row.uniqueShowing,
+                    row.appStartSubmit,
+                    row.approval,
+                    row.approvalToLease,
+                  ].map((group, gi) =>
                     group.map((val, vi) => (
                       <td
                         key={`${gi}-${vi}`}
@@ -250,8 +316,8 @@ export default function FunnelJourney() {
                       >
                         {val}
                       </td>
-                    ))
-                  ))}
+                    )),
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -277,13 +343,23 @@ export default function FunnelJourney() {
             title="Showing counts by source"
             subtitle="Normalized on inventory"
             columns={["Source", "T7", "PW", "PY"]}
-            rows={showingCountsBySourceData.map((r) => ({ Source: r.source, T7: r.t7, PW: r.pw, PY: r.py }))}
+            rows={showingCountsBySourceData.map((r) => ({
+              Source: r.source,
+              T7: r.t7,
+              PW: r.pw,
+              PY: r.py,
+            }))}
             toggle={{ options: ["days posted", "property posted"], active: 0 }}
           />
           <MiniTable
             title="Conversion from previous stage to this stage"
             columns={["Source", "T7", "PW", "PY"]}
-            rows={conversionFromPrevStageData.map((r) => ({ Source: r.source, T7: r.t7, PW: r.pw, PY: r.py }))}
+            rows={conversionFromPrevStageData.map((r) => ({
+              Source: r.source,
+              T7: r.t7,
+              PW: r.pw,
+              PY: r.py,
+            }))}
           />
         </div>
       </div>
@@ -294,19 +370,43 @@ export default function FunnelJourney() {
           <table className="w-full">
             <thead>
               <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
-                {["Geo", "Denial Rate", "Cancellation Rate", "Self Service", "Avg Applicants per Application"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-white text-xs font-medium font-heading text-left">{h}</th>
+                {[
+                  "Geo",
+                  "Denial Rate",
+                  "Cancellation Rate",
+                  "Self Service",
+                  "Avg Applicants per Application",
+                ].map((h) => (
+                  <th
+                    key={h}
+                    className="px-4 py-3 text-white text-xs font-medium font-heading text-left"
+                  >
+                    {h}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {applicationMatricData.map((row, idx) => (
-                <tr key={row.geo} className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}>
-                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800">{row.geo}</td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">{row.denialRate}</td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">{row.cancellationRate}</td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">{row.selfService}</td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">{row.avgApplicants}</td>
+                <tr
+                  key={row.geo}
+                  className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}
+                >
+                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800">
+                    {row.geo}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">
+                    {row.denialRate}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">
+                    {row.cancellationRate}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">
+                    {row.selfService}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-heading text-neutral-700">
+                    {row.avgApplicants}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -315,18 +415,31 @@ export default function FunnelJourney() {
       </Card>
 
       {/* Section 8: App Stages Duration */}
-      <Card title="App Stages Duration" subtitle="Performance across active listings">
+      <Card
+        title="App Stages Duration"
+        subtitle="Performance across active listings"
+      >
         <div className="flex flex-wrap gap-3 mb-3">
           {appStagesDurationLegend.map((item) => (
-            <span key={item.key} className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600">
-              <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
+            <span
+              key={item.key}
+              className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600"
+            >
+              <span
+                className="w-2.5 h-2.5 rounded-sm"
+                style={{ backgroundColor: item.color }}
+              />
               {item.label}
             </span>
           ))}
         </div>
         <StackedBarChart
           data={appStagesDurationData}
-          bars={appStagesDurationLegend.map((l) => ({ dataKey: l.key, color: l.color, name: l.label }))}
+          bars={appStagesDurationLegend.map((l) => ({
+            dataKey: l.key,
+            color: l.color,
+            name: l.label,
+          }))}
           xAxisKey="month"
           height={320}
         />
@@ -338,8 +451,16 @@ export default function FunnelJourney() {
           <LineChartComponent
             data={cancellationApprovalData}
             lines={[
-              { dataKey: "approvalRate", color: "#66EA9D", name: "Approval Rate" },
-              { dataKey: "cancellation", color: "#F66969", name: "Cancellation" },
+              {
+                dataKey: "approvalRate",
+                color: "#66EA9D",
+                name: "Approval Rate",
+              },
+              {
+                dataKey: "cancellation",
+                color: "#F66969",
+                name: "Cancellation",
+              },
             ]}
             xAxisKey="month"
             height={250}
@@ -352,7 +473,11 @@ export default function FunnelJourney() {
             data={approvalCancellationBySourceData}
             bars={[
               { dataKey: "approval", color: "#66EA9D", name: "Approval" },
-              { dataKey: "cancellation", color: "#F66969", name: "Cancellation" },
+              {
+                dataKey: "cancellation",
+                color: "#F66969",
+                name: "Cancellation",
+              },
             ]}
             xAxisKey="source"
             height={250}
@@ -363,18 +488,31 @@ export default function FunnelJourney() {
       </div>
 
       {/* Section 10: Denial Reason Distribution */}
-      <Card title="Denial Reason Distribution" subtitle="Performance across active listings">
+      <Card
+        title="Denial Reason Distribution"
+        subtitle="Performance across active listings"
+      >
         <div className="flex flex-wrap gap-3 mb-3">
           {denialReasonLegend.map((item) => (
-            <span key={item.key} className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600">
-              <span className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: item.color }} />
+            <span
+              key={item.key}
+              className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600"
+            >
+              <span
+                className="w-2.5 h-2.5 rounded-sm"
+                style={{ backgroundColor: item.color }}
+              />
               {item.label}
             </span>
           ))}
         </div>
         <StackedBarChart
           data={denialReasonData}
-          bars={denialReasonLegend.map((l) => ({ dataKey: l.key, color: l.color, name: l.label }))}
+          bars={denialReasonLegend.map((l) => ({
+            dataKey: l.key,
+            color: l.color,
+            name: l.label,
+          }))}
           xAxisKey="month"
           height={320}
         />
@@ -399,30 +537,42 @@ export default function FunnelJourney() {
           <div className="space-y-4">
             {pageViewMarketData.map((item) => (
               <div key={item.label} className="space-y-2">
-                <div className="text-xs font-heading text-neutral-500">{item.label}</div>
+                <div className="text-xs font-heading text-neutral-500">
+                  {item.label}
+                </div>
                 <div className="space-y-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-heading text-neutral-500 w-24 shrink-0">{item.period1}</span>
+                    <span className="text-[10px] font-heading text-neutral-500 w-24 shrink-0">
+                      {item.period1}
+                    </span>
                     <div className="flex-1 h-5 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full bg-gradient-to-r from-purple-400/60 to-sky-600"
                         style={{ width: `${(item.value1 / 10) * 100}%` }}
                       />
                     </div>
-                    <span className="text-xs font-heading font-medium text-neutral-700 w-16 text-right">{item.value1} views</span>
+                    <span className="text-xs font-heading font-medium text-neutral-700 w-16 text-right">
+                      {item.value1} views
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-heading text-neutral-500 w-24 shrink-0">{item.period2}</span>
+                    <span className="text-[10px] font-heading text-neutral-500 w-24 shrink-0">
+                      {item.period2}
+                    </span>
                     <div className="flex-1 h-5 bg-gray-100 rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full bg-green-400"
                         style={{ width: `${(item.value2 / 10) * 100}%` }}
                       />
                     </div>
-                    <span className="text-xs font-heading font-medium text-neutral-700 w-16 text-right">{item.value2} views</span>
+                    <span className="text-xs font-heading font-medium text-neutral-700 w-16 text-right">
+                      {item.value2} views
+                    </span>
                   </div>
                 </div>
-                <div className="text-right text-xs font-heading font-bold text-green-500">{item.delta}</div>
+                <div className="text-right text-xs font-heading font-bold text-green-500">
+                  {item.delta}
+                </div>
               </div>
             ))}
           </div>

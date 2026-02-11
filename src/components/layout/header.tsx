@@ -42,8 +42,12 @@ export default function Header() {
         {/* User info */}
         <div className="flex items-center gap-2">
           <div className="text-right hidden sm:block">
-            <div className="text-white text-xs font-bold font-heading capitalize">Sarath</div>
-            <div className="text-white/70 text-[10px] font-medium font-heading capitalize">Sales Manager</div>
+            <div className="text-white text-xs font-bold font-heading capitalize">
+              Sarath
+            </div>
+            <div className="text-white/70 text-[10px] font-medium font-heading capitalize">
+              Sales Manager
+            </div>
           </div>
           <div className="w-7 h-7 rounded-full bg-sky-600 border border-white/30 flex items-center justify-center">
             <span className="text-white text-xs font-medium">S</span>
