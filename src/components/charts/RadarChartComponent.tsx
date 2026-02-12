@@ -50,7 +50,7 @@ export default function RadarChartComponent({
           name="Background"
           dataKey="bgValue"
           stroke="none"
-          fill="#66B1EA"
+          fill="var(--color-light-blue)"
           fillOpacity={0.75}
           isAnimationActive={false}
           legendType="none"
@@ -71,7 +71,7 @@ export default function RadarChartComponent({
                 dy={y > cy ? radiusAdjustment : -radiusAdjustment}
                 dx={x > cx ? 10 : x < cx ? -10 : 0}
                 textAnchor={textAnchor}
-                fill="#475569"
+                fill="var(--color-axis-gray)"
                 fontSize={12}
                 fontWeight={500}
                 fontFamily="'Familjen Grotesk', sans-serif"
@@ -87,7 +87,11 @@ export default function RadarChartComponent({
           angle={90}
           domain={[0, 100]}
           pointerEvents="none"
-          tick={{ fill: "#334155", fontSize: 10, fontWeight: 500 }}
+          tick={{
+            fill: "var(--color-axis-gray)",
+            fontSize: 10,
+            fontWeight: 500,
+          }}
           tickFormatter={(v) => (v === 0 ? "" : `${v}%`)}
           axisLine={false}
           tickCount={6}
@@ -136,7 +140,7 @@ export default function RadarChartComponent({
             ...chartTheme.tooltip.contentStyle,
             borderRadius: "8px",
             border: "none",
-            boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
+            boxShadow: "0px 4px 12px var(--color-card-shadow)",
           }}
           formatter={(value: any) => [`${value}%`]}
         />
@@ -151,7 +155,7 @@ export default function RadarChartComponent({
               paddingTop: "20px",
               fontSize: 12,
               fontWeight: 500,
-              color: "#344054",
+              color: "var(--color-foreground)",
               fontFamily: "'Familjen Grotesk', sans-serif",
             }}
           />

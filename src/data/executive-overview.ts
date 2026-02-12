@@ -49,14 +49,14 @@ export const funnelConversionsData = [
   {
     stage: "Leads",
     value: 375,
-    color: "#1B3A5C",
+    color: "var(--color-stage-leads)",
     conversionPct: null,
     priorYearPct: null,
   },
   {
     stage: "Unique\nShowings",
     value: 300,
-    color: "#E8975D",
+    color: "var(--color-stage-showings)",
     conversionPct: "64%",
     priorYearPct: "23% PY",
     pyPositive: true,
@@ -64,7 +64,7 @@ export const funnelConversionsData = [
   {
     stage: "Applications",
     value: 187,
-    color: "#7BB3D6",
+    color: "var(--color-stage-applications)",
     conversionPct: "49%",
     priorYearPct: "12% PY",
     pyPositive: true,
@@ -73,7 +73,7 @@ export const funnelConversionsData = [
   {
     stage: "Approved",
     value: 102,
-    color: "#7BC47F",
+    color: "var(--color-stage-approved)",
     conversionPct: "34%",
     priorYearPct: "-6% PY",
     pyPositive: false,
@@ -81,7 +81,7 @@ export const funnelConversionsData = [
   {
     stage: "Leases",
     value: 38,
-    color: "#6B5B8A",
+    color: "var(--color-stage-leases)",
     conversionPct: "31%",
     priorYearPct: "10% PY",
     pyPositive: true,
@@ -97,12 +97,12 @@ export const radarChartData = [
 ];
 
 export const leadCountByDOMData = [
-  { range: "0-7", value: 20, color: "#1B3A5C" },
-  { range: "8-14", value: 16, color: "#1B3A5C" },
-  { range: "15-30", value: 11, color: "#1B3A5C" },
-  { range: "30+", value: 7, color: "#E8918E" },
-  { range: "60+", value: 5, color: "#E8918E" },
-  { range: "90+", value: 3, color: "#E8918E" },
+  { range: "0-7", value: 20, color: "var(--color-stage-leads)" },
+  { range: "8-14", value: 16, color: "var(--color-stage-leads)" },
+  { range: "15-30", value: 11, color: "var(--color-stage-leads)" },
+  { range: "30+", value: 7, color: "var(--color-range-old)" },
+  { range: "60+", value: 5, color: "var(--color-range-old)" },
+  { range: "90+", value: 3, color: "var(--color-range-old)" },
 ];
 
 export const demandOverviewData = [

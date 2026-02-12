@@ -26,12 +26,18 @@ export default function Sidebar() {
         className={cn(
           "fixed left-0 top-0 bottom-0 w-60 bg-sky-800 z-50 flex flex-col transition-transform duration-300 ease-in-out",
           "lg:translate-x-0",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {/* Logo area */}
         <div className="h-14 px-5 flex items-center justify-between bg-gradient-to-r from-sky-800 to-sky-700">
-          <Image src="/logo.svg" alt="Property Pulse" width={95} height={37} priority />
+          <Image
+            src="/logo.svg"
+            alt="Property Pulse"
+            width={95}
+            height={37}
+            priority
+          />
           {/* Close button - mobile only */}
           <button
             className="lg:hidden p-1 text-white/80 hover:text-white transition-colors"
@@ -44,8 +50,9 @@ export default function Sidebar() {
         {/* Navigation */}
         <nav className="flex-1 px-6 pt-6 flex flex-col gap-1">
           {NAV_ITEMS.map((item, index) => {
-            const isActive = pathname === item.href || (pathname === "/" && item.href === "/executive-overview");
-            const Icon = item.icon;
+            const isActive =
+              pathname === item.href ||
+              (pathname === "/" && item.href === "/executive-overview");
 
             return (
               <div key={item.href}>
@@ -54,10 +61,18 @@ export default function Sidebar() {
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
                     "flex items-center gap-2.5 px-2 py-3 rounded-lg transition-all text-white",
-                    isActive ? "opacity-100 bg-white/10" : "opacity-70 hover:opacity-90 hover:bg-white/5"
+                    isActive
+                      ? "opacity-100 bg-white/10"
+                      : "opacity-70 hover:opacity-90 hover:bg-white/5",
                   )}
                 >
-                  <Icon className="w-5 h-5 shrink-0" />
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={20}
+                    height={20}
+                    className="shrink-0"
+                  />
                   <span className="text-base font-normal font-heading capitalize leading-5">
                     {item.label}
                   </span>

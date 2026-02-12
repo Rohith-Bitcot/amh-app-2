@@ -75,8 +75,8 @@ export default function FunnelConversionChart({
         <svg width={width} height={height}>
           <defs>
             <linearGradient id="funnelGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="37.17%" stopColor="#DFE5EE" />
-              <stop offset="100%" stopColor="#CADFFF" />
+              <stop offset="37.17%" stopColor="var(--color-funnel-base-from)" />
+              <stop offset="100%" stopColor="var(--color-funnel-base-to)" />
             </linearGradient>
           </defs>
 
@@ -116,7 +116,7 @@ export default function FunnelConversionChart({
                   y={baseline + 16 + li * 14}
                   textAnchor="middle"
                   fontSize={12}
-                  fill="#6b7280"
+                  fill="var(--color-axis-gray)"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {line}
@@ -142,7 +142,7 @@ export default function FunnelConversionChart({
                   textAnchor="middle"
                   fontSize={10}
                   fontWeight={700}
-                  fill="#374151"
+                  fill="var(--color-foreground)"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {bar.conversionPct}
@@ -153,7 +153,11 @@ export default function FunnelConversionChart({
                     y={labelY + 15}
                     textAnchor="middle"
                     fontSize={10.5}
-                    fill={bar.pyPositive ? "#16a34a" : "#dc2626"}
+                    fill={
+                      bar.pyPositive
+                        ? "var(--color-green-success)"
+                        : "var(--color-live)"
+                    }
                     fontFamily="'Familjen Grotesk', sans-serif"
                   >
                     {bar.priorYearPct}
@@ -177,7 +181,7 @@ export default function FunnelConversionChart({
                 <polyline
                   points={`${boxX},${boxY + boxH} ${boxX},${boxY} ${boxX + boxW},${boxY} ${boxX + boxW},${boxY + boxH}`}
                   fill="none"
-                  stroke="#66B1EA"
+                  stroke="var(--color-light-blue)"
                   strokeWidth={1.5}
                   strokeDasharray="6 4"
                 />
@@ -187,7 +191,7 @@ export default function FunnelConversionChart({
                   textAnchor="middle"
                   fontSize={9}
                   fontWeight={500}
-                  fill="#66B1EA"
+                  fill="var(--color-light-blue)"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {bar.callout.label}
@@ -198,7 +202,7 @@ export default function FunnelConversionChart({
                   textAnchor="middle"
                   fontSize={16}
                   fontWeight={700}
-                  fill="#66B1EA"
+                  fill="var(--color-light-blue)"
                   fontFamily="'Familjen Grotesk', sans-serif"
                 >
                   {bar.callout.value}

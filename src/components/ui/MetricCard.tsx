@@ -2,7 +2,6 @@
 
 import {
   Area,
-  AreaChart,
   Line,
   ResponsiveContainer,
   XAxis,
@@ -11,7 +10,6 @@ import {
   Tooltip,
   ComposedChart,
 } from "recharts";
-import { Info } from "lucide-react";
 import { chartTheme } from "@/lib/chartTheme";
 import Image from "next/image";
 
@@ -58,7 +56,7 @@ export default function MetricCard({
   onToggle,
 }: MetricCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.10)] p-3 sm:p-4 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -83,27 +81,36 @@ export default function MetricCard({
           )}
         </div>
         <button className="text-neutral-400 hover:text-neutral-600 transition-colors mt-0.5">
-          <Info className="w-4 h-4" />
+          <Image
+            src="/assets/svgs/about.svg"
+            alt="About"
+            width={11}
+            height={11}
+          />
         </button>
       </div>
 
       {/* KPI Summary Box */}
-      <div className="bg-gradient-to-b from-[#6CA9D3] to-[#CCE9FF] rounded-xl p-3 text-white">
+      <div className="bg-linear-to-b from-metric-from to-metric-to rounded-xl p-3 text-white">
         {/* Top: label + big number + sub-metrics */}
-        <div className="flex items-start justify-between">
+        <div className="flex items-center justify-start gap-10 mb-0.5 font-medium">
           <div>
-            <div className="text-[10px] font-heading opacity-80">
+            <div className="text-[14px] font-heading font-medium mb-0.5">
               {kpiLabel}
             </div>
-            <div className="text-3xl sm:text-5xl font-bold font-heading leading-tight">
+            <div className="text-[56px] font-bold font-heading leading-tight">
               {kpiValue}
             </div>
           </div>
-          <div className="flex flex-col items-end gap-0.5 mt-1">
+          <div className="flex flex-col gap-2 mt-4">
+            {" "}
             {subMetrics.map((m) => (
-              <div key={m.label} className="text-[11px] font-heading">
-                <span className="opacity-80">{m.label}</span>{" "}
-                <span className="font-semibold">{m.value}</span>
+              <div
+                key={m.label}
+                className="text-[17px] font-heading flex items-center gap-2 leading-tight"
+              >
+                <span className="opacity-90 whitespace-nowrap">{m.label}</span>
+                <span className="font-bold">{m.value}</span>
               </div>
             ))}
           </div>
@@ -112,15 +119,25 @@ export default function MetricCard({
         {/* Comparison rows */}
         {comparisons.map((row) => (
           <div key={row.label}>
-            <div className="border-t border-white/20 my-2" />
-            <div className="flex items-center text-[10px] font-heading">
-              <span className="opacity-70 min-w-[72px]">{row.label}</span>
-              <span className="font-semibold min-w-[44px]">{row.total}</span>
-              {row.breakdowns.map((b) => (
-                <span key={b.label} className="ml-3 opacity-80">
-                  {b.label} <span className="font-semibold">{b.value}</span>
-                </span>
-              ))}
+            <div className="border-t border-white/55 my-2.5" />
+            <div className="flex items-center text-[15px] font-heading gap-5">
+              <span className="opacity-90 min-w-[90px] font-medium">
+                {row.label}
+              </span>
+              <span className="font-bold min-w-[55px] text-[15px]">
+                {row.total}
+              </span>
+              <div className="flex gap-4">
+                {row.breakdowns.map((b) => (
+                  <span
+                    key={b.label}
+                    className="opacity-100 flex items-baseline gap-1"
+                  >
+                    <span className="text-[15px] opacity-90">{b.label}</span>
+                    <span className="text-[15px] font-bold">{b.value}</span>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
@@ -150,23 +167,31 @@ export default function MetricCard({
             >
               <defs>
                 <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#0284c7" stopOpacity={0.25} />
-                  <stop offset="100%" stopColor="#0284c7" stopOpacity={0.03} />
+                  <stop
+                    offset="0%"
+                    stopColor="var(--color-link)"
+                    stopOpacity={0.25}
+                  />
+                  <stop
+                    offset="100%"
+                    stopColor="var(--color-link)"
+                    stopOpacity={0.03}
+                  />
                 </linearGradient>
               </defs>
               <CartesianGrid
                 strokeDasharray="3 3"
-                stroke="#f1f5f9"
+                stroke="var(--color-grid-gray)"
                 vertical={false}
               />
               <XAxis
                 dataKey="label"
-                tick={{ fontSize: 10, fill: "#a3a3a3" }}
+                tick={{ fontSize: 10, fill: "var(--color-axis-gray)" }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fontSize: 10, fill: "#a3a3a3" }}
+                tick={{ fontSize: 10, fill: "var(--color-axis-gray)" }}
                 axisLine={false}
                 tickLine={false}
               />
@@ -174,7 +199,7 @@ export default function MetricCard({
               <Area
                 type="monotone"
                 dataKey="current"
-                stroke="#0284c7"
+                stroke="var(--color-link)"
                 strokeWidth={2}
                 fill="url(#areaFill)"
                 name="Current Year"
@@ -182,7 +207,7 @@ export default function MetricCard({
               <Line
                 type="monotone"
                 dataKey="prior"
-                stroke="#f59e0b"
+                stroke="var(--color-leases)"
                 strokeWidth={1.5}
                 strokeDasharray="5 3"
                 dot={false}

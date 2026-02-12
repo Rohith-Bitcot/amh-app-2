@@ -1,7 +1,8 @@
 "use client";
 
-import { Bell, HelpCircle, ChevronDown, Menu } from "lucide-react";
 import { useNavigationStore } from "@/store/useNavigationStore";
+import { ChevronDown, Menu } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
   const { toggleSidebar } = useNavigationStore();
@@ -25,15 +26,25 @@ export default function Header() {
           <ChevronDown className="w-3 h-3" />
         </button>
 
-        {/* Help */}
-        <button className="p-1.5 text-white/70 hover:text-white transition-colors">
-          <HelpCircle className="w-4 h-4" />
-        </button>
-
         {/* Notifications */}
         <button className="p-1.5 text-white/70 hover:text-white transition-colors relative">
-          <Bell className="w-4 h-4" />
+          <Image
+            src="/assets/svgs/notification-bell_3680267%201.svg"
+            alt="Notification"
+            width={16}
+            height={16}
+          />
           <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 rounded-full" />
+        </button>
+
+        {/* Theme */}
+        <button className="p-1.5 text-white/70 hover:text-white transition-colors">
+          <Image
+            src="/assets/svgs/theme.svg"
+            alt="Help"
+            width={20}
+            height={20}
+          />
         </button>
 
         {/* Divider */}

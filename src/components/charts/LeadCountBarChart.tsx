@@ -35,23 +35,23 @@ export default function LeadCountBarChart({
         >
           <CartesianGrid
             vertical={false}
-            stroke="#E5E7EB"
+            stroke="var(--color-grid-gray)"
             strokeDasharray="0"
           />
           <XAxis
             dataKey="range"
             tick={{
-              fill: "#838689",
+              fill: "var(--color-axis-gray)",
               fontSize: 11,
               fontFamily: "'Familjen Grotesk', sans-serif",
             }}
-            axisLine={{ stroke: "#C9CBCD" }}
+            axisLine={{ stroke: "var(--color-axis-border)" }}
             tickLine={false}
             dy={10}
           />
           <YAxis
             tick={{
-              fill: "#838689",
+              fill: "var(--color-axis-gray)",
               fontSize: 11,
               fontFamily: "'Familjen Grotesk', sans-serif",
             }}
@@ -72,7 +72,7 @@ export default function LeadCountBarChart({
                 fontSize: 13,
                 fontWeight: 700,
                 fontFamily: "'Familjen Grotesk', sans-serif",
-                fill: "#374151",
+                fill: "var(--color-foreground)",
               }}
               offset={10}
             />
