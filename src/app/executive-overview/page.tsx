@@ -1,6 +1,7 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
+import Image from "next/image";
 import Card from "@/components/ui/cards";
 import KpiCard from "@/components/ui/KpiCard";
 import MetricCard from "@/components/ui/MetricCard";
@@ -19,118 +20,141 @@ import {
 } from "@/data/executive-overview";
 import { useFilterStore } from "@/store/useFilterStore";
 import { CHART_COLORS } from "@/lib/constants";
+import { useState } from "react";
 
 const d = kpiCards;
 
+// Leases Signed Bar Data - matching Figma design
+// Heights as percentages of max for proper scaling
+// Leases Signed Bar Data - matching Figma design exactly (S S M T W T F)
+// Leases Signed Bar Data - matching exact pixel heights from feedback
+const LEASES_SIGNED_BAR_DATA = [
+  { day: "S", h: "52px", isSpecial: false },
+  { day: "S", h: "34px", isSpecial: false },
+  { day: "M", h: "46px", isSpecial: false },
+  { day: "T", h: "53px", isSpecial: false },
+  { day: "W", h: "46px", isSpecial: false },
+  { day: "T", h: "34px", isSpecial: false },
+  { day: "F", h: "45px", isSpecial: true }, // Special striped bar
+];
+
 export default function ExecutiveOverview() {
   const { demandViewMode, setDemandViewMode } = useFilterStore();
+  const [expandedTitle, setExpandedTitle] = useState<string | null>(null);
 
   return (
     <div className="space-y-5">
       <PageHeader title="AMH Executive Overview" />
 
-      {/* KPI Cards Row */}
-      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
+      {/* KPI Cards Row - Using custom column setup to match 1.5x width of first card */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 xl:grid-cols-11 gap-3">
         {/* 1. Leases Signed (MTD) */}
-        <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700">
+        <KpiCard leasesSigned={true}>
+          <div className="text-[13px] font-medium font-heading text-white/90">
             {d.leasesSigned.title}
           </div>
-          <div className="flex items-start justify-between mt-1">
-            <div>
-              <div className="text-3xl sm:text-4xl font-bold font-heading text-slate-800">
+          <div className="flex items-start justify-between h-full">
+            <div className="flex flex-col h-full">
+              <div className="text-4xl font-bold font-heading text-white">
                 {d.leasesSigned.value}
               </div>
               <div className="flex items-center gap-2 mt-1 text-[10px] font-heading">
-                <span className="flex items-center gap-0.5 text-red-600">
-                  <ArrowDown className="w-2.5 h-2.5" /> Current{" "}
+                <span className="flex items-center gap-1 text-red-500">
+                  <ArrowDown className="w-3 h-3" /> Current{" "}
                   {d.leasesSigned.current}
                 </span>
                 <span className="flex items-center gap-0.5 text-green-600">
-                  <ArrowUp className="w-2.5 h-2.5" /> Prior Day{" "}
+                  <ArrowUp className="w-3 h-3" /> Prior Day{" "}
                   {d.leasesSigned.priorDay}
                 </span>
               </div>
-              <div className="text-[10px] font-heading text-slate-600 mt-1">
+              <div className="text-[12px] font-heading text-slate-600 mt-1 w-full text-white">
                 {d.leasesSigned.pendingText}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.leasesSigned.weeklyBars.map((bar, i) => (
-                <div key={i} className="flex flex-col items-center gap-0.5">
+            <div className="flex items-end justify-center w-[120px] sm:w-[130px] h-full pb-1">
+              <div className="flex items-end gap-[4px] sm:gap-[5px] h-full shrink-0">
+                {LEASES_SIGNED_BAR_DATA.map((bar, i) => (
                   <div
-                    className="w-3 bg-sky-800/60 rounded-t-sm"
-                    style={{ height: `${(bar.value / 100) * 40}px` }}
-                  />
-                  <span className="text-[7px] text-slate-500">{bar.day}</span>
-                </div>
-              ))}
+                    key={i}
+                    className="flex flex-col items-center justify-end gap-1 h-full"
+                  >
+                    <div
+                      className={`w-[6px] rounded-full ${!bar.isSpecial ? "bg-white/70" : ""}`}
+                      style={{
+                        height: bar.h,
+                        background: bar.isSpecial
+                          ? "linear-gradient(to bottom, transparent 35%, #01497B 35%), repeating-linear-gradient(135deg, #EAA466, #EAA466 1px, #01497B 1px, #01497B 2px)"
+                          : undefined,
+                      }}
+                    />
+                    <span className="text-[9px] text-white/80 font-bold leading-none">
+                      {bar.day}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
 
         {/* 2. Lease Pacing */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700">
+          <div className="text-xs font-medium font-heading text-slate-700 text-white">
             {d.leasePacing.title}
           </div>
-          <div className="flex items-start justify-between mt-1">
+          <div className="flex flex-col justify-start items-start mt-1">
             <div>
-              <div className="text-3xl sm:text-4xl font-bold font-heading text-slate-800">
+              <div className="text-4xl font-bold font-heading text-white">
                 {d.leasePacing.value}
               </div>
-              <div className="text-[10px] font-heading text-slate-600">
+              <div className="text-[10px] font-heading text-slate-600 text-white">
                 {d.leasePacing.subLabel}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.leasePacing.bars.map((v, i) => (
+            <div className="mt-1">
+              <div className="text-[10px] font-heading text-slate-600 mb-0.5 text-white">
+                {d.leasePacing.approvedApps} approved applications
+              </div>
+              <div className="h-2 bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
                 <div
-                  key={i}
-                  className="w-3 bg-sky-800/50 rounded-t-sm"
-                  style={{ height: `${(v / 100) * 40}px` }}
+                  className="h-full rounded-full"
+                  style={{
+                    width: `${d.leasePacing.progressPercent}%`,
+                    background:
+                      "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%)",
+                  }}
                 />
-              ))}
-            </div>
-          </div>
-          <div className="mt-1">
-            <div className="text-[10px] font-heading text-slate-600 mb-0.5">
-              {d.leasePacing.approvedApps} approved applications
-            </div>
-            <div className="h-2 bg-white/60 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-gradient-to-r from-sky-700 to-purple-500 rounded-full"
-                style={{ width: `${d.leasePacing.progressPercent}%` }}
-              />
+              </div>
             </div>
           </div>
         </KpiCard>
 
         {/* 3. Leasing Spread */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700">
+          <div className="text-sm font-medium font-heading text-white">
             {d.leasingSpread.title}
           </div>
-          <div className="grid grid-cols-2 gap-4 mt-2">
+          <div className="grid grid-cols-2 gap-2 mt-auto pb-1">
             <div>
-              <div className="text-[10px] font-heading text-slate-600 font-medium">
+              <div className="text-[11px] font-heading text-[#01497B] font-bold">
                 Releasing
               </div>
-              <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-800">
+              <div className="text-2xl sm:text-3xl font-bold font-heading text-white">
                 {d.leasingSpread.releasing.value}
               </div>
-              <div className="text-[10px] font-heading text-green-600 font-medium">
+              <div className="text-[16px] font-heading text-white font-bold">
                 {d.leasingSpread.releasing.change}
               </div>
             </div>
             <div>
-              <div className="text-[10px] font-heading text-slate-600 font-medium">
+              <div className="text-[11px] font-heading text-[#01497B] font-bold">
                 Renewal
               </div>
-              <div className="text-2xl sm:text-3xl font-bold font-heading text-slate-800">
+              <div className="text-2xl sm:text-3xl font-bold font-heading text-white">
                 {d.leasingSpread.renewal.value}
               </div>
-              <div className="text-[10px] font-heading text-green-600 font-medium">
+              <div className="text-[16px] font-heading text-white font-bold">
                 {d.leasingSpread.renewal.change}
               </div>
             </div>
@@ -139,51 +163,63 @@ export default function ExecutiveOverview() {
 
         {/* 4. Current Fully Marketed Inventory */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700">
+          <div className="text-sm font-medium font-heading text-white">
             {d.inventory.title}
           </div>
-          <div className="flex items-start justify-between mt-1">
+          <div className="flex items-start justify-between mt-auto pb-1">
             <div>
-              <div className="text-3xl sm:text-4xl font-bold font-heading text-slate-800">
+              <div className="text-[44px] font-bold font-heading text-white leading-none">
                 {d.inventory.value}
               </div>
-              <div className="text-[10px] font-heading text-slate-600">
+              <div className="text-[12px] font-heading text-white/90 mt-1">
                 {d.inventory.agedPercent} aged {d.inventory.agedDays}
               </div>
             </div>
-            <div className="flex items-end gap-[3px] h-12 shrink-0">
-              {d.inventory.bars.map((v, i) => (
-                <div
-                  key={i}
-                  className="w-3 bg-sky-800/50 rounded-t-sm"
-                  style={{ height: `${(v / 100) * 40}px` }}
-                />
-              ))}
+            <div className="flex items-center justify-center w-[70px] sm:w-[80px] h-[65px] self-end pr-2">
+              <div className="flex items-end gap-[6px] h-full shrink-0">
+                {[
+                  { h: "46px" },
+                  { h: "34px" },
+                  { h: "46px", isSplit: true },
+                ].map((bar, i) => (
+                  <div
+                    key={i}
+                    className="w-[8px] rounded-full"
+                    style={{
+                      height: bar.h,
+                      background: bar.isSplit
+                        ? "linear-gradient(179.15deg, #8C68D5 -41.63%, #01497B 91.18%) top / 100% 23px no-repeat, #E9ECF1"
+                        : "#E9ECF1",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </KpiCard>
 
         {/* 5. Lead Pacing */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700">
+          <div className="text-sm font-medium font-heading text-white">
             {d.leadPacing.title}
           </div>
-          <div className="mt-1">
-            <div className="text-3xl sm:text-4xl font-bold font-heading text-slate-800">
+          <div className="flex flex-col justify-end h-full gap-1 pb-1">
+            <div className="text-[44px] font-bold font-heading text-white leading-none">
               {d.leadPacing.value}
             </div>
-            <div className="text-[10px] font-heading text-slate-600">
+            <div className="text-[12px] font-heading text-white/90">
               {d.leadPacing.subLabel}
             </div>
-            <div className="flex items-center gap-1 mt-2 text-[10px] font-heading text-green-600">
-              <ArrowUp className="w-2.5 h-2.5" />
+            <div className="flex items-center gap-1 text-[11px] font-heading text-[#00AC48] mt-1">
+              <ArrowUp className="w-3 h-3" />
               {d.leadPacing.pacingNote}
             </div>
           </div>
         </KpiCard>
       </div>
 
-      {/* Charts Row - 3 charts side by side */}
+      {/* Charts Row - 3 charts side by side - RESPONSIVE GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card title="Funnel Conversions">
           <FunnelConversionChart data={funnelConversionsData} height={280} />
@@ -194,20 +230,26 @@ export default function ExecutiveOverview() {
             data={radarChartData}
             radars={[
               {
-                dataKey: "current",
-                color: CHART_COLORS.primary,
-                name: "Current",
-                fillOpacity: 0.3,
+                dataKey: "application",
+                color: "#66EA9D",
+                name: "Application",
+                fillOpacity: 0.4,
               },
               {
-                dataKey: "benchmark",
-                color: CHART_COLORS.tertiary,
-                name: "Benchmark",
-                fillOpacity: 0.1,
+                dataKey: "leads",
+                color: "#E1EA66",
+                name: "Leads",
+                fillOpacity: 0.4,
+              },
+              {
+                dataKey: "leases",
+                color: "#EA8566",
+                name: "Leases",
+                fillOpacity: 0.4,
               },
             ]}
             angleKey="metric"
-            height={250}
+            height={300}
           />
         </Card>
 
@@ -224,29 +266,34 @@ export default function ExecutiveOverview() {
           </h2>
           <TabGroup
             tabs={[
-              { label: "Communities", value: "communities" },
-              { label: "Properties", value: "properties" },
+              { label: "Per posted day", value: "perPostedDay" },
+              { label: "Total counts", value: "totalCounts" },
             ]}
             activeTab={demandViewMode}
             onTabChange={(v) =>
-              setDemandViewMode(v as "communities" | "properties")
+              setDemandViewMode(v as "perPostedDay" | "totalCounts")
             }
             variant="pill"
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {demandOverviewData.map((metric) => (
             <MetricCard
               key={metric.title}
               title={metric.title}
-              pills={metric.pills}
               kpiLabel={metric.kpiLabel}
               kpiValue={metric.kpiValue}
               subMetrics={metric.subMetrics}
               comparisons={metric.comparisons}
               chartTitle={metric.chartTitle}
               chartData={metric.chartData}
+              isExpanded={expandedTitle === metric.title}
+              onToggle={() => {
+                setExpandedTitle((prev) =>
+                  prev === metric.title ? null : metric.title,
+                );
+              }}
             />
           ))}
         </div>
@@ -255,59 +302,58 @@ export default function ExecutiveOverview() {
       {/* Performance Overview Table */}
       <Card title="Performance Overview" noPadding>
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gradient-to-r from-sky-700 to-sky-600">
-                {performanceTableData.headers.map((header) => (
-                  <th
-                    key={header}
-                    className={`px-4 py-3 text-xs font-medium font-heading text-left ${
-                      header === performanceTableData.highlightedHeader
-                        ? "bg-orange-500/80 text-white"
-                        : "text-white"
+          <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
+            <table className="w-full border-collapse text-left">
+              <thead>
+                <tr className="bg-[#2A85C0]">
+                  {performanceTableData.headers.map((header, i) => (
+                    <th
+                      key={header}
+                      className="px-4 py-3 text-[13px] font-bold font-heading text-white first:rounded-tl-lg last:rounded-tr-lg"
+                    >
+                      <div
+                        className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-center"}`}
+                      >
+                        {header}
+                        <Image
+                          src="/assets/svgs/sort.svg"
+                          alt="sort"
+                          width={10}
+                          height={10}
+                          className="opacity-80"
+                        />
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {performanceTableData.rows.map((row, index) => (
+                  <tr
+                    key={row.metric}
+                    className={`border-b border-neutral-100 last:border-0 ${
+                      index % 2 === 0 ? "bg-white" : "bg-[#F4F9FF]"
                     }`}
                   >
-                    {header}
-                  </th>
+                    <td className="px-4 py-3 text-neutral-600 text-[13px] font-medium font-heading">
+                      {row.metric}
+                    </td>
+                    {performanceTableData.headers.slice(1).map((header) => {
+                      const val = row[header as keyof typeof row] as string;
+                      return (
+                        <td
+                          key={header}
+                          className="px-4 py-3 text-[13px] font-bold font-heading text-neutral-800 text-center border-l border-neutral-100"
+                        >
+                          {val}
+                        </td>
+                      );
+                    })}
+                  </tr>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {performanceTableData.rows.map((row, index) => (
-                <tr
-                  key={row.metric}
-                  className={`border-b border-neutral-200 ${
-                    index % 2 === 0 ? "bg-white" : "bg-sky-50"
-                  }`}
-                >
-                  <td className="px-4 py-3 text-neutral-800 text-sm font-medium font-heading">
-                    {row.metric}
-                  </td>
-                  {performanceTableData.headers.slice(1).map((header) => {
-                    const val = row[header as keyof typeof row] as string;
-                    const isYoY = header === "YoY";
-                    const isNegative = isYoY && val?.startsWith("-");
-                    const isHighlighted =
-                      header === performanceTableData.highlightedHeader;
-                    return (
-                      <td
-                        key={header}
-                        className={`px-4 py-3 text-sm font-normal font-heading text-right ${
-                          isHighlighted
-                            ? "bg-orange-50 text-neutral-800 font-medium"
-                            : isNegative
-                              ? "text-red-600"
-                              : "text-neutral-800"
-                        }`}
-                      >
-                        {val}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </Card>
     </div>
