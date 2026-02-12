@@ -66,7 +66,7 @@ export default function ExecutiveOverview() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 xl:grid-cols-11 gap-3">
         {/* 1. Leases Signed (MTD) */}
         <KpiCard leasesSigned={true}>
-          <div className="text-[13px] font-medium font-heading text-white/90">
+          <div className="text-[10px] font-medium font-heading text-white/90">
             {d.leasesSigned.title}
           </div>
           <div className="flex items-start justify-between h-full">
@@ -75,7 +75,7 @@ export default function ExecutiveOverview() {
                 {d.leasesSigned.value}
               </div>
               <div className="flex items-center gap-2 mt-1 text-[10px] font-heading">
-                <span className="flex items-center gap-1 text-red-500">
+                <span className="flex items-center gap-1 text-red-500 font-heading">
                   <ArrowDown className="w-3 h-3" /> Current{" "}
                   {d.leasesSigned.current}
                 </span>
@@ -100,7 +100,7 @@ export default function ExecutiveOverview() {
                       style={{
                         height: bar.h,
                         background: bar.isSpecial
-                          ? "linear-gradient(to bottom, transparent 35%, var(--color-dark-blue) 35%), repeating-linear-gradient(135deg, var(--color-leases), var(--color-leases) 1px, var(--color-dark-blue) 1px, var(--color-dark-blue) 2px)"
+                          ? "linear-gradient(to bottom, transparent 35%, var(--color-primary-blue) 35%), repeating-linear-gradient(135deg, var(--color-leases), var(--color-leases) 1px, var(--color-primary-blue) 1px, var(--color-primary-blue) 2px)"
                           : undefined,
                       }}
                     />
@@ -116,7 +116,7 @@ export default function ExecutiveOverview() {
 
         {/* 2. Lease Pacing */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-slate-700 text-white">
+          <div className="text-xs font-medium font-heading text-white">
             {d.leasePacing.title}
           </div>
           <div className="flex flex-col justify-start items-start mt-1">
@@ -124,12 +124,12 @@ export default function ExecutiveOverview() {
               <div className="text-4xl font-bold font-heading text-white">
                 {d.leasePacing.value}
               </div>
-              <div className="text-[10px] font-heading text-slate-600 text-white">
+              <div className="text-[10px] font-heading text-white">
                 {d.leasePacing.subLabel}
               </div>
             </div>
             <div className="mt-1">
-              <div className="text-[10px] font-heading text-slate-600 mb-0.5 text-white">
+              <div className="text-[10px] font-heading mb-0.5 text-white">
                 {d.leasePacing.approvedApps} approved applications
               </div>
               <div className="h-2 bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
@@ -138,7 +138,7 @@ export default function ExecutiveOverview() {
                   style={{
                     width: `${d.leasePacing.progressPercent}%`,
                     background:
-                      "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-dark-blue) 91.18%)",
+                      "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-primary-blue) 91.18%)",
                   }}
                 />
               </div>
@@ -148,7 +148,7 @@ export default function ExecutiveOverview() {
 
         {/* 3. Leasing Spread */}
         <KpiCard>
-          <div className="text-sm font-medium font-heading text-white">
+          <div className="text-[10px] font-medium font-heading text-white">
             {d.leasingSpread.title}
           </div>
           <div className="grid grid-cols-2 gap-2 mt-auto pb-1">
@@ -179,7 +179,7 @@ export default function ExecutiveOverview() {
 
         {/* 4. Current Fully Marketed Inventory */}
         <KpiCard>
-          <div className="text-sm font-medium font-heading text-white">
+          <div className="text-[10px] font-medium font-heading text-white">
             {d.inventory.title}
           </div>
           <div className="flex items-start justify-between mt-auto pb-1">
@@ -204,8 +204,8 @@ export default function ExecutiveOverview() {
                     style={{
                       height: bar.h,
                       background: bar.isSplit
-                        ? "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-dark-blue) 91.18%) top / 100% 23px no-repeat, #E9ECF1"
-                        : "#E9ECF1",
+                        ? "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-primary-blue) 91.18%) top / 100% 23px no-repeat, var(--color-grid-gray)"
+                        : "var(--color-grid-gray)",
                       backgroundRepeat: "no-repeat",
                     }}
                   />
@@ -217,7 +217,7 @@ export default function ExecutiveOverview() {
 
         {/* 5. Lead Pacing */}
         <KpiCard>
-          <div className="text-sm font-medium font-heading text-white">
+          <div className="text-[10px] font-medium font-heading text-white">
             {d.leadPacing.title}
           </div>
           <div className="flex flex-col justify-end h-full gap-1 pb-1">
@@ -247,17 +247,17 @@ export default function ExecutiveOverview() {
             radars={[
               {
                 dataKey: "application",
-                color: "#66EA9D",
+                color: "var(--color-application)",
                 name: "Application",
               },
               {
                 dataKey: "leads",
-                color: "#E1EA66",
+                color: "var(--color-leads)",
                 name: "Leads",
               },
               {
                 dataKey: "leases",
-                color: "#EA8566",
+                color: "var(--color-leases)",
                 name: "Leases",
               },
             ]}
@@ -272,7 +272,7 @@ export default function ExecutiveOverview() {
       </div>
 
       {/* Demand Overview Section */}
-      <div className="bg-gradient-to-r from-[#0B66A6] to-[#123E5D] rounded-2xl p-3 sm:p-5">
+      <div className="bg-linear-to-r from-overview-from to-overview-to rounded-2xl p-3 sm:p-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4">
           <h2 className="text-white text-xl font-bold font-heading capitalize">
             Demand Overview
@@ -318,7 +318,7 @@ export default function ExecutiveOverview() {
           <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
             <table className="w-full border-collapse text-left">
               <thead>
-                <tr className="bg-[#2A85C0]">
+                <tr className="bg-primary-blue text-white">
                   {performanceTableData.headers.map((header, i) => (
                     <th
                       key={header}
@@ -345,7 +345,7 @@ export default function ExecutiveOverview() {
                   <tr
                     key={row.metric}
                     className={`border-b border-neutral-100 last:border-0 ${
-                      index % 2 === 0 ? "bg-white" : "bg-[#F4F9FF]"
+                      index % 2 === 0 ? "bg-white" : "bg-table-alt"
                     }`}
                   >
                     <td className="px-4 py-3 text-neutral-600 text-[13px] font-medium font-heading">

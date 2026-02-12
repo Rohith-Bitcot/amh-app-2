@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface FunnelDataPoint {
   stage: string;
@@ -104,7 +105,7 @@ export default function FunnelConversionChart({
                 fontSize={12}
                 fontWeight={600}
                 fill="white"
-                fontFamily="'Familjen Grotesk', sans-serif"
+                fontFamily={chartTheme.fontFamily}
               >
                 {bar.value}
               </text>
@@ -116,8 +117,9 @@ export default function FunnelConversionChart({
                   y={baseline + 16 + li * 14}
                   textAnchor="middle"
                   fontSize={12}
-                  fill="var(--color-axis-gray)"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontWeight={500}
+                  fill="var(--color-text-black)"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {line}
                 </text>
@@ -143,7 +145,7 @@ export default function FunnelConversionChart({
                   fontSize={10}
                   fontWeight={700}
                   fill="var(--color-foreground)"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.conversionPct}
                 </text>
@@ -158,7 +160,7 @@ export default function FunnelConversionChart({
                         ? "var(--color-green-success)"
                         : "var(--color-live)"
                     }
-                    fontFamily="'Familjen Grotesk', sans-serif"
+                    fontFamily={chartTheme.fontFamily}
                   >
                     {bar.priorYearPct}
                   </text>
@@ -192,7 +194,7 @@ export default function FunnelConversionChart({
                   fontSize={9}
                   fontWeight={500}
                   fill="var(--color-light-blue)"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.callout.label}
                 </text>
@@ -203,7 +205,7 @@ export default function FunnelConversionChart({
                   fontSize={16}
                   fontWeight={700}
                   fill="var(--color-light-blue)"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.callout.value}
                 </text>

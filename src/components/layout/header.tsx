@@ -22,7 +22,7 @@ export default function Header() {
       <div className="flex items-center gap-2 sm:gap-3">
         {/* Language */}
         <button className="flex items-center gap-1 text-white/80 hover:text-white transition-colors">
-          <span className="text-xs font-medium font-body">EN</span>
+          <span className="text-xs font-medium font-familjen">EN</span>
           <ChevronDown className="w-3 h-3" />
         </button>
 

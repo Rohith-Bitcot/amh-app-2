@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-background: #f8fafc;
   --color-foreground: #262626;
   --color-sidebar: #075985;
@@ -30,6 +30,7 @@
   --color-axis-gray: #838689;
   --color-axis-border: #c9cbcd;
   --color-grid-gray: #e5e7eb;
+  --color-text-black: #1f1f22;
 
   /* Gradients */
   --color-metric-from: #6ca9d3;
@@ -49,16 +50,15 @@
   --color-stage-leases: #6b5b8a;
   --color-range-old: #e8918e;
 
-  --font-heading: var(--font-familjen), "Familjen Grotesk", sans-serif;
-  --font-body: var(--font-inter), "Inter", sans-serif;
-
+  --font-heading: var(--font-familjen);
+  --font-familjen: var(--font-familjen);
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-body);
+  font-family: var(--font-familjen);
   overflow: hidden;
 }
 

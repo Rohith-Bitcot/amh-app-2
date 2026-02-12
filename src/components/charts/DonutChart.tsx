@@ -33,6 +33,7 @@ function renderSegmentLabel(props: any) {
         textAnchor={textAnchor}
         fontSize={8}
         fill="#a3a3a3"
+        fontFamily={chartTheme.fontFamily}
       >
         {name}
       </text>
@@ -43,6 +44,7 @@ function renderSegmentLabel(props: any) {
         fontSize={14}
         fontWeight={700}
         fill="#525252"
+        fontFamily={chartTheme.fontFamily}
       >
         {value}
       </text>
@@ -78,7 +80,10 @@ export default function DonutChart({
             labelLine={false}
           >
             {data.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={colors[index % colors.length]}
+              />
             ))}
           </Pie>
           {!showLabels && (
@@ -93,7 +98,7 @@ export default function DonutChart({
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {children}
         </div>
-      ) : (centerLabel || centerValue) ? (
+      ) : centerLabel || centerValue ? (
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           {centerValue && (
             <span className="text-xl font-bold font-heading text-neutral-800">

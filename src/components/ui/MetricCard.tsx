@@ -98,7 +98,7 @@ export default function MetricCard({
             <div className="text-[14px] font-heading font-medium mb-0.5">
               {kpiLabel}
             </div>
-            <div className="text-[56px] font-bold font-heading leading-tight">
+            <div className="text-[46px] font-bold font-heading leading-tight">
               {kpiValue}
             </div>
           </div>
@@ -186,12 +186,20 @@ export default function MetricCard({
               />
               <XAxis
                 dataKey="label"
-                tick={{ fontSize: 10, fill: "var(--color-axis-gray)" }}
+                tick={{
+                  fontSize: 10,
+                  fill: "var(--color-axis-gray)",
+                  fontFamily: chartTheme.fontFamily,
+                }}
                 axisLine={false}
                 tickLine={false}
               />
               <YAxis
-                tick={{ fontSize: 10, fill: "var(--color-axis-gray)" }}
+                tick={{
+                  fontSize: 10,
+                  fill: "var(--color-axis-gray)",
+                  fontFamily: chartTheme.fontFamily,
+                }}
                 axisLine={false}
                 tickLine={false}
               />

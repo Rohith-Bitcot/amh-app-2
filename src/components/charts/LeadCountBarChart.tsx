@@ -11,6 +11,8 @@ import {
   LabelList,
 } from "recharts";
 
+import { chartTheme } from "@/lib/chartTheme";
+
 interface LeadCountDataPoint {
   range: string;
   value: number;
@@ -43,7 +45,7 @@ export default function LeadCountBarChart({
             tick={{
               fill: "var(--color-axis-gray)",
               fontSize: 11,
-              fontFamily: "'Familjen Grotesk', sans-serif",
+              fontFamily: chartTheme.fontFamily,
             }}
             axisLine={{ stroke: "var(--color-axis-border)" }}
             tickLine={false}
@@ -53,7 +55,7 @@ export default function LeadCountBarChart({
             tick={{
               fill: "var(--color-axis-gray)",
               fontSize: 11,
-              fontFamily: "'Familjen Grotesk', sans-serif",
+              fontFamily: chartTheme.fontFamily,
             }}
             axisLine={false}
             tickLine={false}
@@ -71,7 +73,7 @@ export default function LeadCountBarChart({
               style={{
                 fontSize: 13,
                 fontWeight: 700,
-                fontFamily: "'Familjen Grotesk', sans-serif",
+                fontFamily: chartTheme.fontFamily,
                 fill: "var(--color-foreground)",
               }}
               offset={10}

@@ -89,7 +89,7 @@ export default function Sidebar() {
         <div className="px-6 pb-8">
           <button className="flex items-center gap-2 px-2 py-4 text-zinc-100 opacity-80 hover:opacity-100 transition-opacity w-full">
             <LogOut className="w-5 h-5" />
-            <span className="text-base font-normal font-body">Logout</span>
+            <span className="text-base font-normal font-familjen">Logout</span>
           </button>
         </div>
 

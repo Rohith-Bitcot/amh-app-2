@@ -1,5 +1,5 @@
 export const chartTheme = {
-  fontFamily: "'Familjen Grotesk', sans-serif",
+  fontFamily: "var(--font-familjen)",
   fontSize: 12,
   colors: {
     axis: "var(--color-axis-gray)",
@@ -14,12 +14,12 @@ export const chartTheme = {
     tick: {
       fill: "var(--color-axis-gray)",
       fontSize: 11,
-      fontFamily: "'Familjen Grotesk', sans-serif",
+      fontFamily: "var(--font-familjen)",
     },
     label: {
       fill: "var(--color-axis-gray)",
       fontSize: 12,
-      fontFamily: "'Familjen Grotesk', sans-serif",
+      fontFamily: "var(--font-familjen)",
     },
   },
   grid: {
@@ -33,12 +33,12 @@ export const chartTheme = {
       borderRadius: "8px",
       padding: "8px 12px",
       fontSize: "12px",
-      fontFamily: "'Familjen Grotesk', sans-serif",
+      fontFamily: "var(--font-familjen)",
       boxShadow: "0px 4px 15px rgba(0,0,0,0.1)",
     },
     itemStyle: {
       fontSize: "12px",
-      fontFamily: "'Familjen Grotesk', sans-serif",
+      fontFamily: "var(--font-familjen)",
     },
   },
 };

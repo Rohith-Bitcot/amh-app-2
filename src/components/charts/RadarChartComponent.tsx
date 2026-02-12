@@ -74,7 +74,7 @@ export default function RadarChartComponent({
                 fill="var(--color-axis-gray)"
                 fontSize={12}
                 fontWeight={500}
-                fontFamily="'Familjen Grotesk', sans-serif"
+                fontFamily={chartTheme.fontFamily}
               >
                 {payload.value}
               </text>
@@ -91,6 +91,7 @@ export default function RadarChartComponent({
             fill: "var(--color-axis-gray)",
             fontSize: 10,
             fontWeight: 500,
+            fontFamily: chartTheme.fontFamily,
           }}
           tickFormatter={(v) => (v === 0 ? "" : `${v}%`)}
           axisLine={false}
@@ -156,7 +157,7 @@ export default function RadarChartComponent({
               fontSize: 12,
               fontWeight: 500,
               color: "var(--color-foreground)",
-              fontFamily: "'Familjen Grotesk', sans-serif",
+              fontFamily: chartTheme.fontFamily,
             }}
           />
         )}
