@@ -1,5 +1,6 @@
 "use client";
 
+import { chartTheme } from "@/lib/chartTheme";
 import { useState } from "react";
 import PageHeader from "@/components/layout/PageHeader";
 import Card from "@/components/ui/cards";
@@ -160,8 +161,8 @@ const FunnelJourney = () => {
           <LineChartComponent
             data={leadsNewReturningData}
             lines={[
-              { dataKey: "newLeads", color: "#0077CA", name: "New" },
-              { dataKey: "returning", color: "#FFB217", name: "Returning", dashed: true },
+              { dataKey: "newLeads", color: chartTheme.colors.palette.newLeads, name: "New" },
+              { dataKey: "returning", color: chartTheme.colors.palette.returning, name: "Returning", dashed: true },
             ]}
             xAxisKey="month"
             height={220}
@@ -185,7 +186,7 @@ const FunnelJourney = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#66B1EA]" /> Actual
+              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: chartTheme.colors.palette.actual }} /> Actual
             </span>
           </div>
 
@@ -212,14 +213,20 @@ const FunnelJourney = () => {
                   <div className="relative h-8 bg-gray-100 rounded">
                     {/* Actual bar (light blue) - extends to actual value + extra width */}
                     <div
-                      className="absolute top-0 left-10 h-full bg-[#66B1EA]"
-                      style={{ width: `${actualPercent + 20}%` }}
+                      className="absolute top-0 left-10 h-full"
+                      style={{
+                        backgroundColor: chartTheme.colors.palette.actual,
+                        width: `${actualPercent + 20}%`
+                      }}
                     />
 
                     {/* Benchmark bar (dark/black) - sits on top, extends to benchmark */}
                     <div
-                      className="absolute top-3 left-10 h-2.5 bg-[#1a1a1a] z-[5]"
-                      style={{ width: `${benchmarkPercent}%` }}
+                      className="absolute top-3 left-10 h-2.5 z-[5]"
+                      style={{
+                        backgroundColor: chartTheme.colors.palette.benchmark,
+                        width: `${benchmarkPercent}%`
+                      }}
                     />
 
                     {/* Actual value label - positioned above the actual bar */}
@@ -449,7 +456,10 @@ const FunnelJourney = () => {
       </Card>
 
       {/* Section 6: Dark Lead Funnel with tabs */}
-      <div className="bg-gradient-to-r from-[#004F86] to-[#123E5D] rounded-2xl p-3 sm:p-6">
+      <div
+        className="rounded-2xl p-3 sm:p-6"
+        style={{ background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})` }}
+      >
         <TabGroup
           tabs={[
             { label: "Unique Showings", value: "unique-showings" },
@@ -649,12 +659,12 @@ const FunnelJourney = () => {
             lines={[
               {
                 dataKey: "approvalRate",
-                color: "#66EA9D",
+                color: chartTheme.colors.palette.approval,
                 name: "Approval Rate",
               },
               {
                 dataKey: "cancellation",
-                color: "#F66969",
+                color: chartTheme.colors.palette.cancellation,
                 name: "Cancellation",
               },
             ]}
@@ -668,10 +678,10 @@ const FunnelJourney = () => {
           <BarChartComponent
             data={approvalCancellationBySourceData}
             bars={[
-              { dataKey: "approval", color: "#66EA9D", name: "Approval" },
+              { dataKey: "approval", color: chartTheme.colors.palette.approval, name: "Approval" },
               {
                 dataKey: "cancellation",
-                color: "#F66969",
+                color: chartTheme.colors.palette.cancellation,
                 name: "Cancellation",
               },
             ]}
@@ -721,9 +731,9 @@ const FunnelJourney = () => {
           <StackedBarChart
             data={websiteData}
             bars={[
-              { dataKey: "google", color: "#01497B", name: "Google" },
-              { dataKey: "meta", color: "#66B1EA", name: "Meta" },
-              { dataKey: "tiktok", color: "#66EA9D", name: "Tiktok" },
+              { dataKey: "google", color: chartTheme.colors.palette.google, name: "Google" },
+              { dataKey: "meta", color: chartTheme.colors.palette.meta, name: "Meta" },
+              { dataKey: "tiktok", color: chartTheme.colors.palette.tiktok, name: "Tiktok" },
             ]}
             xAxisKey="category"
             height={280}
@@ -746,8 +756,11 @@ const FunnelJourney = () => {
                   {/* Newer period (green bar) */}
                   <div className="flex items-center gap-2">
                     <div
-                      className="h-6 bg-[#66EA9D] flex items-center px-2"
-                      style={{ width: `${(item.value2 / 10) * 100}%` }}
+                      className="h-6 flex items-center px-2"
+                      style={{
+                        width: `${(item.value2 / 10) * 100}%`,
+                        backgroundColor: chartTheme.colors.palette.newerPeriod
+                      }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
                         {item.period2}
@@ -763,8 +776,11 @@ const FunnelJourney = () => {
                   {/* Older period (blue bar) */}
                   <div className="flex items-center gap-2">
                     <div
-                      className="h-6 bg-[#4A90E2] flex items-center px-2"
-                      style={{ width: `${(item.value1 / 10) * 100}%` }}
+                      className="h-6 flex items-center px-2"
+                      style={{
+                        width: `${(item.value1 / 10) * 100}%`,
+                        backgroundColor: chartTheme.colors.palette.olderPeriod
+                      }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
                         {item.period1}
