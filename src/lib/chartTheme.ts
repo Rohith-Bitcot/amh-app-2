@@ -9,6 +9,21 @@ export const chartTheme = {
       border: "#e5e5e5",
       text: "#262626",
     },
+    palette: {
+      newLeads: "#0077CA",
+      returning: "#FFB217",
+      actual: "#66B1EA",
+      benchmark: "#1a1a1a",
+      gradientStart: "#004F86",
+      gradientEnd: "#123E5D",
+      approval: "#66EA9D",
+      cancellation: "#F66969",
+      google: "#01497B",
+      meta: "#66B1EA",
+      tiktok: "#66EA9D",
+      olderPeriod: "#4A90E2",
+      newerPeriod: "#66EA9D",
+    },
   },
   axis: {
     tick: {
