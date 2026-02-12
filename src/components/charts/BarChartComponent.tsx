@@ -20,7 +20,32 @@ interface BarChartComponentProps {
   showGrid?: boolean;
   showLegend?: boolean;
   layout?: "horizontal" | "vertical";
+  xAxisTicks?: number[]; // Optional custom X-axis ticks
+  yAxisFormatter?: (value: number) => string; // Optional Y-axis formatter
+  showLabels?: boolean; // Show labels on top of bars
 }
+
+// Custom tick component for vertical Y-axis labels
+const VerticalYAxisTick = (props: { x?: number | string; y?: number | string; payload?: { value: string } }) => {
+  const { x, y, payload } = props;
+  if (!payload) return null;
+  const xNum = typeof x === 'number' ? x : Number.parseFloat(String(x || 0));
+  return (
+    <g transform={`translate(${xNum - 5},${y})`}>
+      <text
+        x={0}
+        y={0}
+        textAnchor="middle"
+        fill="#666"
+        fontSize={11}
+        fontFamily={chartTheme.fontFamily}
+        transform="rotate(270)"
+      >
+        {payload.value}
+      </text>
+    </g>
+  );
+};
 
 export default function BarChartComponent({
   data,
@@ -30,21 +55,36 @@ export default function BarChartComponent({
   showGrid = true,
   showLegend = false,
   layout = "horizontal",
-}: BarChartComponentProps) {
+  xAxisTicks,
+  yAxisFormatter,
+  showLabels = false,
+}: Readonly<BarChartComponentProps>) {
   if (layout === "vertical") {
     return (
       <ResponsiveContainer width="100%" height={height}>
-        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 60 }}>
+        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
           {showGrid && <CartesianGrid {...chartTheme.grid} horizontal={false} />}
-          <XAxis type="number" tick={chartTheme.axis.tick} />
+          <XAxis
+            type="number"
+            tick={chartTheme.axis.tick}
+            tickFormatter={(value) => `${value}%`}
+            {...(xAxisTicks && { ticks: xAxisTicks })}
+          />
           <YAxis
             type="category"
             dataKey={xAxisKey}
-            tick={chartTheme.axis.tick}
-            width={80}
+            tick={VerticalYAxisTick}
+            width={25}
           />
           <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
-          {showLegend && <Legend />}
+          {showLegend && (
+            <Legend
+              verticalAlign="top"
+              align="right"
+              iconType="circle"
+              wrapperStyle={{ fontSize: 11, fontFamily: chartTheme.fontFamily }}
+            />
+          )}
           {bars.map((bar) => (
             <Bar
               key={bar.dataKey}
@@ -69,7 +109,11 @@ export default function BarChartComponent({
           tick={chartTheme.axis.tick}
           axisLine={{ stroke: "#e5e5e5" }}
         />
-        <YAxis tick={chartTheme.axis.tick} axisLine={false} />
+        <YAxis
+          tick={chartTheme.axis.tick}
+          axisLine={{ stroke: "#e5e5e5" }}
+          {...(yAxisFormatter && { tickFormatter: yAxisFormatter })}
+        />
         <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
         {showLegend && <Legend />}
         {bars.map((bar) => (
