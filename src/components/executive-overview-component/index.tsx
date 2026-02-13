@@ -182,12 +182,12 @@ export default function ExecutiveOverview() {
           <div className="text-[10px] font-medium font-heading text-white">
             {d.inventory.title}
           </div>
-          <div className="flex items-start justify-between mt-auto pb-1">
+          <div className="flex items-start justify-between pb-10">
             <div>
-              <div className="text-[44px] font-bold font-heading text-white leading-none">
+              <div className="text-[40px] font-bold font-heading text-white w-[68px] h-[50px] text-center justify-items-start">
                 {d.inventory.value}
               </div>
-              <div className="text-[12px] font-heading text-white/90 mt-1">
+              <div className="text-[12px] font-heading text-white/90">
                 {d.inventory.agedPercent} aged {d.inventory.agedDays}
               </div>
             </div>
