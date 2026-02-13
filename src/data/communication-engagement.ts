@@ -4,11 +4,11 @@ export const interactionLevelsData = [
   {
     stage: "Lead",
     data: [
-      { name: "Avg Elise OB", value: 3 },
-      { name: "Avg Elise IB", value: 2 },
+      { name: "Avg Elise OB", value: 4 },
+      { name: "Avg Agent IB", value: 1 },
       { name: "Total IB", value: 3 },
-      { name: "Total OB", value: 3 },
-      { name: "Avg Agent IB", value: 2 },
+      { name: "Total OB", value: 4 },
+      { name: "Avg Elise IB", value: 2 },
     ],
     // Blue chart - 5 segments with highly saturated colors
     colors: ["#01497B", "#2E6B9E", "#5A8FBF", "#86B3D9", "#B3D7F0"],
@@ -16,12 +16,12 @@ export const interactionLevelsData = [
   {
     stage: "Showing",
     data: [
-      { name: "Avg Elise IB", value: 2 },
       { name: "Avg Elise OB", value: 3 },
       { name: "Avg Agent IB", value: 1 },
       { name: "Avg Agent IB", value: 2 },
       { name: "Total IB", value: 3 },
       { name: "Total OB", value: 5 },
+      { name: "Avg Elise IB", value: 2 },
     ],
     // Red chart - 6 segments with highly saturated colors
     colors: ["#B72828", "#CE4545", "#E06262", "#ED8F8F", "#F7BCBC", "#FBD9D9"],
