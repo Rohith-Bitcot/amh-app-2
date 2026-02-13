@@ -11,7 +11,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronUp, ChevronDown, ChevronsUpDown } from "lucide-react";
+import Image from "next/image";
 
 interface DataTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,7 +20,11 @@ interface DataTableProps<T> {
   compact?: boolean;
 }
 
-export default function DataTable<T>({ columns, data, compact }: DataTableProps<T>) {
+export default function DataTable<T>({
+  columns,
+  data,
+  compact,
+}: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -34,7 +38,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
   });
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-hidden rounded-lg">
       <table className="w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -48,23 +52,27 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
                   className={cn(
                     "text-white text-xs font-medium font-heading text-left",
                     compact ? "px-3 py-2" : "px-5 py-3",
-                    header.column.getCanSort() && "cursor-pointer select-none hover:bg-white/10"
+                    header.column.getCanSort() &&
+                      "cursor-pointer select-none hover:bg-white/10",
                   )}
                   onClick={header.column.getToggleSortingHandler()}
                 >
                   <div className="flex items-center gap-1">
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                     {header.column.getCanSort() && (
                       <span className="ml-1">
-                        {header.column.getIsSorted() === "asc" ? (
-                          <ChevronUp className="w-3 h-3" />
-                        ) : header.column.getIsSorted() === "desc" ? (
-                          <ChevronDown className="w-3 h-3" />
-                        ) : (
-                          <ChevronsUpDown className="w-3 h-3 opacity-50" />
-                        )}
+                        <Image
+                          src="/assets/svgs/sort.svg"
+                          alt="Sort"
+                          width={12}
+                          height={12}
+                          className="opacity-70"
+                        />
                       </span>
                     )}
                   </div>
@@ -79,7 +87,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
               key={row.id}
               className={cn(
                 "border-b border-neutral-200 transition-colors hover:bg-sky-50/50",
-                rowIndex % 2 === 0 ? "bg-white" : "bg-sky-50"
+                rowIndex % 2 === 0 ? "bg-white" : "bg-sky-50",
               )}
             >
               {row.getVisibleCells().map((cell) => (
@@ -87,7 +95,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
                   key={cell.id}
                   className={cn(
                     "text-neutral-800 text-sm font-normal font-heading",
-                    compact ? "px-3 py-2" : "px-5 py-3"
+                    compact ? "px-3 py-2" : "px-5 py-3",
                   )}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

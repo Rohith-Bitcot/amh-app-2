@@ -50,6 +50,19 @@
   --color-stage-leases: #6b5b8a;
   --color-range-old: #e8918e;
 
+  /* Communication & Engagement Chart Colors */
+  --color-chart-blue-main: #01497b;
+  --color-chart-red-main: #b72828;
+  --color-chart-violet-main: #483297;
+  --color-chart-green-main: #1b8b4a;
+  --color-chart-segment-rest: #ffffff;
+
+  /* Table Shading */
+  --color-table-shade-1: #ffebeb;
+  --color-table-shade-2: #ffd8d8;
+  --color-table-shade-3: #ffc5c5;
+  --color-sentiment-border: #e6e6e6;
+
   --font-heading: var(--font-familjen);
   --font-familjen: var(--font-familjen);
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
