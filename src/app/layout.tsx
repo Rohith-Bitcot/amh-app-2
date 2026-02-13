@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Familjen_Grotesk, Inter } from "next/font/google";
+import { Familjen_Grotesk } from "next/font/google";
 import Sidebar from "@/components/layout/sidebar";
 import Header from "@/components/layout/header";
 import "./globals.css";
 
 const familjenGrotesk = Familjen_Grotesk({
   variable: "--font-familjen",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -29,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${familjenGrotesk.variable} ${inter.variable} antialiased`}
-      >
+      <body className={`${familjenGrotesk.variable} antialiased`}>
         <Sidebar />
         <Header />
         <main className="lg:ml-60 mt-14 h-[calc(100vh-56px)] overflow-y-auto content-scrollbar bg-slate-50">

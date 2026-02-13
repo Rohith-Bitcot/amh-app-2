@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-background: #f8fafc;
   --color-foreground: #262626;
   --color-sidebar: #075985;
@@ -16,16 +16,49 @@
   --color-link: #0284c7;
   --color-live: #ef4444;
 
-  --font-heading: var(--font-familjen), "Familjen Grotesk", sans-serif;
-  --font-body: var(--font-inter), "Inter", sans-serif;
+  /* Project Brand Palette */
+  --color-primary-blue: #1174ba;
+  --color-dark-blue: #01497b;
+  --color-light-blue: #66b1ea;
 
+  /* Chart & Feature Colors */
+  --color-leads: #e1ea66;
+  --color-application: #66ea9d;
+  --color-leases: #ea8566;
+
+  /* Axis, Grid & Semantic Grays */
+  --color-axis-gray: #838689;
+  --color-axis-border: #c9cbcd;
+  --color-grid-gray: #e5e7eb;
+  --color-text-black: #1f1f22;
+
+  /* Gradients */
+  --color-metric-from: #6ca9d3;
+  --color-metric-to: #cce9ff;
+  --color-overview-from: #0b66a6;
+  --color-overview-to: #123e5d;
+  --color-green-success: #00ac48;
+  --color-purple-accent: #8c68d5;
+  --color-funnel-base-from: #dfe5ee;
+  --color-funnel-base-to: #cadfff;
+
+  /* Stage Colors */
+  --color-stage-leads: #1b3a5c;
+  --color-stage-showings: #e8975d;
+  --color-stage-applications: #7bb3d6;
+  --color-stage-approved: #7bc47f;
+  --color-stage-leases: #6b5b8a;
+  --color-range-old: #e8918e;
+
+  --font-heading: var(--font-familjen);
+  --font-familjen: var(--font-familjen);
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-body);
+  font-family: var(--font-familjen);
   overflow: hidden;
 }
 
