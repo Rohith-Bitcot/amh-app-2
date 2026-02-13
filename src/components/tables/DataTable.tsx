@@ -10,8 +10,7 @@ import {
   type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { ChevronUp, ChevronDown, ChevronsUpDown } from "lucide-react";
+import { cn, FilterIcon } from "@/lib/utils";
 
 interface DataTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,7 +19,7 @@ interface DataTableProps<T> {
   compact?: boolean;
 }
 
-export default function DataTable<T>({ columns, data, compact }: DataTableProps<T>) {
+export default function DataTable<T>({ columns, data, compact }: Readonly<DataTableProps<T>>) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -46,7 +45,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
                 <th
                   key={header.id}
                   className={cn(
-                    "text-white text-xs font-medium font-heading text-left",
+                    "text-white text-xs font-medium font-heading text-left border-r border-white/20 last:border-r-0",
                     compact ? "px-3 py-2" : "px-5 py-3",
                     header.column.getCanSort() && "cursor-pointer select-none hover:bg-white/10"
                   )}
@@ -56,17 +55,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
-                    {header.column.getCanSort() && (
-                      <span className="ml-1">
-                        {header.column.getIsSorted() === "asc" ? (
-                          <ChevronUp className="w-3 h-3" />
-                        ) : header.column.getIsSorted() === "desc" ? (
-                          <ChevronDown className="w-3 h-3" />
-                        ) : (
-                          <ChevronsUpDown className="w-3 h-3 opacity-50" />
-                        )}
-                      </span>
-                    )}
+                    <FilterIcon className="text-white/80 w-3 h-3 ml-1" />
                   </div>
                 </th>
               ))}
@@ -86,7 +75,7 @@ export default function DataTable<T>({ columns, data, compact }: DataTableProps<
                 <td
                   key={cell.id}
                   className={cn(
-                    "text-neutral-800 text-sm font-normal font-heading",
+                    "text-neutral-800 text-sm font-normal font-heading border-r border-neutral-200 last:border-r-0",
                     compact ? "px-3 py-2" : "px-5 py-3"
                   )}
                 >

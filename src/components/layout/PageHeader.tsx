@@ -31,8 +31,11 @@ export default function PageHeader({ title, showFilter = true, onFilterClick }: 
           className="flex items-center gap-2 px-4 py-1.5 bg-white rounded-xl shadow-sm text-neutral-700 text-sm font-normal font-heading hover:shadow-md transition-shadow"
         >
           Filters
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth={1.5}>
-            <path d="M2 4h12M4 8h8M6 12h4" strokeLinecap="round" />
+          <svg className="w-5 h-4 text-neutral-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 8H21" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="17" cy="8" r="3" fill="white" strokeWidth="2" />
+            <path d="M3 16H21" strokeWidth="2" strokeLinecap="round" />
+            <circle cx="7" cy="16" r="3" fill="white" strokeWidth="2" />
           </svg>
         </button>
       )}

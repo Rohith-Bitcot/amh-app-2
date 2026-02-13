@@ -1,4 +1,4 @@
-import { Home, GitBranch, Activity, MessageSquare, type LucideIcon } from "lucide-react";
+import { Home, Filter, BadgeCheck, MessageSquare, type LucideIcon } from "lucide-react";
 
 export interface NavItem {
   label: string;
@@ -8,8 +8,8 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: "Executive Overview", href: "/executive-overview", icon: Home },
-  { label: "Funnel Journey", href: "/funnel-journey", icon: GitBranch },
-  { label: "Property Health", href: "/property-health", icon: Activity },
+  { label: "Funnel Journey", href: "/funnel-journey", icon: Filter },
+  { label: "Property Health", href: "/property-health", icon: BadgeCheck },
   { label: "Communication & Engagement", href: "/communication-engagement", icon: MessageSquare },
 ];
 

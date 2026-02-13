@@ -19,6 +19,7 @@ interface StackedBarChartProps {
   xAxisKey: string;
   height?: number;
   yAxisTicks?: number[]; // Optional custom Y-axis ticks
+  yAxisDomain?: [number, number] | [string, string]; // Optional custom Y-axis domain
   yAxisFormatter?: (value: number) => string; // Optional Y-axis formatter
   showLegend?: boolean; // Show legend
   customLabel?: {
@@ -27,6 +28,7 @@ interface StackedBarChartProps {
     deltaPositiveKey?: string; // e.g., "deltaPositive"
     suffix?: string; // e.g., "d" for days
   };
+  barSize?: number; // Optional custom bar size
 }
 
 // Custom label renderer for showing values above bars with delta indicators
@@ -47,10 +49,10 @@ const renderCustomLabel = (
     return null;
   }
 
-  const xNum = typeof x === 'number' ? x : parseFloat(String(x));
-  const yNum = typeof y === 'number' ? y : parseFloat(String(y));
-  const widthNum = typeof width === 'number' ? width : parseFloat(String(width));
-  const dataIndex = typeof index === 'number' ? index : parseInt(String(index));
+  const xNum = typeof x === 'number' ? x : Number.parseFloat(String(x));
+  const yNum = typeof y === 'number' ? y : Number.parseFloat(String(y));
+  const widthNum = typeof width === 'number' ? width : Number.parseFloat(String(width));
+  const dataIndex = typeof index === 'number' ? index : Number.parseInt(String(index));
 
   // Get the data point using the index
   const dataPoint = chartData[dataIndex];
@@ -116,16 +118,17 @@ export default function StackedBarChart({
   xAxisKey,
   height = 300,
   yAxisTicks,
+  yAxisDomain,
   yAxisFormatter,
   showLegend = false,
-  customLabel,
+  customLabel
 }: Readonly<StackedBarChartProps>) {
   return (
     <div style={{ border: 'none' }}>
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} margin={{ top: 35, right: 20, bottom: 5, left: 0 }}>
           {/* Horizontal dashed lines only */}
-          <CartesianGrid strokeDasharray="4 4" vertical={false} horizontal={true} stroke="#e5e5e5" />
+          <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={true} stroke="#e5e5e5" />
           <XAxis
             dataKey={xAxisKey}
             tick={chartTheme.axis.tick}
@@ -134,6 +137,8 @@ export default function StackedBarChart({
           <YAxis
             tick={chartTheme.axis.tick}
             axisLine={{ stroke: "#e5e5e5" }}
+            interval={0}
+            {...(yAxisDomain && { domain: yAxisDomain })}
             {...(yAxisTicks && { ticks: yAxisTicks })}
             {...(yAxisFormatter && { tickFormatter: yAxisFormatter })}
           />
@@ -147,37 +152,41 @@ export default function StackedBarChart({
               wrapperStyle={{
                 fontSize: 11,
                 fontFamily: chartTheme.fontFamily,
-                left: 0,
+                left: 10,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '10px'
               }}
               content={(props) => {
-                const { payload } = props;
-                if (!payload) return null;
+                // Use bars prop directly to ensure consistent order with stack
+                // Stack is rendered Bottom -> Top (0 -> N)
+                // Legend should be Top -> Bottom (N -> 0)
+                const reversedBars = [...bars].reverse();
                 return (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', paddingLeft: '10px' }}>
-                    {payload.map((entry, index) => (
-                      <div key={`legend-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingLeft: '20px' }}>
+                    {reversedBars.map((bar, index) => (
+                      <div key={`legend-${index}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                        <span
+                          style={{
+                            fontSize: '11px',
+                            fontFamily: chartTheme.fontFamily,
+                            color: '#1F2937',
+                            fontWeight: 600,
+                            writingMode: 'vertical-rl',
+                            transform: 'rotate(180deg)',
+                            textAlign: 'center',
+                          }}
+                        >
+                          {bar.name || bar.dataKey}
+                        </span>
                         <div
                           style={{
                             width: '8px',
                             height: '8px',
                             borderRadius: '50%',
-                            backgroundColor: entry.color,
+                            backgroundColor: bar.color,
                           }}
                         />
-                        <span
-                          style={{
-                            fontSize: '11px',
-                            fontFamily: chartTheme.fontFamily,
-                            color: '#666',
-                            writingMode: 'vertical-rl',
-                            transform: 'rotate(180deg)',
-                          }}
-                        >
-                          {entry.value}
-                        </span>
                       </div>
                     ))}
                   </div>
@@ -193,6 +202,7 @@ export default function StackedBarChart({
               fill={bar.color}
               name={bar.name || bar.dataKey}
               radius={index === bars.length - 1 ? [4, 4, 0, 0] : [0, 0, 0, 0]}
+              barSize={49}
             >
               {index === bars.length - 1 && customLabel && (
                 <LabelList
