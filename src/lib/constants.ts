@@ -99,11 +99,9 @@ export const HEATMAP_COLORS = {
 };
 
 export function getHeatmapColor(value: number): string {
-  if (value >= 20) return "bg-red-400 text-white";
-  if (value >= 15) return "bg-red-300 text-white";
-  if (value >= 10) return "bg-rose-300";
-  if (value >= 5) return "bg-rose-200";
-  if (value >= 2) return "bg-rose-100";
-  if (value >= 1) return "bg-rose-50";
-  return "bg-white";
+  const border = "border border-[var(--color-sentiment-border)]";
+  if (value >= 10) return `bg-[var(--color-table-shade-3)] ${border}`;
+  if (value >= 5) return `bg-[var(--color-table-shade-2)] ${border}`;
+  if (value >= 1) return `bg-[var(--color-table-shade-1)] ${border}`;
+  return `bg-white ${border}`;
 }

@@ -19,31 +19,36 @@ const RADIAN = Math.PI / 180;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function renderSegmentLabel(props: any) {
-  const { cx, cy, midAngle, outerRadius, name, value } = props;
-  const radius = outerRadius + 16;
+  const { cx, cy, midAngle, innerRadius, outerRadius, name, value } = props;
+
+  // Position text at the midpoint between inner and outer radius
+  const radius = innerRadius + (outerRadius - innerRadius) / 2;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-  const textAnchor = x > cx ? "start" : "end";
+
+  // Determine text anchor based on position
+  const textAnchor = "middle";
 
   return (
     <g>
       <text
         x={x}
-        y={y - 4}
+        y={y - 9}
         textAnchor={textAnchor}
-        fontSize={8}
-        fill="#a3a3a3"
+        fontSize={9}
+        fontWeight={500}
+        fill="#FFFFFF"
         fontFamily={chartTheme.fontFamily}
       >
         {name}
       </text>
       <text
         x={x}
-        y={y + 10}
+        y={y + 9}
         textAnchor={textAnchor}
-        fontSize={14}
+        fontSize={18}
         fontWeight={700}
-        fill="#525252"
+        fill="#FFFFFF"
         fontFamily={chartTheme.fontFamily}
       >
         {value}
