@@ -8,7 +8,7 @@ export default function Header() {
   const { toggleSidebar } = useNavigationStore();
 
   return (
-    <header className="fixed top-0 left-0 right-0 lg:left-60 h-14 bg-gradient-to-r from-sky-800 to-sky-700 z-30 flex items-center justify-between px-4 lg:px-5">
+    <header className="fixed top-0 left-0 right-0 lg:left-60 h-14 bg-sky-800 z-30 flex items-center justify-between px-4 lg:px-5">
       <div className="flex items-center gap-3">
         {/* Hamburger menu - mobile only */}
         <button
