@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/helper-functions";
 import { ChevronDown } from "lucide-react";
 
 interface FilterPopupProps {

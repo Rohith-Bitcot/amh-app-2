@@ -10,7 +10,7 @@ import {
   Tooltip,
   ComposedChart,
 } from "recharts";
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 import Image from "next/image";
 
 interface SubMetric {

@@ -12,7 +12,7 @@ import {
   Area,
   AreaChart,
 } from "recharts";
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 
 interface LineChartComponentProps {
   data: Record<string, unknown>[];

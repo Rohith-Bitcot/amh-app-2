@@ -10,7 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 
 interface FutureLeaseChartProps {
   data: Record<string, unknown>[];

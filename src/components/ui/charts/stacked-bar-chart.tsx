@@ -11,7 +11,7 @@ import {
   LabelList,
   Legend,
 } from "recharts";
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 
 interface StackedBarChartProps {
   data: Record<string, unknown>[];

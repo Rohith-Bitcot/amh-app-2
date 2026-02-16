@@ -11,7 +11,7 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 
 interface RadarChartComponentProps {
   data: Record<string, unknown>[];

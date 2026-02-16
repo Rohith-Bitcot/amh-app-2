@@ -3,8 +3,8 @@
 import { useState } from "react";
 import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import StackedBarChart from "@/components/charts/stacked-bar-chart";
-import FutureLeaseChart from "@/components/charts/future-lease-chart";
+import StackedBarChart from "@/components/ui/charts/stacked-bar-chart";
+import FutureLeaseChart from "@/components/ui/charts/future-lease-chart";
 import DataTable from "@/components/tables/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ChevronDown, ChevronRight } from "lucide-react";
@@ -13,8 +13,8 @@ import {
   districtTableData,
   propertyDrilldownData,
   futureExpirationData,
-} from "@/data/property-health";
-import { CHART_COLORS } from "@/lib/constants";
+} from "@/utils/data/property-health";
+import { CHART_COLORS } from "@/utils/constants";
 
 const stackedBars = [
   {

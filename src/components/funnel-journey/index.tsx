@@ -1,13 +1,13 @@
 "use client";
 
-import { chartTheme } from "@/lib/chart-theme";
+import { chartTheme } from "@/utils/chart-theme";
 import { useState } from "react";
 import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
 import TabGroup from "@/components/ui/tab-group";
-import StackedBarChart from "@/components/charts/stacked-bar-chart";
-import LineChartComponent from "@/components/charts/line-chart";
-import BarChartComponent from "@/components/charts/bar-chart-component";
+import StackedBarChart from "@/components/ui/charts/stacked-bar-chart";
+import LineChartComponent from "@/components/ui/charts/line-chart";
+import BarChartComponent from "@/components/ui/charts/bar-chart";
 import {
   leadCountsData,
   leadsNewReturningData,
@@ -27,7 +27,7 @@ import {
   denialReasonLegend,
   websiteData,
   pageViewMarketData,
-} from "@/data/funnel-journey";
+} from "@/utils/data/funnel-journey";
 
 // Shared mini-table component for this page
 function MiniTable({

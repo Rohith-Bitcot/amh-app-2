@@ -2,16 +2,16 @@
 
 import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import DonutChart from "@/components/charts/donut-chart";
+import DonutChart from "@/components/ui/charts/donut-chart";
 import DataTable from "@/components/tables/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
-import { getHeatmapColor } from "@/lib/constants";
+import { getHeatmapColor } from "@/utils/constants";
 import {
   interactionLevelsData,
   sentimentFeedbackData,
   messageDrilldownData,
   activityLogData,
-} from "@/data/communication-engagement";
+} from "@/utils/data/communication-engagement";
 
 // Message drilldown columns
 const msgColumnHelper = createColumnHelper<(typeof messageDrilldownData)[0]>();

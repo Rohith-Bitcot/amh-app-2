@@ -6,9 +6,9 @@ import Card from "@/components/ui/cards";
 import KpiCard from "@/components/ui/kpi-card";
 import MetricCard from "@/components/ui/metric-card";
 import TabGroup from "@/components/ui/tab-group";
-import RadarChartComponent from "@/components/charts/radar-chart";
-import FunnelConversionChart from "@/components/charts/funnel-conversation-chart";
-import LeadCountBarChart from "@/components/charts/lead-count-bar-chart";
+import RadarChartComponent from "@/components/ui/charts/radar-chart";
+import FunnelConversionChart from "@/components/ui/charts/funnel-conversation-chart";
+import LeadCountBarChart from "@/components/ui/charts/lead-count-bar-chart";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import {
   kpiCards,
@@ -17,9 +17,9 @@ import {
   leadCountByDOMData,
   demandOverviewData,
   performanceTableData,
-} from "@/data/executive-overview";
+} from "@/utils/data/executive-overview";
 import { useFilterStore } from "@/store/use-filter-store";
-import { LEASES_SIGNED_BAR_DATA } from "@/lib/constants";
+import { LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
 import { useState } from "react";
 
 const d = kpiCards;

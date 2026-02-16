@@ -1,4 +1,4 @@
-import ExecutiveOverview from "@/components/executive-overview-component/index";
+import ExecutiveOverview from "@/components/executive-overview/index";
 
 const ExecutiveOverviewPage = () => {
   return <ExecutiveOverview />;

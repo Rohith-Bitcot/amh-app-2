@@ -1,4 +1,4 @@
-import CommunicationEngagement from "@/components/communication-engagement-component";
+import CommunicationEngagement from "@/components/communication-engagement";
 
 const CommunicationEngagementPage = () => {
   return <CommunicationEngagement />;
