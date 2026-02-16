@@ -11,7 +11,7 @@ import {
   LabelList,
 } from "recharts";
 
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface LeadCountDataPoint {
   range: string;

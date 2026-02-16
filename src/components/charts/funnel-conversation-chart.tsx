@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface FunnelDataPoint {
   stage: string;

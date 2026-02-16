@@ -1,9 +1,9 @@
 "use client";
 
-import PageHeader from "@/components/layout/PageHeader";
+import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import DonutChart from "@/components/charts/DonutChart";
-import DataTable from "@/components/tables/DataTable";
+import DonutChart from "@/components/charts/donut-chart";
+import DataTable from "@/components/tables/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { getHeatmapColor } from "@/lib/constants";
 import {

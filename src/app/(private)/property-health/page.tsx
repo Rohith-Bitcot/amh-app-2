@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import PageHeader from "@/components/layout/PageHeader";
+import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import StackedBarChart from "@/components/charts/StackedBarChart";
-import FutureLeaseChart from "@/components/charts/FutureLeaseChart";
-import DataTable from "@/components/tables/DataTable";
+import StackedBarChart from "@/components/charts/stacked-bar-chart";
+import FutureLeaseChart from "@/components/charts/future-lease-chart";
+import DataTable from "@/components/tables/data-table";
 import { createColumnHelper } from "@tanstack/react-table";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import {

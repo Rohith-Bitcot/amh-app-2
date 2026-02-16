@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { LogOut, X } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { useNavigationStore } from "@/store/useNavigationStore";
+import { useNavigationStore } from "@/store/use-navigation-store";
 
 export default function Sidebar() {
   const pathname = usePathname();

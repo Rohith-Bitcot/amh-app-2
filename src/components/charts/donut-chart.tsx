@@ -1,7 +1,7 @@
 "use client";
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface DonutChartProps {
   data: { name: string; value: number }[];

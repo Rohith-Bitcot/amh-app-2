@@ -1,13 +1,13 @@
 "use client";
 
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 import { useState } from "react";
-import PageHeader from "@/components/layout/PageHeader";
+import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import TabGroup from "@/components/ui/TabGroup";
-import StackedBarChart from "@/components/charts/StackedBarChart";
-import LineChartComponent from "@/components/charts/LineChartComponent";
-import BarChartComponent from "@/components/charts/BarChartComponent";
+import TabGroup from "@/components/ui/tab-group";
+import StackedBarChart from "@/components/charts/stacked-bar-chart";
+import LineChartComponent from "@/components/charts/line-chart";
+import BarChartComponent from "@/components/charts/bar-chart-component";
 import {
   leadCountsData,
   leadsNewReturningData,
@@ -63,8 +63,9 @@ function MiniTable({
               <button
                 key={opt}
                 onClick={() => setActiveToggle(i)}
-                className={`px-3 py-1 rounded-full transition-colors ${activeToggle === i ? "bg-sky-600 text-white" : "text-gray-600"
-                  }`}
+                className={`px-3 py-1 rounded-full transition-colors ${
+                  activeToggle === i ? "bg-sky-600 text-white" : "text-gray-600"
+                }`}
               >
                 {opt}
               </button>
@@ -79,8 +80,9 @@ function MiniTable({
               {columns.map((col, idx) => (
                 <th
                   key={col}
-                  className={`px-4 py-3 text-white text-sm font-semibold font-heading whitespace-nowrap border-r border-sky-600 last:border-r-0 ${idx === 0 ? "text-left" : "text-center"
-                    }`}
+                  className={`px-4 py-3 text-white text-sm font-semibold font-heading whitespace-nowrap border-r border-sky-600 last:border-r-0 ${
+                    idx === 0 ? "text-left" : "text-center"
+                  }`}
                 >
                   {col}
                 </th>
@@ -97,8 +99,9 @@ function MiniTable({
                 {columns.map((col, colIdx) => (
                   <td
                     key={col}
-                    className={`px-4 py-4 text-sm font-heading text-neutral-700 whitespace-nowrap border-r border-t border-neutral-200 last:border-r-0 ${colIdx === 0 ? "text-left font-semibold" : "text-center"
-                      }`}
+                    className={`px-4 py-4 text-sm font-heading text-neutral-700 whitespace-nowrap border-r border-t border-neutral-200 last:border-r-0 ${
+                      colIdx === 0 ? "text-left font-semibold" : "text-center"
+                    }`}
                   >
                     {row[col]}
                   </td>
@@ -161,8 +164,17 @@ const FunnelJourney = () => {
           <LineChartComponent
             data={leadsNewReturningData}
             lines={[
-              { dataKey: "newLeads", color: chartTheme.colors.palette.newLeads, name: "New" },
-              { dataKey: "returning", color: chartTheme.colors.palette.returning, name: "Returning", dashed: true },
+              {
+                dataKey: "newLeads",
+                color: chartTheme.colors.palette.newLeads,
+                name: "New",
+              },
+              {
+                dataKey: "returning",
+                color: chartTheme.colors.palette.returning,
+                name: "Returning",
+                dashed: true,
+              },
             ]}
             xAxisKey="month"
             height={220}
@@ -186,7 +198,11 @@ const FunnelJourney = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: chartTheme.colors.palette.actual }} /> Actual
+              <span
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: chartTheme.colors.palette.actual }}
+              />{" "}
+              Actual
             </span>
           </div>
 
@@ -216,7 +232,7 @@ const FunnelJourney = () => {
                       className="absolute top-0 left-10 h-full"
                       style={{
                         backgroundColor: chartTheme.colors.palette.actual,
-                        width: `${actualPercent + 20}%`
+                        width: `${actualPercent + 20}%`,
                       }}
                     />
 
@@ -225,14 +241,17 @@ const FunnelJourney = () => {
                       className="absolute top-3 left-10 h-2.5 z-[5]"
                       style={{
                         backgroundColor: chartTheme.colors.palette.benchmark,
-                        width: `${benchmarkPercent}%`
+                        width: `${benchmarkPercent}%`,
                       }}
                     />
 
                     {/* Actual value label - positioned above the actual bar */}
                     <div
                       className="absolute -top-5 text-xs font-heading font-semibold text-neutral-800"
-                      style={{ left: `${actualPercent}%`, transform: 'translateX(-50%)' }}
+                      style={{
+                        left: `${actualPercent}%`,
+                        transform: "translateX(-50%)",
+                      }}
                     >
                       {item.actual} {item.unit}
                     </div>
@@ -251,7 +270,9 @@ const FunnelJourney = () => {
             <div className="relative mt-4">
               <div className="flex justify-between text-xs font-heading text-neutral-600">
                 {[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map((val) => (
-                  <span key={val} className="w-8 text-center">{val}</span>
+                  <span key={val} className="w-8 text-center">
+                    {val}
+                  </span>
                 ))}
               </div>
             </div>
@@ -312,9 +333,7 @@ const FunnelJourney = () => {
             <thead>
               {/* First row: Main category headers */}
               <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
-                <th
-                  className="px-4 py-3 text-white text-sm font-semibold font-heading text-center border-r border-white/20"
-                >
+                <th className="px-4 py-3 text-white text-sm font-semibold font-heading text-center border-r border-white/20">
                   <div className="flex items-center justify-center gap-2">
                     Geo
                     <svg
@@ -324,9 +343,27 @@ const FunnelJourney = () => {
                       viewBox="0 0 24 24"
                       strokeWidth={2}
                     >
-                      <line x1="4" y1="6" x2="20" y2="6" strokeLinecap="round" />
-                      <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round" />
-                      <line x1="10" y1="18" x2="14" y2="18" strokeLinecap="round" />
+                      <line
+                        x1="4"
+                        y1="6"
+                        x2="20"
+                        y2="6"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="7"
+                        y1="12"
+                        x2="17"
+                        y2="12"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="10"
+                        y1="18"
+                        x2="14"
+                        y2="18"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </div>
                 </th>
@@ -405,10 +442,7 @@ const FunnelJourney = () => {
             </thead>
             <tbody>
               {leasingConversionsData.rows.map((row, idx) => (
-                <tr
-                  key={row.geo}
-                  className={`border-b border-neutral-200 `}
-                >
+                <tr key={row.geo} className={`border-b border-neutral-200 `}>
                   <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800 text-center border-r border-neutral-200">
                     {row.geo}
                   </td>
@@ -443,7 +477,7 @@ const FunnelJourney = () => {
                   {row.approvalToLease.map((val, vi) => (
                     <td
                       key={`lease-${vi}`}
-                      className={`px-3 py-3 text-sm font-heading text-neutral-700 text-center bg-sky-100 ${vi < 2 ? 'border-r border-neutral-200' : ''}`}
+                      className={`px-3 py-3 text-sm font-heading text-neutral-700 text-center bg-sky-100 ${vi < 2 ? "border-r border-neutral-200" : ""}`}
                     >
                       {val}
                     </td>
@@ -458,7 +492,9 @@ const FunnelJourney = () => {
       {/* Section 6: Dark Lead Funnel with tabs */}
       <div
         className="rounded-2xl p-3 sm:p-6"
-        style={{ background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})` }}
+        style={{
+          background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})`,
+        }}
       >
         <TabGroup
           tabs={[
@@ -485,7 +521,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -512,7 +551,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -539,7 +581,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -571,7 +616,7 @@ const FunnelJourney = () => {
                 ].map((h, idx, arr) => (
                   <th
                     key={h}
-                    className={`px-4 py-3 text-white text-xs font-medium font-heading text-center ${idx < arr.length - 1 ? 'border-r border-white/20' : ''}`}
+                    className={`px-4 py-3 text-white text-xs font-medium font-heading text-center ${idx < arr.length - 1 ? "border-r border-white/20" : ""}`}
                   >
                     <div className="flex items-center justify-center gap-2">
                       {h}
@@ -582,9 +627,27 @@ const FunnelJourney = () => {
                         viewBox="0 0 24 24"
                         strokeWidth={2}
                       >
-                        <line x1="4" y1="6" x2="20" y2="6" strokeLinecap="round" />
-                        <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round" />
-                        <line x1="10" y1="18" x2="14" y2="18" strokeLinecap="round" />
+                        <line
+                          x1="4"
+                          y1="6"
+                          x2="20"
+                          y2="6"
+                          strokeLinecap="round"
+                        />
+                        <line
+                          x1="7"
+                          y1="12"
+                          x2="17"
+                          y2="12"
+                          strokeLinecap="round"
+                        />
+                        <line
+                          x1="10"
+                          y1="18"
+                          x2="14"
+                          y2="18"
+                          strokeLinecap="round"
+                        />
                       </svg>
                     </div>
                   </th>
@@ -678,7 +741,11 @@ const FunnelJourney = () => {
           <BarChartComponent
             data={approvalCancellationBySourceData}
             bars={[
-              { dataKey: "approval", color: chartTheme.colors.palette.approval, name: "Approval" },
+              {
+                dataKey: "approval",
+                color: chartTheme.colors.palette.approval,
+                name: "Approval",
+              },
               {
                 dataKey: "cancellation",
                 color: chartTheme.colors.palette.cancellation,
@@ -731,9 +798,21 @@ const FunnelJourney = () => {
           <StackedBarChart
             data={websiteData}
             bars={[
-              { dataKey: "google", color: chartTheme.colors.palette.google, name: "Google" },
-              { dataKey: "meta", color: chartTheme.colors.palette.meta, name: "Meta" },
-              { dataKey: "tiktok", color: chartTheme.colors.palette.tiktok, name: "Tiktok" },
+              {
+                dataKey: "google",
+                color: chartTheme.colors.palette.google,
+                name: "Google",
+              },
+              {
+                dataKey: "meta",
+                color: chartTheme.colors.palette.meta,
+                name: "Meta",
+              },
+              {
+                dataKey: "tiktok",
+                color: chartTheme.colors.palette.tiktok,
+                name: "Tiktok",
+              },
             ]}
             xAxisKey="category"
             height={280}
@@ -759,7 +838,7 @@ const FunnelJourney = () => {
                       className="h-6 flex items-center px-2"
                       style={{
                         width: `${(item.value2 / 10) * 100}%`,
-                        backgroundColor: chartTheme.colors.palette.newerPeriod
+                        backgroundColor: chartTheme.colors.palette.newerPeriod,
                       }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
@@ -779,7 +858,7 @@ const FunnelJourney = () => {
                       className="h-6 flex items-center px-2"
                       style={{
                         width: `${(item.value1 / 10) * 100}%`,
-                        backgroundColor: chartTheme.colors.palette.olderPeriod
+                        backgroundColor: chartTheme.colors.palette.olderPeriod,
                       }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
@@ -798,6 +877,6 @@ const FunnelJourney = () => {
       </div>
     </div>
   );
-}
+};
 
 export default FunnelJourney;

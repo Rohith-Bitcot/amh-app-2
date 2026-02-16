@@ -12,7 +12,7 @@ import {
   Area,
   AreaChart,
 } from "recharts";
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface LineChartComponentProps {
   data: Record<string, unknown>[];
@@ -38,10 +38,21 @@ export default function LineChartComponent({
   if (showArea) {
     return (
       <ResponsiveContainer width="100%" height={height}>
-        <AreaChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+        <AreaChart
+          data={data}
+          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
+        >
           {showGrid && <CartesianGrid {...chartTheme.grid} vertical={false} />}
-          <XAxis dataKey={xAxisKey} tick={chartTheme.axis.tick} axisLine={{ stroke: "#e5e5e5" }} />
-          <YAxis tick={chartTheme.axis.tick} axisLine={{ stroke: "#e5e5e5" }} {...(yAxisTicks && { ticks: yAxisTicks })} />
+          <XAxis
+            dataKey={xAxisKey}
+            tick={chartTheme.axis.tick}
+            axisLine={{ stroke: "#e5e5e5" }}
+          />
+          <YAxis
+            tick={chartTheme.axis.tick}
+            axisLine={{ stroke: "#e5e5e5" }}
+            {...(yAxisTicks && { ticks: yAxisTicks })}
+          />
           <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
           {showLegend && (
             <Legend
@@ -73,8 +84,16 @@ export default function LineChartComponent({
     <ResponsiveContainer width="100%" height={height}>
       <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
         {showGrid && <CartesianGrid {...chartTheme.grid} vertical={false} />}
-        <XAxis dataKey={xAxisKey} tick={chartTheme.axis.tick} axisLine={{ stroke: "#e5e5e5" }} />
-        <YAxis tick={chartTheme.axis.tick} axisLine={{ stroke: "#e5e5e5" }} {...(yAxisTicks && { ticks: yAxisTicks })} />
+        <XAxis
+          dataKey={xAxisKey}
+          tick={chartTheme.axis.tick}
+          axisLine={{ stroke: "#e5e5e5" }}
+        />
+        <YAxis
+          tick={chartTheme.axis.tick}
+          axisLine={{ stroke: "#e5e5e5" }}
+          {...(yAxisTicks && { ticks: yAxisTicks })}
+        />
         <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
         {showLegend && (
           <Legend

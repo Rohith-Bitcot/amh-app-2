@@ -11,7 +11,7 @@ import {
   LabelList,
   Legend,
 } from "recharts";
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface StackedBarChartProps {
   data: Record<string, unknown>[];
@@ -39,18 +39,26 @@ const renderCustomLabel = (
       suffix?: string;
     };
     chartData?: Record<string, unknown>[];
-  }
+  },
 ) => {
   const { x, y, width, index, customLabel, chartData } = props;
 
-  if (!customLabel || !chartData || index === undefined || x === undefined || y === undefined || width === undefined) {
+  if (
+    !customLabel ||
+    !chartData ||
+    index === undefined ||
+    x === undefined ||
+    y === undefined ||
+    width === undefined
+  ) {
     return null;
   }
 
-  const xNum = typeof x === 'number' ? x : parseFloat(String(x));
-  const yNum = typeof y === 'number' ? y : parseFloat(String(y));
-  const widthNum = typeof width === 'number' ? width : parseFloat(String(width));
-  const dataIndex = typeof index === 'number' ? index : parseInt(String(index));
+  const xNum = typeof x === "number" ? x : parseFloat(String(x));
+  const yNum = typeof y === "number" ? y : parseFloat(String(y));
+  const widthNum =
+    typeof width === "number" ? width : parseFloat(String(width));
+  const dataIndex = typeof index === "number" ? index : parseInt(String(index));
 
   // Get the data point using the index
   const dataPoint = chartData[dataIndex];
@@ -60,7 +68,9 @@ const renderCustomLabel = (
 
   const mainValue = dataPoint[customLabel.valueKey];
   const delta = customLabel.deltaKey ? dataPoint[customLabel.deltaKey] : null;
-  const deltaPositive = customLabel.deltaPositiveKey ? dataPoint[customLabel.deltaPositiveKey] : null;
+  const deltaPositive = customLabel.deltaPositiveKey
+    ? dataPoint[customLabel.deltaPositiveKey]
+    : null;
   const suffix = customLabel.suffix || "";
 
   // If mainValue is undefined or null, don't render
@@ -70,7 +80,6 @@ const renderCustomLabel = (
 
   // Build label text
   const labelText = `${mainValue}${suffix}`;
-
 
   if (delta !== null && delta !== undefined) {
     const arrow = deltaPositive ? "↑" : "↓";
@@ -121,11 +130,19 @@ export default function StackedBarChart({
   customLabel,
 }: Readonly<StackedBarChartProps>) {
   return (
-    <div style={{ border: 'none' }}>
+    <div style={{ border: "none" }}>
       <ResponsiveContainer width="100%" height={height}>
-        <BarChart data={data} margin={{ top: 35, right: 20, bottom: 5, left: 0 }}>
+        <BarChart
+          data={data}
+          margin={{ top: 35, right: 20, bottom: 5, left: 0 }}
+        >
           {/* Horizontal dashed lines only */}
-          <CartesianGrid strokeDasharray="4 4" vertical={false} horizontal={true} stroke="#e5e5e5" />
+          <CartesianGrid
+            strokeDasharray="4 4"
+            vertical={false}
+            horizontal={true}
+            stroke="#e5e5e5"
+          />
           <XAxis
             dataKey={xAxisKey}
             tick={chartTheme.axis.tick}
@@ -148,32 +165,46 @@ export default function StackedBarChart({
                 fontSize: 11,
                 fontFamily: chartTheme.fontFamily,
                 left: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px'
+                display: "flex",
+                flexDirection: "column",
+                gap: "10px",
               }}
               content={(props) => {
                 const { payload } = props;
                 if (!payload) return null;
                 return (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', paddingLeft: '10px' }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "10px",
+                      paddingLeft: "10px",
+                    }}
+                  >
                     {payload.map((entry, index) => (
-                      <div key={`legend-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <div
+                        key={`legend-${index}`}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "5px",
+                        }}
+                      >
                         <div
                           style={{
-                            width: '8px',
-                            height: '8px',
-                            borderRadius: '50%',
+                            width: "8px",
+                            height: "8px",
+                            borderRadius: "50%",
                             backgroundColor: entry.color,
                           }}
                         />
                         <span
                           style={{
-                            fontSize: '11px',
+                            fontSize: "11px",
                             fontFamily: chartTheme.fontFamily,
-                            color: '#666',
-                            writingMode: 'vertical-rl',
-                            transform: 'rotate(180deg)',
+                            color: "#666",
+                            writingMode: "vertical-rl",
+                            transform: "rotate(180deg)",
                           }}
                         >
                           {entry.value}
@@ -198,7 +229,13 @@ export default function StackedBarChart({
                 <LabelList
                   dataKey={customLabel.valueKey}
                   position="top"
-                  content={(props) => renderCustomLabel({ ...props, customLabel, chartData: data })}
+                  content={(props) =>
+                    renderCustomLabel({
+                      ...props,
+                      customLabel,
+                      chartData: data,
+                    })
+                  }
                 />
               )}
             </Bar>

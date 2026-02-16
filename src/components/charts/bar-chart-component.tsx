@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/lib/chart-theme";
 
 interface BarChartComponentProps {
   data: Record<string, unknown>[];
@@ -26,10 +26,14 @@ interface BarChartComponentProps {
 }
 
 // Custom tick component for vertical Y-axis labels
-const VerticalYAxisTick = (props: { x?: number | string; y?: number | string; payload?: { value: string } }) => {
+const VerticalYAxisTick = (props: {
+  x?: number | string;
+  y?: number | string;
+  payload?: { value: string };
+}) => {
   const { x, y, payload } = props;
   if (!payload) return null;
-  const xNum = typeof x === 'number' ? x : Number.parseFloat(String(x || 0));
+  const xNum = typeof x === "number" ? x : Number.parseFloat(String(x || 0));
   return (
     <g transform={`translate(${xNum - 5},${y})`}>
       <text
@@ -62,8 +66,14 @@ export default function BarChartComponent({
   if (layout === "vertical") {
     return (
       <ResponsiveContainer width="100%" height={height}>
-        <BarChart data={data} layout="vertical" margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
-          {showGrid && <CartesianGrid {...chartTheme.grid} horizontal={false} />}
+        <BarChart
+          data={data}
+          layout="vertical"
+          margin={{ top: 5, right: 20, bottom: 5, left: 10 }}
+        >
+          {showGrid && (
+            <CartesianGrid {...chartTheme.grid} horizontal={false} />
+          )}
           <XAxis
             type="number"
             tick={chartTheme.axis.tick}

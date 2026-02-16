@@ -1,14 +1,14 @@
 "use client";
 
-import PageHeader from "@/components/layout/PageHeader";
+import PageHeader from "@/components/layout/page-header";
 import Image from "next/image";
 import Card from "@/components/ui/cards";
-import KpiCard from "@/components/ui/KpiCard";
-import MetricCard from "@/components/ui/MetricCard";
-import TabGroup from "@/components/ui/TabGroup";
-import RadarChartComponent from "@/components/charts/RadarChartComponent";
-import FunnelConversionChart from "@/components/charts/FunnelConversionChart";
-import LeadCountBarChart from "@/components/charts/LeadCountBarChart";
+import KpiCard from "@/components/ui/kpi-card";
+import MetricCard from "@/components/ui/metric-card";
+import TabGroup from "@/components/ui/tab-group";
+import RadarChartComponent from "@/components/charts/radar-chart";
+import FunnelConversionChart from "@/components/charts/funnel-conversation-chart";
+import LeadCountBarChart from "@/components/charts/lead-count-bar-chart";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import {
   kpiCards,
@@ -18,7 +18,7 @@ import {
   demandOverviewData,
   performanceTableData,
 } from "@/data/executive-overview";
-import { useFilterStore } from "@/store/useFilterStore";
+import { useFilterStore } from "@/store/use-filter-store";
 import { LEASES_SIGNED_BAR_DATA } from "@/lib/constants";
 import { useState } from "react";
 

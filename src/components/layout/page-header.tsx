@@ -1,5 +1,5 @@
 import { useState } from "react";
-import FilterPopup from "@/components/ui/FilterPopup";
+import FilterPopup from "@/components/ui/fiter-popup";
 
 interface PageHeaderProps {
   title: string;
