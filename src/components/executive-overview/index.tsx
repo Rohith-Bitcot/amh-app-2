@@ -135,7 +135,7 @@ export default function ExecutiveOverview() {
               <div className="text-[10px] font-heading mb-0.5 text-white">
                 {d.leasePacing.approvedApps} approved applications
               </div>
-              <div className="h-2 bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
+              <div className="bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
                 <div
                   className="h-full rounded-full"
                   style={{
@@ -185,9 +185,9 @@ export default function ExecutiveOverview() {
           <div className="text-[10px] font-medium font-heading text-white">
             {d.inventory.title}
           </div>
-          <div className="flex items-start justify-between pb-10">
-            <div>
-              <div className="text-[40px] font-bold font-heading text-white w-[68px] h-[50px] text-center justify-items-start">
+          <div className="flex items-start justify-between">
+            <div className="min-w-0">
+              <div className="text-[40px] font-bold font-heading text-white leading-tight">
                 {d.inventory.value}
               </div>
               <div className="text-[12px] font-heading text-white/90">
@@ -224,7 +224,7 @@ export default function ExecutiveOverview() {
             {d.leadPacing.title}
           </div>
           <div className="flex flex-col justify-end h-full gap-1 pb-1">
-            <div className="text-[44px] font-bold font-heading text-white leading-none">
+            <div className="text-[44px] font-bold font-heading text-white leading-none truncate">
               {d.leadPacing.value}
             </div>
             <div className="text-[12px] font-heading text-white/90">
