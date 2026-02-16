@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogOut, X } from "lucide-react";
-import { NAV_ITEMS } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import { useNavigationStore } from "@/store/useNavigationStore";
+import { NAV_ITEMS } from "@/utils/constants";
+import { cn } from "@/utils/helper-functions";
+import { useNavigationStore } from "@/store/use-navigation-store";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -30,7 +30,7 @@ export default function Sidebar() {
         )}
       >
         {/* Logo area */}
-        <div className="h-14 px-5 flex items-center justify-between bg-gradient-to-r from-sky-800 to-sky-700">
+        <div className="h-14 px-5 flex items-center justify-between">
           <Image
             src="/logo.svg"
             alt="Property Pulse"
@@ -96,6 +96,23 @@ export default function Sidebar() {
         {/* Decorative background overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-sky-600/10 rounded-full blur-3xl" />
+          <div
+            className="absolute bottom-0 left-0 w-full h-[38%] overflow-hidden"
+            style={{
+              maskImage: "linear-gradient(to bottom, transparent, black 20%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent, black 20%)",
+            }}
+          >
+            <Image
+              src="/assets/svgs/sidebar-wallpaper.svg"
+              alt=""
+              width={242}
+              height={1134}
+              className="absolute -bottom-80 left-0 opacity-40"
+              priority
+            />
+          </div>
         </div>
       </aside>
     </>

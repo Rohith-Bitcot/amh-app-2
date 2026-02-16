@@ -1,14 +1,15 @@
 "use client";
 
-import { chartTheme } from "@/lib/chartTheme";
+import { chartTheme } from "@/utils/chart-theme";
 import { useState } from "react";
-import PageHeader from "@/components/layout/PageHeader";
+import PageHeader from "@/components/layout/page-header";
 import Card from "@/components/ui/cards";
-import TabGroup from "@/components/ui/TabGroup";
-import StackedBarChart from "@/components/charts/StackedBarChart";
-import LineChartComponent from "@/components/charts/LineChartComponent";
-import BarChartComponent from "@/components/charts/BarChartComponent";
-import { FilterIcon } from "@/lib/utils";
+import TabGroup from "@/components/ui/tab-group";
+import ReusableTable from "@/components/ui/reusable-table";
+import StackedBarChart from "@/components/ui/charts/stacked-bar-chart";
+import LineChartComponent from "@/components/ui/charts/line-chart";
+import BarChartComponent from "@/components/ui/charts/bar-chart";
+import { FilterIcon, cn } from "@/utils/helper-functions";
 import {
   leadCountsData,
   leadsNewReturningData,
@@ -28,7 +29,7 @@ import {
   denialReasonLegend,
   websiteData,
   pageViewMarketData,
-} from "@/data/funnel-journey";
+} from "@/utils/data/funnel-journey";
 
 import MiniTable from "@/components/funnel-journey/MiniTable";
 
@@ -87,8 +88,17 @@ const FunnelJourney = () => {
           <LineChartComponent
             data={leadsNewReturningData}
             lines={[
-              { dataKey: "returning", color: chartTheme.colors.palette.returning, name: "Returning", dashed: true },
-              { dataKey: "newLeads", color: chartTheme.colors.palette.newLeads, name: "New" },
+              {
+                dataKey: "returning",
+                color: chartTheme.colors.palette.returning,
+                name: "Returning",
+                dashed: true,
+              },
+              {
+                dataKey: "newLeads",
+                color: chartTheme.colors.palette.newLeads,
+                name: "New",
+              },
             ]}
             xAxisKey="month"
             height={220}
@@ -112,7 +122,11 @@ const FunnelJourney = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: chartTheme.colors.palette.actual }} /> Actual
+              <span
+                className="w-2.5 h-2.5 rounded-full"
+                style={{ backgroundColor: chartTheme.colors.palette.actual }}
+              />{" "}
+              Actual
             </span>
           </div>
 
@@ -142,7 +156,7 @@ const FunnelJourney = () => {
                       className="absolute top-0 left-10 h-full"
                       style={{
                         backgroundColor: chartTheme.colors.palette.actual,
-                        width: `${actualPercent + 20}%`
+                        width: `${actualPercent + 20}%`,
                       }}
                     />
 
@@ -151,14 +165,17 @@ const FunnelJourney = () => {
                       className="absolute top-3 left-10 h-2.5 z-[5]"
                       style={{
                         backgroundColor: chartTheme.colors.palette.benchmark,
-                        width: `${benchmarkPercent}%`
+                        width: `${benchmarkPercent}%`,
                       }}
                     />
 
                     {/* Actual value label - positioned above the actual bar */}
                     <div
                       className="absolute -top-5 text-xs font-heading font-semibold text-neutral-800"
-                      style={{ left: `${actualPercent}%`, transform: 'translateX(-50%)' }}
+                      style={{
+                        left: `${actualPercent}%`,
+                        transform: "translateX(-50%)",
+                      }}
                     >
                       {item.actual} {item.unit}
                     </div>
@@ -177,7 +194,9 @@ const FunnelJourney = () => {
             <div className="relative mt-4">
               <div className="flex justify-between text-xs font-heading text-neutral-600">
                 {[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map((val) => (
-                  <span key={val} className="w-8 text-center">{val}</span>
+                  <span key={val} className="w-8 text-center">
+                    {val}
+                  </span>
                 ))}
               </div>
             </div>
@@ -242,147 +261,155 @@ const FunnelJourney = () => {
       {/* Section 5: Leasing Conversions by Geo & Stage */}
       <Card title="Leasing Conversions by Geo & Stage" noPadding>
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              {/* First row: Main category headers */}
-              <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
-                <th
-                  className="px-4 py-3 text-white text-sm font-semibold font-heading text-center border-r border-white/20"
-                >
-                  <div className="flex items-center justify-center gap-2">
-                    Geo
-                    <FilterIcon className="w-4 h-4" />
-                  </div>
-                </th>
-                <th
-                  colSpan={3}
-                  className="px-3 py-2 text-white text-sm font-semibold font-heading text-center border-r border-white/20"
-                >
-                  Unique Showing
-                </th>
-                <th
-                  colSpan={3}
-                  className="px-3 py-2 text-white text-sm font-semibold font-heading text-center border-r border-white/20"
-                >
-                  App Start to Submit
-                </th>
-                <th
-                  colSpan={3}
-                  className="px-3 py-2 text-white text-sm font-semibold font-heading text-center border-r border-white/20"
-                >
-                  Approval
-                </th>
-                <th
-                  colSpan={3}
-                  className="px-3 py-2 text-white text-sm font-semibold font-heading text-center"
-                >
-                  Approval to Lease
-                </th>
-              </tr>
-              {/* Second row: Sub-column headers */}
-              <tr className="bg-sky-100 border-b border-neutral-300">
-                {/* District under Geo */}
-                <th className="px-4 py-2 text-neutral-700 text-xs font-medium font-heading text-center border-r border-neutral-300">
-                  District
-                </th>
-                {/* Unique Showing sub-columns */}
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  T7
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  PW
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center border-r border-neutral-300">
-                  PY
-                </th>
-                {/* App Start to Submit sub-columns */}
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  T7
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  PW
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center border-r border-neutral-300">
-                  PY
-                </th>
-                {/* Approval sub-columns */}
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  T7
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  PW
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center border-r border-neutral-300">
-                  PY
-                </th>
-                {/* Approval to Lease sub-columns */}
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  T7
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  PW
-                </th>
-                <th className="px-3 py-2 text-neutral-700 text-xs font-medium font-heading text-center">
-                  PY
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {leasingConversionsData.rows.map((row, idx) => (
-                <tr
-                  key={row.geo}
-                  className={`border-b border-neutral-200 `}
-                >
-                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800 text-center border-r border-neutral-200">
-                    {row.geo}
-                  </td>
-                  {/* Unique Showing values */}
-                  {row.uniqueShowing.map((val, vi) => (
-                    <td
-                      key={`unique-${vi}`}
-                      className="px-3 py-3 text-sm font-heading text-neutral-700 text-center border-r border-neutral-200"
-                    >
-                      {val}
-                    </td>
-                  ))}
-                  {/* App Start to Submit values */}
-                  {row.appStartSubmit.map((val, vi) => (
-                    <td
-                      key={`app-${vi}`}
-                      className="px-3 py-3 text-sm font-heading text-neutral-700 text-center bg-sky-100 border-r border-neutral-200"
-                    >
-                      {val}
-                    </td>
-                  ))}
-                  {/* Approval values */}
-                  {row.approval.map((val, vi) => (
-                    <td
-                      key={`approval-${vi}`}
-                      className="px-3 py-3 text-sm font-heading text-neutral-700 text-center border-r border-neutral-200"
-                    >
-                      {val}
-                    </td>
-                  ))}
-                  {/* Approval to Lease values */}
-                  {row.approvalToLease.map((val, vi) => (
-                    <td
-                      key={`lease-${vi}`}
-                      className={`px-3 py-3 text-sm font-heading text-neutral-700 text-center bg-sky-100 ${vi < 2 ? 'border-r border-neutral-200' : ''}`}
-                    >
-                      {val}
-                    </td>
-                  ))}
+          <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
+            <table className="w-full border-collapse">
+              <thead>
+                {/* First row: Main category headers with distinct shades of blue */}
+                <tr className="text-white">
+                  <th className="px-4 py-3 text-sm font-semibold font-heading text-center border-r border-white/10 first:rounded-tl-lg bg-[#1E6191]">
+                    <div className="flex items-center justify-center gap-2">
+                      Geo
+                      <FilterIcon className="w-4 h-4" />
+                    </div>
+                  </th>
+                  <th
+                    colSpan={3}
+                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
+                  >
+                    Unique Showing
+                  </th>
+                  <th
+                    colSpan={3}
+                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
+                  >
+                    App Start to Submit
+                  </th>
+                  <th
+                    colSpan={3}
+                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
+                  >
+                    Approval
+                  </th>
+                  <th
+                    colSpan={3}
+                    className="px-3 py-2 text-sm font-semibold font-heading text-center last:rounded-tr-lg bg-[#1E6191]"
+                  >
+                    Approval to Lease
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+                {/* Second row: Sub-column headers */}
+                <tr className="bg-white border-b border-neutral-200">
+                  {/* District under Geo */}
+                  <th className="px-4 py-2 text-[#1F1F22] text-[10px] font-medium font-heading text-center border-r border-neutral-200">
+                    District
+                  </th>
+                  {/* Unique Showing sub-columns */}
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    T7
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    PW
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    PY
+                  </th>
+                  {/* App Start to Submit sub-columns - Highlighted bg #F0F8FE */}
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                    T7
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                    PW
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                    PY
+                  </th>
+                  {/* Approval sub-columns */}
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    T7
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    PW
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                    PY
+                  </th>
+                  {/* Approval to Lease sub-columns - Highlighted bg #F0F8FE */}
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                    T7
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                    PW
+                  </th>
+                  <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center bg-[#F0F8FE]">
+                    PY
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {leasingConversionsData.rows.map((row, idx) => (
+                  <tr
+                    key={row.geo}
+                    className={cn(
+                      "border-b border-neutral-100 last:border-0",
+                      idx % 2 === 0 ? "bg-white" : "bg-table-alt",
+                    )}
+                  >
+                    <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-600 text-left border-r border-neutral-100">
+                      {row.geo}
+                    </td>
+                    {/* Unique Showing values */}
+                    {row.uniqueShowing.map((val, vi) => (
+                      <td
+                        key={`unique-${vi}`}
+                        className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center border-r border-neutral-100"
+                      >
+                        {val}
+                      </td>
+                    ))}
+                    {/* App Start to Submit values - Highlighted bg #F0F8FE */}
+                    {row.appStartSubmit.map((val, vi) => (
+                      <td
+                        key={`app-${vi}`}
+                        className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center bg-[#F0F8FE] border-r border-neutral-100"
+                      >
+                        {val}
+                      </td>
+                    ))}
+                    {/* Approval values */}
+                    {row.approval.map((val, vi) => (
+                      <td
+                        key={`approval-${vi}`}
+                        className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center border-r border-neutral-100"
+                      >
+                        {val}
+                      </td>
+                    ))}
+                    {/* Approval to Lease values - Highlighted bg #F0F8FE */}
+                    {row.approvalToLease.map((val, vi) => (
+                      <td
+                        key={`lease-${vi}`}
+                        className={cn(
+                          "px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center bg-[#F0F8FE]",
+                          vi < 2 ? "border-r border-neutral-100" : "",
+                        )}
+                      >
+                        {val}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </Card>
 
       {/* Section 6: Dark Lead Funnel with tabs */}
       <div
         className="rounded-2xl p-3 sm:p-6"
-        style={{ background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})` }}
+        style={{
+          background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})`,
+        }}
       >
         <TabGroup
           tabs={[
@@ -409,7 +436,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -436,7 +466,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -463,7 +496,10 @@ const FunnelJourney = () => {
                   PW: r.pw,
                   PY: r.py,
                 }))}
-                toggle={{ options: ["days posted", "property posted"], active: 0 }}
+                toggle={{
+                  options: ["days posted", "property posted"],
+                  active: 0,
+                }}
               />
               <MiniTable
                 title="Conversion from previous stage to this stage"
@@ -480,57 +516,57 @@ const FunnelJourney = () => {
         </div>
       </div>
 
-      {/* Section 7: Application Matric */}
-      <Card title="Application matric" noPadding>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
-                {[
-                  "Geo",
-                  "Denial Rate",
-                  "Cancellation Rate",
-                  "Self Service",
-                  "Avg Applicants per Application",
-                ].map((h, idx, arr) => (
-                  <th
-                    key={h}
-                    className={`px-4 py-3 text-white text-xs font-medium font-heading text-center ${idx < arr.length - 1 ? 'border-r border-white/20' : ''}`}
-                  >
-                    <div className="flex items-center justify-center gap-2">
-                      {h}
-                      <FilterIcon className="w-3 h-3" />
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {applicationMatricData.map((row, idx) => (
-                <tr
-                  key={row.geo}
-                  className={`border-b border-neutral-200 ${idx % 2 === 0 ? "bg-white" : "bg-sky-50"}`}
-                >
-                  <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-800 text-center border-r border-neutral-200">
-                    {row.geo}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700 text-center border-r border-neutral-200">
-                    {row.denialRate}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700 text-center border-r border-neutral-200">
-                    {row.cancellationRate}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700 text-center border-r border-neutral-200">
-                    {row.selfService}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-heading text-neutral-700 text-center">
-                    {row.avgApplicants}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      {/* Section 7: Application Metric */}
+      <Card title="Application metric" noPadding>
+        <ReusableTable
+          columns={[
+            {
+              accessorKey: "geo",
+              header: "Geo",
+              enableSorting: true,
+              cell: (info) => (
+                <div className="text-center font-semibold">
+                  {info.getValue() as string}
+                </div>
+              ),
+            },
+            {
+              accessorKey: "denialRate",
+              header: "Denial Rate",
+              enableSorting: true,
+              cell: (info) => (
+                <div className="text-center">{info.getValue() as string}</div>
+              ),
+            },
+            {
+              accessorKey: "cancellationRate",
+              header: "Cancellation Rate",
+              enableSorting: true,
+              cell: (info) => (
+                <div className="text-center">{info.getValue() as string}</div>
+              ),
+            },
+            {
+              accessorKey: "selfService",
+              header: "Self Service",
+              enableSorting: true,
+              cell: (info) => (
+                <div className="text-center">{info.getValue() as string}</div>
+              ),
+            },
+            {
+              accessorKey: "avgApplicants",
+              header: "Avg Applicants per Application",
+              enableSorting: true,
+              cell: (info) => (
+                <div className="text-center font-bold">
+                  {info.getValue() as number}
+                </div>
+              ),
+            },
+          ]}
+          data={applicationMatricData}
+        />
       </Card>
 
       {/* Section 8: App Stages Duration */}
@@ -600,7 +636,11 @@ const FunnelJourney = () => {
           <BarChartComponent
             data={approvalCancellationBySourceData}
             bars={[
-              { dataKey: "approval", color: chartTheme.colors.palette.approval, name: "Approval" },
+              {
+                dataKey: "approval",
+                color: chartTheme.colors.palette.approval,
+                name: "Approval",
+              },
               {
                 dataKey: "cancellation",
                 color: chartTheme.colors.palette.cancellation,
@@ -662,9 +702,21 @@ const FunnelJourney = () => {
           <StackedBarChart
             data={websiteData}
             bars={[
-              { dataKey: "google", color: chartTheme.colors.palette.google, name: "Google" },
-              { dataKey: "tiktok", color: chartTheme.colors.palette.tiktok, name: "Tiktok" },
-              { dataKey: "meta", color: chartTheme.colors.palette.meta, name: "Meta" },
+              {
+                dataKey: "google",
+                color: chartTheme.colors.palette.google,
+                name: "Google",
+              },
+              {
+                dataKey: "tiktok",
+                color: chartTheme.colors.palette.tiktok,
+                name: "Tiktok",
+              },
+              {
+                dataKey: "meta",
+                color: chartTheme.colors.palette.meta,
+                name: "Meta",
+              },
             ]}
             xAxisKey="category"
             height={300}
@@ -691,7 +743,7 @@ const FunnelJourney = () => {
                       className="h-6 flex items-center px-2"
                       style={{
                         width: `${(item.value2 / 10) * 100}%`,
-                        backgroundColor: chartTheme.colors.palette.newerPeriod
+                        backgroundColor: chartTheme.colors.palette.newerPeriod,
                       }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
@@ -711,7 +763,7 @@ const FunnelJourney = () => {
                       className="h-6 flex items-center px-2"
                       style={{
                         width: `${(item.value1 / 10) * 100}%`,
-                        backgroundColor: chartTheme.colors.palette.olderPeriod
+                        backgroundColor: chartTheme.colors.palette.olderPeriod,
                       }}
                     >
                       <span className="text-xs font-heading font-medium text-white">
@@ -730,6 +782,6 @@ const FunnelJourney = () => {
       </div>
     </div>
   );
-}
+};
 
 export default FunnelJourney;
