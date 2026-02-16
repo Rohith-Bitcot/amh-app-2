@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { chartTheme } from "@/lib/chartTheme";
 
 interface FunnelDataPoint {
   stage: string;
@@ -37,7 +38,7 @@ export default function FunnelConversionChart({
     return () => observer.disconnect();
   }, []);
 
-  const margin = { top: 55, right: 15, bottom: 35, left: 15 };
+  const margin = { top: 65, right: 15, bottom: 35, left: 15 };
   const chartW = width - margin.left - margin.right;
   const chartH = height - margin.top - margin.bottom;
   const maxValue = Math.max(...data.map((d) => d.value));
@@ -46,7 +47,8 @@ export default function FunnelConversionChart({
   const barCount = data.length;
   const totalBarWidthRatio = 0.55;
   const barWidth = barCount > 0 ? (chartW * totalBarWidthRatio) / barCount : 0;
-  const gap = barCount > 1 ? (chartW * (1 - totalBarWidthRatio)) / (barCount - 1) : 0;
+  const gap =
+    barCount > 1 ? (chartW * (1 - totalBarWidthRatio)) / (barCount - 1) : 0;
 
   const bars = data.map((d, i) => {
     const x = margin.left + i * (barWidth + gap);
@@ -57,24 +59,31 @@ export default function FunnelConversionChart({
 
   const baseline = margin.top + chartH;
 
+  // Funnel backdrop points - tracing the tops of all bars
+  const funnelTopPoints = bars
+    .map((bar) => `${bar.x},${bar.y} ${bar.x + bar.w},${bar.y}`)
+    .join(" ");
+
   // Funnel polygon points
   const funnelPoints =
     bars.length > 1
-      ? `${bars[0].x},${bars[0].y} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${bars[bars.length - 1].y} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${baseline} ${bars[0].x},${baseline}`
+      ? `${funnelTopPoints} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${baseline} ${bars[0].x},${baseline}`
       : "";
 
   return (
     <div ref={containerRef} style={{ width: "100%", height }}>
       {width > 0 && (
         <svg width={width} height={height}>
+          <defs>
+            <linearGradient id="funnelGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="37.17%" stopColor="var(--color-funnel-base-from)" />
+              <stop offset="100%" stopColor="var(--color-funnel-base-to)" />
+            </linearGradient>
+          </defs>
+
           {/* Funnel backdrop */}
           {funnelPoints && (
-            <polygon
-              points={funnelPoints}
-              fill="rgba(190, 210, 230, 0.15)"
-              stroke="rgba(170, 190, 210, 0.25)"
-              strokeWidth={1}
-            />
+            <polygon points={funnelPoints} fill="url(#funnelGradient)" />
           )}
 
           {/* Bars */}
@@ -85,18 +94,18 @@ export default function FunnelConversionChart({
                 y={bar.y}
                 width={bar.w}
                 height={bar.h}
-                rx={4}
+                rx={0}
                 fill={bar.color}
               />
               {/* Value label inside bar */}
               <text
                 x={bar.x + bar.w / 2}
-                y={bar.y + bar.h / 2 + 7}
+                y={bar.y + bar.h / 2 + 5}
                 textAnchor="middle"
-                fontSize={18}
-                fontWeight={700}
+                fontSize={12}
+                fontWeight={600}
                 fill="white"
-                fontFamily="'Familjen Grotesk', sans-serif"
+                fontFamily={chartTheme.fontFamily}
               >
                 {bar.value}
               </text>
@@ -108,8 +117,9 @@ export default function FunnelConversionChart({
                   y={baseline + 16 + li * 14}
                   textAnchor="middle"
                   fontSize={12}
-                  fill="#6b7280"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontWeight={500}
+                  fill="var(--color-text-black)"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {line}
                 </text>
@@ -122,7 +132,9 @@ export default function FunnelConversionChart({
             if (i === 0 || !bar.conversionPct) return null;
             const prev = bars[i - 1];
             const cx = prev.x + prev.w + gap / 2;
-            const labelY = Math.min(prev.y, bar.y) + Math.abs(prev.y - bar.y) / 2 + 10;
+            // Center the label vertically in the backdrop area
+            const backdropTopAtCx = (prev.y + bar.y) / 2;
+            const labelY = (backdropTopAtCx + baseline) / 2;
 
             return (
               <g key={`conv-${i}`}>
@@ -130,10 +142,10 @@ export default function FunnelConversionChart({
                   x={cx}
                   y={labelY}
                   textAnchor="middle"
-                  fontSize={14}
+                  fontSize={10}
                   fontWeight={700}
-                  fill="#374151"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fill="var(--color-foreground)"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.conversionPct}
                 </text>
@@ -142,9 +154,13 @@ export default function FunnelConversionChart({
                     x={cx}
                     y={labelY + 15}
                     textAnchor="middle"
-                    fontSize={11}
-                    fill={bar.pyPositive ? "#16a34a" : "#dc2626"}
-                    fontFamily="'Familjen Grotesk', sans-serif"
+                    fontSize={10.5}
+                    fill={
+                      bar.pyPositive
+                        ? "var(--color-green-success)"
+                        : "var(--color-live)"
+                    }
+                    fontFamily={chartTheme.fontFamily}
                   >
                     {bar.priorYearPct}
                   </text>
@@ -156,42 +172,40 @@ export default function FunnelConversionChart({
           {/* Dashed callout boxes */}
           {bars.map((bar, i) => {
             if (!bar.callout) return null;
-            const boxW = bar.w + 16;
-            const boxH = 40;
-            const boxX = bar.x + bar.w / 2 - boxW / 2;
-            const boxY = bar.y - boxH - 8;
+            const boxW = bar.w;
+            const boxH = 55;
+            const boxX = bar.x;
+            const boxY = bar.y - boxH;
 
             return (
               <g key={`callout-${i}`}>
-                <rect
-                  x={boxX}
-                  y={boxY}
-                  width={boxW}
-                  height={boxH}
-                  rx={6}
-                  fill="white"
-                  stroke="#94a3b8"
+                {/* 3-sided dashed border (Left, Top, Right) */}
+                <polyline
+                  points={`${boxX},${boxY + boxH} ${boxX},${boxY} ${boxX + boxW},${boxY} ${boxX + boxW},${boxY + boxH}`}
+                  fill="none"
+                  stroke="var(--color-light-blue)"
                   strokeWidth={1.5}
                   strokeDasharray="6 4"
                 />
                 <text
                   x={bar.x + bar.w / 2}
-                  y={boxY + 15}
+                  y={boxY - 8}
                   textAnchor="middle"
-                  fontSize={11}
-                  fill="#16a34a"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fontSize={9}
+                  fontWeight={500}
+                  fill="var(--color-light-blue)"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.callout.label}
                 </text>
                 <text
                   x={bar.x + bar.w / 2}
-                  y={boxY + 32}
+                  y={boxY + boxH / 2 + 6}
                   textAnchor="middle"
                   fontSize={16}
                   fontWeight={700}
-                  fill="#374151"
-                  fontFamily="'Familjen Grotesk', sans-serif"
+                  fill="var(--color-light-blue)"
+                  fontFamily={chartTheme.fontFamily}
                 >
                   {bar.callout.value}
                 </text>

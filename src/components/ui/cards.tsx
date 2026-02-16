@@ -20,7 +20,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "bg-white rounded-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.10)] overflow-hidden",
+        "bg-white rounded-2xl shadow-card overflow-hidden",
         className,
       )}
     >

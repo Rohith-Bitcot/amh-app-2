@@ -1,30 +1,54 @@
-import { Home, Filter, BadgeCheck, MessageSquare, type LucideIcon } from "lucide-react";
-
 export interface NavItem {
   label: string;
   href: string;
-  icon: LucideIcon;
+  icon: string;
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Executive Overview", href: "/executive-overview", icon: Home },
-  { label: "Funnel Journey", href: "/funnel-journey", icon: Filter },
-  { label: "Property Health", href: "/property-health", icon: BadgeCheck },
-  { label: "Communication & Engagement", href: "/communication-engagement", icon: MessageSquare },
+  {
+    label: "Executive Overview",
+    href: "/executive-overview",
+    icon: "/assets/svgs/executive-overview.svg",
+  },
+  {
+    label: "Funnel Journey",
+    href: "/funnel-journey",
+    icon: "/assets/svgs/funnel-journey.svg",
+  },
+  {
+    label: "Property Health",
+    href: "/property-health",
+    icon: "/assets/svgs/property-health.svg",
+  },
+  {
+    label: "Communication & Engagement",
+    href: "/communication-engagement",
+    icon: "/assets/svgs/communication-engagement.svg",
+  },
+];
+
+export const LEASES_SIGNED_BAR_DATA = [
+  { day: "S", h: "52px", isSpecial: false },
+  { day: "S", h: "34px", isSpecial: false },
+  { day: "M", h: "46px", isSpecial: false },
+  { day: "T", h: "53px", isSpecial: false },
+  { day: "W", h: "46px", isSpecial: false },
+  { day: "T", h: "34px", isSpecial: false },
+  { day: "F", h: "45px", isSpecial: true }, // Special striped bar
 ];
 
 export const CHART_COLORS = {
-  primary: "#0369a1",
-  secondary: "#0284c7",
-  tertiary: "#38bdf8",
+  primary: "var(--color-sidebar)",
+  secondary: "var(--color-link)",
+  tertiary: "var(--color-light-blue)",
   quaternary: "#7dd3fc",
   quinary: "#bae6fd",
 
   blue: {
-    900: "#0c4a6e",
-    800: "#075985",
-    700: "#0369a1",
-    600: "#0284c7",
+    900: "var(--color-dark-blue)",
+    800: "var(--color-sidebar)",
+    700: "var(--color-sidebar-hover)",
+    600: "var(--color-link)",
     500: "#0ea5e9",
     400: "#38bdf8",
     300: "#7dd3fc",
@@ -41,17 +65,24 @@ export const CHART_COLORS = {
     "Dispo Review",
   ],
 
-  funnel: ["#0369a1", "#0284c7", "#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd"],
+  funnel: [
+    "var(--color-sidebar)",
+    "var(--color-link)",
+    "#0ea5e9",
+    "#38bdf8",
+    "#7dd3fc",
+    "#bae6fd",
+  ],
 
   sentiment: {
-    positive: "#22c55e",
+    positive: "var(--color-green-success)",
     neutral: "#f59e0b",
-    negative: "#ef4444",
+    negative: "var(--color-live)",
   },
 
   donut: {
-    lead: ["#0369a1", "#0284c7", "#0ea5e9", "#38bdf8"],
-    showing: ["#0284c7", "#38bdf8", "#7dd3fc", "#bae6fd"],
+    lead: ["var(--color-sidebar)", "var(--color-link)", "#0ea5e9", "#38bdf8"],
+    showing: ["var(--color-link)", "#38bdf8", "#7dd3fc", "#bae6fd"],
     appStart: ["#16a34a", "#22c55e", "#4ade80", "#86efac"],
     tourCanceled: ["#dc2626", "#ef4444", "#f87171", "#fca5a5"],
   },
@@ -68,11 +99,9 @@ export const HEATMAP_COLORS = {
 };
 
 export function getHeatmapColor(value: number): string {
-  if (value >= 20) return "bg-red-400 text-white";
-  if (value >= 15) return "bg-red-300 text-white";
-  if (value >= 10) return "bg-rose-300";
-  if (value >= 5) return "bg-rose-200";
-  if (value >= 2) return "bg-rose-100";
-  if (value >= 1) return "bg-rose-50";
-  return "bg-white";
+  const border = "border border-[var(--color-sentiment-border)]";
+  if (value >= 10) return `bg-[var(--color-table-shade-3)] ${border}`;
+  if (value >= 5) return `bg-[var(--color-table-shade-2)] ${border}`;
+  if (value >= 1) return `bg-[var(--color-table-shade-1)] ${border}`;
+  return `bg-white ${border}`;
 }

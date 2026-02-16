@@ -11,6 +11,7 @@ import {
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { cn, FilterIcon } from "@/lib/utils";
+import Image from "next/image";
 
 interface DataTableProps<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,7 +20,11 @@ interface DataTableProps<T> {
   compact?: boolean;
 }
 
-export default function DataTable<T>({ columns, data, compact }: Readonly<DataTableProps<T>>) {
+export default function DataTable<T>({
+  columns,
+  data,
+  compact,
+}: DataTableProps<T>) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   // eslint-disable-next-line react-hooks/incompatible-library
@@ -33,7 +38,7 @@ export default function DataTable<T>({ columns, data, compact }: Readonly<DataTa
   });
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-hidden rounded-lg">
       <table className="w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -47,15 +52,29 @@ export default function DataTable<T>({ columns, data, compact }: Readonly<DataTa
                   className={cn(
                     "text-white text-xs font-medium font-heading text-left border-r border-white/20 last:border-r-0",
                     compact ? "px-3 py-2" : "px-5 py-3",
-                    header.column.getCanSort() && "cursor-pointer select-none hover:bg-white/10"
+                    header.column.getCanSort() &&
+                      "cursor-pointer select-none hover:bg-white/10",
                   )}
                   onClick={header.column.getToggleSortingHandler()}
                 >
                   <div className="flex items-center gap-1">
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
-                    <FilterIcon className="text-white/80 w-3 h-3 ml-1" />
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                    {header.column.getCanSort() && (
+                      <span className="ml-1">
+                        <Image
+                          src="/assets/svgs/sort.svg"
+                          alt="Sort"
+                          width={12}
+                          height={12}
+                          className="opacity-70"
+                        />
+                      </span>
+                    )}
                   </div>
                 </th>
               ))}
@@ -68,7 +87,7 @@ export default function DataTable<T>({ columns, data, compact }: Readonly<DataTa
               key={row.id}
               className={cn(
                 "border-b border-neutral-200 transition-colors hover:bg-sky-50/50",
-                rowIndex % 2 === 0 ? "bg-white" : "bg-sky-50"
+                rowIndex % 2 === 0 ? "bg-white" : "bg-sky-50",
               )}
             >
               {row.getVisibleCells().map((cell) => (
@@ -76,7 +95,7 @@ export default function DataTable<T>({ columns, data, compact }: Readonly<DataTa
                   key={cell.id}
                   className={cn(
                     "text-neutral-800 text-sm font-normal font-heading border-r border-neutral-200 last:border-r-0",
-                    compact ? "px-3 py-2" : "px-5 py-3"
+                    compact ? "px-3 py-2" : "px-5 py-3",
                   )}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
