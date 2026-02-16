@@ -75,6 +75,12 @@ body {
   overflow: hidden;
 }
 
+button,
+a,
+[role="button"] {
+  cursor: pointer;
+}
+
 /* Scrollbar styling for content area */
 .content-scrollbar::-webkit-scrollbar {
   width: 6px;

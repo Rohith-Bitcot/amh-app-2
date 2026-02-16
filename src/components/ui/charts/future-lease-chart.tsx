@@ -100,7 +100,10 @@ export default function FutureLeaseChart({
             ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]}
             domain={[0, 24]}
           />
-          <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+          <Tooltip
+            contentStyle={chartTheme.tooltip.contentStyle}
+            cursor={false}
+          />
           <Bar
             dataKey="leaseExpiration"
             stackId="stack"

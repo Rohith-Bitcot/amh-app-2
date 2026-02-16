@@ -144,6 +144,7 @@ export default function RadarChartComponent({
             boxShadow: "0px 4px 12px var(--color-card-shadow)",
           }}
           formatter={(value: any) => [`${value}%`]}
+          cursor={false}
         />
 
         {showLegend && (

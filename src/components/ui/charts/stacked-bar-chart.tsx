@@ -160,7 +160,10 @@ export default function StackedBarChart({
             {...(yAxisTicks && { ticks: yAxisTicks })}
             {...(yAxisFormatter && { tickFormatter: yAxisFormatter })}
           />
-          <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+          <Tooltip
+            contentStyle={chartTheme.tooltip.contentStyle}
+            cursor={false}
+          />
           {showLegend && (
             <Legend
               verticalAlign="middle"

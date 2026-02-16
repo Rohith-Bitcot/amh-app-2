@@ -100,7 +100,10 @@ export default function LineChartComponent({
             axisLine={{ stroke: "#e5e5e5" }}
             {...(yAxisTicks && { ticks: yAxisTicks })}
           />
-          <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+          <Tooltip
+            contentStyle={chartTheme.tooltip.contentStyle}
+            cursor={false}
+          />
           {showLegend && (
             <Legend
               verticalAlign="top"
@@ -145,7 +148,10 @@ export default function LineChartComponent({
           axisLine={{ stroke: "#e5e5e5" }}
           {...(yAxisTicks && { ticks: yAxisTicks })}
         />
-        <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+        <Tooltip
+          contentStyle={chartTheme.tooltip.contentStyle}
+          cursor={false}
+        />
         {showLegend && (
           <Legend
             verticalAlign="top"

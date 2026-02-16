@@ -1,3 +1,18 @@
+const PUBLIC_PATH = {};
+
+const PRIVATE_PATH = {
+  EXECUTIVE_OVERVIEW: "/executive-overview",
+  FUNNEL_JOURNEY: "/funnel-journey",
+  PROPERTY_HEALTH: "/property-health",
+  COMMUNICATION_ENGAGEMENT: "/communication-engagement",
+  FUNNEL_DRILLDOWN: "/executive-overview/funnel-drilldown",
+};
+
+export const ROUTES_PATH = {
+  ...PUBLIC_PATH,
+  ...PRIVATE_PATH,
+};
+
 export interface NavItem {
   label: string;
   href: string;
@@ -7,22 +22,22 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   {
     label: "Executive Overview",
-    href: "/executive-overview",
+    href: ROUTES_PATH.EXECUTIVE_OVERVIEW,
     icon: "/assets/svgs/executive-overview.svg",
   },
   {
     label: "Funnel Journey",
-    href: "/funnel-journey",
+    href: ROUTES_PATH.FUNNEL_JOURNEY,
     icon: "/assets/svgs/funnel-journey.svg",
   },
   {
     label: "Property Health",
-    href: "/property-health",
+    href: ROUTES_PATH.PROPERTY_HEALTH,
     icon: "/assets/svgs/property-health.svg",
   },
   {
     label: "Communication & Engagement",
-    href: "/communication-engagement",
+    href: ROUTES_PATH.COMMUNICATION_ENGAGEMENT,
     icon: "/assets/svgs/communication-engagement.svg",
   },
 ];

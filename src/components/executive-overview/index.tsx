@@ -20,8 +20,9 @@ import {
   performanceTableData,
 } from "@/utils/data/executive-overview";
 import { useFilterStore } from "@/store/use-filter-store";
-import { LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
+import { LEASES_SIGNED_BAR_DATA, ROUTES_PATH } from "@/utils/constants";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const d = kpiCards;
 
@@ -56,6 +57,7 @@ const ChartActions = () => (
 );
 
 export default function ExecutiveOverview() {
+  const router = useRouter();
   const { demandViewMode, setDemandViewMode } = useFilterStore();
   const [expandedTitle, setExpandedTitle] = useState<string | null>(null);
 
@@ -239,7 +241,11 @@ export default function ExecutiveOverview() {
       {/* Charts Row - 3 charts side by side - RESPONSIVE GRID */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card title="Funnel Conversation" headerRight={<ChartActions />}>
-          <FunnelConversionChart data={funnelConversionsData} height={280} />
+          <FunnelConversionChart
+            data={funnelConversionsData}
+            height={280}
+            onBarClick={() => router.push(ROUTES_PATH.FUNNEL_DRILLDOWN)}
+          />
         </Card>
 
         <Card title="Conversions By Days Marketed">

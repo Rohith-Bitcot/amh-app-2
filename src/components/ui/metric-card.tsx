@@ -203,7 +203,10 @@ export default function MetricCard({
                 axisLine={false}
                 tickLine={false}
               />
-              <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+              <Tooltip
+                contentStyle={chartTheme.tooltip.contentStyle}
+                cursor={false}
+              />
               <Area
                 type="monotone"
                 dataKey="current"
