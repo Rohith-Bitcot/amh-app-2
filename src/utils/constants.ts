@@ -98,10 +98,11 @@ export const HEATMAP_COLORS = {
   20: "bg-red-400",
 };
 
-export function getHeatmapColor(value: number): string {
+export function getHeatmapColor(value: number | string): string {
+  const numValue = typeof value === "string" ? parseFloat(value) : value;
   const border = "border border-[var(--color-sentiment-border)]";
-  if (value >= 10) return `bg-[var(--color-table-shade-3)] ${border}`;
-  if (value >= 5) return `bg-[var(--color-table-shade-2)] ${border}`;
-  if (value >= 1) return `bg-[var(--color-table-shade-1)] ${border}`;
+  if (numValue >= 10) return `bg-[var(--color-table-shade-3)] ${border}`;
+  if (numValue >= 5) return `bg-[var(--color-table-shade-2)] ${border}`;
+  if (numValue >= 1) return `bg-[var(--color-table-shade-1)] ${border}`;
   return `bg-white ${border}`;
 }
