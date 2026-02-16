@@ -6,6 +6,7 @@ import Card from "@/components/ui/cards";
 import KpiCard from "@/components/ui/kpi-card";
 import MetricCard from "@/components/ui/metric-card";
 import TabGroup from "@/components/ui/tab-group";
+import ReusableTable from "@/components/ui/reusable-table";
 import RadarChartComponent from "@/components/ui/charts/radar-chart";
 import FunnelConversionChart from "@/components/ui/charts/funnel-conversation-chart";
 import LeadCountBarChart from "@/components/ui/charts/lead-count-bar-chart";
@@ -314,60 +315,14 @@ export default function ExecutiveOverview() {
 
       {/* Performance Overview Table */}
       <Card title="Performance Overview" noPadding>
-        <div className="overflow-x-auto">
-          <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
-            <table className="w-full border-collapse text-left">
-              <thead>
-                <tr className="bg-primary-blue text-white">
-                  {performanceTableData.headers.map((header, i) => (
-                    <th
-                      key={header}
-                      className="px-4 py-3 text-[13px] font-bold font-heading text-white first:rounded-tl-lg last:rounded-tr-lg"
-                    >
-                      <div
-                        className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-center"}`}
-                      >
-                        {header}
-                        <Image
-                          src="/assets/svgs/sort.svg"
-                          alt="sort"
-                          width={10}
-                          height={10}
-                          className="opacity-80"
-                        />
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {performanceTableData.rows.map((row, index) => (
-                  <tr
-                    key={row.metric}
-                    className={`border-b border-neutral-100 last:border-0 ${
-                      index % 2 === 0 ? "bg-white" : "bg-table-alt"
-                    }`}
-                  >
-                    <td className="px-4 py-3 text-neutral-600 text-[13px] font-medium font-heading">
-                      {row.metric}
-                    </td>
-                    {performanceTableData.headers.slice(1).map((header) => {
-                      const val = row[header as keyof typeof row] as string;
-                      return (
-                        <td
-                          key={header}
-                          className="px-4 py-3 text-[13px] font-bold font-heading text-neutral-800 text-center border-l border-neutral-100"
-                        >
-                          {val}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <ReusableTable
+          columns={performanceTableData.headers.map((header) => ({
+            accessorKey: header === "Geo" ? "metric" : header,
+            header: header,
+            enableSorting: true,
+          }))}
+          data={performanceTableData.rows}
+        />
       </Card>
     </div>
   );

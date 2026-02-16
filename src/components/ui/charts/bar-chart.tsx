@@ -12,6 +12,19 @@ import {
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
 
+const CustomLegend = ({ items }: { items: any[] }) => {
+  return (
+    <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", fontSize: 11, fontFamily: chartTheme.fontFamily, color: "#374151" }}>
+      {items.map((item) => (
+        <div key={item.dataKey} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: item.color }} />
+          <span>{item.name || item.dataKey}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 interface BarChartComponentProps {
   data: Record<string, unknown>[];
   bars: { dataKey: string; color: string; name?: string }[];
@@ -23,6 +36,8 @@ interface BarChartComponentProps {
   xAxisTicks?: number[]; // Optional custom X-axis ticks
   yAxisFormatter?: (value: number) => string; // Optional Y-axis formatter
   showLabels?: boolean; // Show labels on top of bars
+  barSize?: number; // Optional custom bar size
+  reverseLegend?: boolean;
 }
 
 // Custom tick component for vertical Y-axis labels
@@ -61,7 +76,7 @@ export default function BarChartComponent({
   layout = "horizontal",
   xAxisTicks,
   yAxisFormatter,
-  showLabels = false,
+  reverseLegend = false,
 }: Readonly<BarChartComponentProps>) {
   if (layout === "vertical") {
     return (
@@ -91,8 +106,7 @@ export default function BarChartComponent({
             <Legend
               verticalAlign="top"
               align="right"
-              iconType="circle"
-              wrapperStyle={{ fontSize: 11, fontFamily: chartTheme.fontFamily }}
+              content={<CustomLegend items={reverseLegend ? [...bars].reverse() : bars} />}
             />
           )}
           {bars.map((bar) => (
@@ -101,7 +115,7 @@ export default function BarChartComponent({
               dataKey={bar.dataKey}
               fill={bar.color}
               name={bar.name || bar.dataKey}
-              radius={[0, 4, 4, 0]}
+              radius={[0, 2, 2, 0]}
               barSize={16}
             />
           ))}
@@ -125,7 +139,13 @@ export default function BarChartComponent({
           {...(yAxisFormatter && { tickFormatter: yAxisFormatter })}
         />
         <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
-        {showLegend && <Legend />}
+        {showLegend && (
+          <Legend
+            verticalAlign="top"
+            align="right"
+            content={<CustomLegend items={reverseLegend ? [...bars].reverse() : bars} />}
+          />
+        )}
         {bars.map((bar) => (
           <Bar
             key={bar.dataKey}
@@ -133,7 +153,7 @@ export default function BarChartComponent({
             fill={bar.color}
             name={bar.name || bar.dataKey}
             radius={[4, 4, 0, 0]}
-            barSize={bars.length > 1 ? 12 : 24}
+            barSize={bars.length > 1 ? 20 : 24}
           />
         ))}
       </BarChart>

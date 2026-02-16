@@ -19,43 +19,40 @@ interface FutureLeaseChartProps {
 
 export default function FutureLeaseChart({
   data,
-  height = 300,
-}: FutureLeaseChartProps) {
+  height = 400,
+}: Readonly<FutureLeaseChartProps>) {
   return (
     <div>
       {/* Legend */}
-      <div className="flex items-center gap-5 mb-3 text-xs font-heading text-neutral-600">
+      <div className="flex items-center justify-end gap-5 mb-3 text-xs font-heading text-neutral-600">
         <span className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-sm bg-[#1B3A5C]" />
+          <span
+            className="w-2.5 h-2.5 rounded-full"
+            style={{
+              backgroundColor: chartTheme.colors.palette.leaseExpiration,
+            }}
+          />
+          {""}
           Lease Expiration
         </span>
         <span className="flex items-center gap-1.5">
-          <svg width="12" height="12">
-            <defs>
-              <pattern
-                id="legend-hatch"
-                patternUnits="userSpaceOnUse"
-                width="4"
-                height="4"
-                patternTransform="rotate(45)"
-              >
-                <rect width="4" height="4" fill="#1B3A5C" />
-                <line
-                  x1="0"
-                  y1="0"
-                  x2="0"
-                  y2="4"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
-              </pattern>
-            </defs>
-            <rect width="12" height="12" rx="2" fill="url(#legend-hatch)" />
-          </svg>
+          <span
+            className="w-2.5 h-2.5 rounded-full"
+            style={{
+              backgroundColor: chartTheme.colors.palette.upcomingDelivery,
+            }}
+          />
+          {""}
           Upcoming Delivery
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="w-3 h-0.5 bg-[#3ACA76]" />
+          <span
+            className="w-2.5 h-2.5 rounded-full"
+            style={{
+              backgroundColor: chartTheme.colors.palette.projectedAbsorption,
+            }}
+          />
+          {""}
           Projected Absorption
         </span>
       </div>
@@ -74,14 +71,18 @@ export default function FutureLeaseChart({
               height="6"
               patternTransform="rotate(45)"
             >
-              <rect width="6" height="6" fill="#1B3A5C" />
+              <rect
+                width="6"
+                height="6"
+                fill={chartTheme.colors.palette.leaseExpiration}
+              />
               <line
                 x1="0"
                 y1="0"
                 x2="0"
                 y2="6"
-                stroke="white"
-                strokeWidth="2"
+                stroke="#66B1EA"
+                strokeWidth="7"
               />
             </pattern>
           </defs>
@@ -89,22 +90,24 @@ export default function FutureLeaseChart({
           <XAxis
             dataKey="month"
             tick={chartTheme.axis.tick}
-            axisLine={{ stroke: "#e5e5e5" }}
+            axisLine={{ stroke: chartTheme.colors.grid }}
             tickLine={false}
           />
           <YAxis
             tick={chartTheme.axis.tick}
-            axisLine={false}
+            axisLine={{ stroke: chartTheme.colors.grid }}
             tickLine={false}
+            ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]}
+            domain={[0, 24]}
           />
           <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
           <Bar
             dataKey="leaseExpiration"
             stackId="stack"
-            fill="#1B3A5C"
+            fill={chartTheme.colors.palette.leaseExpiration}
             name="Lease Expiration"
             radius={[0, 0, 0, 0]}
-            barSize={48}
+            barSize={49}
           />
           <Bar
             dataKey="upcomingDelivery"
@@ -112,12 +115,12 @@ export default function FutureLeaseChart({
             fill="url(#hatchPattern)"
             name="Upcoming Delivery"
             radius={[2, 2, 0, 0]}
-            barSize={48}
+            barSize={49}
           />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="projectedAbsorption"
-            stroke="#3ACA76"
+            stroke={chartTheme.colors.palette.projectedAbsorption}
             strokeWidth={2.5}
             dot={false}
             name="Projected Absorption"

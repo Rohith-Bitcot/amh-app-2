@@ -10,7 +10,7 @@ import {
   type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { cn } from "@/utils/helper-functions";
+import { cn, FilterIcon } from "@/utils/helper-functions";
 import Image from "next/image";
 
 interface DataTableProps<T> {
@@ -50,7 +50,7 @@ export default function DataTable<T>({
                 <th
                   key={header.id}
                   className={cn(
-                    "text-white text-xs font-medium font-heading text-left",
+                    "text-white text-xs font-medium font-heading text-left border-r border-white/20 last:border-r-0",
                     compact ? "px-3 py-2" : "px-5 py-3",
                     header.column.getCanSort() &&
                       "cursor-pointer select-none hover:bg-white/10",
@@ -94,7 +94,7 @@ export default function DataTable<T>({
                 <td
                   key={cell.id}
                   className={cn(
-                    "text-neutral-800 text-sm font-normal font-heading",
+                    "text-neutral-800 text-sm font-normal font-heading border-r border-neutral-200 last:border-r-0",
                     compact ? "px-3 py-2" : "px-5 py-3",
                   )}
                 >

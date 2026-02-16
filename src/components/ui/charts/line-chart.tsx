@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -14,6 +15,50 @@ import {
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
 
+const CustomLegend = ({
+  items,
+  type = "circle",
+}: {
+  items: any[];
+  type?: "circle" | "line";
+}) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "12px",
+        justifyContent: "flex-end",
+        fontSize: 11,
+        fontFamily: chartTheme.fontFamily,
+        color: "#374151",
+      }}
+    >
+      {items.map((item) => (
+        <div
+          key={item.dataKey}
+          style={{ display: "flex", alignItems: "center", gap: "6px" }}
+        >
+          {type === "circle" ? (
+            <div
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                backgroundColor: item.color,
+              }}
+            />
+          ) : (
+            <div
+              style={{ width: 12, height: 2, backgroundColor: item.color }}
+            />
+          )}
+          <span>{item.name || item.dataKey}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 interface LineChartComponentProps {
   data: Record<string, unknown>[];
   lines: { dataKey: string; color: string; name?: string; dashed?: boolean }[];
@@ -23,6 +68,7 @@ interface LineChartComponentProps {
   showLegend?: boolean;
   showArea?: boolean;
   yAxisTicks?: number[]; // Optional custom Y-axis ticks
+  reverseLegend?: boolean;
 }
 
 export default function LineChartComponent({
@@ -34,6 +80,7 @@ export default function LineChartComponent({
   showLegend = false,
   showArea = false,
   yAxisTicks,
+  reverseLegend = false,
 }: Readonly<LineChartComponentProps>) {
   if (showArea) {
     return (
@@ -58,8 +105,12 @@ export default function LineChartComponent({
             <Legend
               verticalAlign="top"
               align="right"
-              iconType="line"
-              wrapperStyle={{ fontSize: 11, fontFamily: chartTheme.fontFamily }}
+              content={
+                <CustomLegend
+                  items={reverseLegend ? [...lines].reverse() : lines}
+                  type="line"
+                />
+              }
             />
           )}
           {lines.map((line) => (
@@ -99,8 +150,12 @@ export default function LineChartComponent({
           <Legend
             verticalAlign="top"
             align="right"
-            iconType="line"
-            wrapperStyle={{ fontSize: 11, fontFamily: chartTheme.fontFamily }}
+            content={
+              <CustomLegend
+                items={reverseLegend ? [...lines].reverse() : lines}
+                type="circle"
+              />
+            }
           />
         )}
         {lines.map((line) => (
@@ -110,7 +165,7 @@ export default function LineChartComponent({
             dataKey={line.dataKey}
             stroke={line.color}
             strokeWidth={2}
-            dot={{ r: 3, fill: line.color }}
+            dot={false}
             name={line.name || line.dataKey}
             strokeDasharray={line.dashed ? "5 5" : undefined}
           />
