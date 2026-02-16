@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -14,10 +15,29 @@ import { chartTheme } from "@/utils/chart-theme";
 
 const CustomLegend = ({ items }: { items: any[] }) => {
   return (
-    <div style={{ display: "flex", gap: "12px", justifyContent: "flex-end", fontSize: 11, fontFamily: chartTheme.fontFamily, color: "#374151" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "12px",
+        justifyContent: "flex-end",
+        fontSize: 11,
+        fontFamily: chartTheme.fontFamily,
+        color: "#374151",
+      }}
+    >
       {items.map((item) => (
-        <div key={item.dataKey} style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: item.color }} />
+        <div
+          key={item.dataKey}
+          style={{ display: "flex", alignItems: "center", gap: "6px" }}
+        >
+          <div
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: "50%",
+              backgroundColor: item.color,
+            }}
+          />
           <span>{item.name || item.dataKey}</span>
         </div>
       ))}
@@ -101,12 +121,19 @@ export default function BarChartComponent({
             tick={VerticalYAxisTick}
             width={25}
           />
-          <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+          <Tooltip
+            contentStyle={chartTheme.tooltip.contentStyle}
+            cursor={false}
+          />
           {showLegend && (
             <Legend
               verticalAlign="top"
               align="right"
-              content={<CustomLegend items={reverseLegend ? [...bars].reverse() : bars} />}
+              content={
+                <CustomLegend
+                  items={reverseLegend ? [...bars].reverse() : bars}
+                />
+              }
             />
           )}
           {bars.map((bar) => (
@@ -138,12 +165,19 @@ export default function BarChartComponent({
           axisLine={{ stroke: "#e5e5e5" }}
           {...(yAxisFormatter && { tickFormatter: yAxisFormatter })}
         />
-        <Tooltip contentStyle={chartTheme.tooltip.contentStyle} />
+        <Tooltip
+          contentStyle={chartTheme.tooltip.contentStyle}
+          cursor={false}
+        />
         {showLegend && (
           <Legend
             verticalAlign="top"
             align="right"
-            content={<CustomLegend items={reverseLegend ? [...bars].reverse() : bars} />}
+            content={
+              <CustomLegend
+                items={reverseLegend ? [...bars].reverse() : bars}
+              />
+            }
           />
         )}
         {bars.map((bar) => (

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { chartTheme } from "@/utils/chart-theme";
+import { cn } from "@/utils/helper-functions";
 
 interface FunnelDataPoint {
   stage: string;
@@ -16,11 +17,13 @@ interface FunnelDataPoint {
 interface FunnelConversionChartProps {
   data: FunnelDataPoint[];
   height?: number;
+  onBarClick?: (stage: string) => void;
 }
 
 export default function FunnelConversionChart({
   data,
   height = 300,
+  onBarClick,
 }: FunnelConversionChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -71,7 +74,12 @@ export default function FunnelConversionChart({
       : "";
 
   return (
-    <div ref={containerRef} style={{ width: "100%", height }}>
+    <div
+      ref={containerRef}
+      style={{ width: "100%", height }}
+      className={cn(onBarClick && "cursor-pointer")}
+      onClick={() => onBarClick?.("all")}
+    >
       {width > 0 && (
         <svg width={width} height={height}>
           <defs>

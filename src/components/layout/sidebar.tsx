@@ -52,6 +52,7 @@ export default function Sidebar() {
           {NAV_ITEMS.map((item, index) => {
             const isActive =
               pathname === item.href ||
+              (pathname.startsWith(item.href) && item.href !== "/") ||
               (pathname === "/" && item.href === "/executive-overview");
 
             return (
@@ -60,10 +61,8 @@ export default function Sidebar() {
                   href={item.href}
                   onClick={() => setSidebarOpen(false)}
                   className={cn(
-                    "flex items-center gap-2.5 px-2 py-3 rounded-lg transition-all text-white",
-                    isActive
-                      ? "opacity-100 bg-white/10"
-                      : "opacity-70 hover:opacity-90 hover:bg-white/5",
+                    "flex items-center gap-2.5 px-2 py-3 transition-all text-white",
+                    isActive ? "opacity-100" : "opacity-70 hover:opacity-100",
                   )}
                 >
                   <Image
