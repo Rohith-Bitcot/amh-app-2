@@ -177,9 +177,9 @@ export const denialReasonLegend = [
 
 // Section 11: Website (stacked bar)
 export const websiteData = [
-  { category: "LYI Button Clicks", google: 2.5, meta: 3.5, tiktok: 2.45, total: 8.45 },
-  { category: "Apply Now Button Clicks", google: 2.2, meta: 2.8, tiktok: 2.12, total: 7.12 },
-  { category: "3D Tour Button Click", google: 2, meta: 2.5, tiktok: 2.55, total: 7.05 },
+  { category: "LYI Button", google: 2.5, meta: 3.5, tiktok: 2.45, total: 8.45 },
+  { category: "Apply Now", google: 2.2, meta: 2.8, tiktok: 2.12, total: 7.12 },
+  { category: "3D Tour", google: 2, meta: 2.5, tiktok: 2.55, total: 7.05 },
   { category: "Other", google: 1.8, meta: 2.4, tiktok: 2.47, total: 6.67 },
 ];
 

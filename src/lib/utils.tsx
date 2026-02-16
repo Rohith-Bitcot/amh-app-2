@@ -27,3 +27,17 @@ export function formatCurrency(value: number): string {
     maximumFractionDigits: 0,
   }).format(value);
 }
+
+export const FilterIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="white"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+  >
+    <line x1="4" y1="6" x2="20" y2="6" strokeLinecap="round" />
+    <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round" />
+    <line x1="10" y1="18" x2="14" y2="18" strokeLinecap="round" />
+  </svg>
+);

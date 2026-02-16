@@ -23,6 +23,9 @@ export const chartTheme = {
       tiktok: "#66EA9D",
       olderPeriod: "#4A90E2",
       newerPeriod: "#66EA9D",
+      leaseExpiration: "#1B3A5C",
+      upcomingDelivery: "#60A5FA",
+      projectedAbsorption: "#3ACA76",
     },
   },
   axis: {
