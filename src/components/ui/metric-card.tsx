@@ -56,7 +56,7 @@ export default function MetricCard({
   onToggle,
 }: MetricCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col gap-3">
+    <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col gap-3 overflow-hidden relative">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -93,7 +93,7 @@ export default function MetricCard({
       {/* KPI Summary Box */}
       <div className="bg-linear-to-b from-metric-from to-metric-to rounded-xl p-3 text-white">
         {/* Top: label + big number + sub-metrics */}
-        <div className="flex items-center justify-start gap-10 mb-0.5 font-medium">
+        <div className="flex items-center justify-start gap-4 mb-0.5 font-medium">
           <div>
             <div className="text-[14px] font-heading font-medium mb-0.5">
               {kpiLabel}
