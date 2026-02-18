@@ -119,7 +119,7 @@ export default function ExecutiveOverview() {
 
         {/* 2. Lease Pacing */}
         <KpiCard>
-          <div className="text-xs font-medium font-heading text-white">
+          <div className="text-[10px] font-medium font-heading text-white">
             {d.leasePacing.title}
           </div>
           <div className="flex flex-col justify-start items-start mt-1">
@@ -141,7 +141,7 @@ export default function ExecutiveOverview() {
                   style={{
                     width: `${d.leasePacing.progressPercent}%`,
                     background:
-                      "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-primary-blue) 91.18%)",
+                      "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-chart-blue-main) 91.18%)",
                   }}
                 />
               </div>
@@ -326,8 +326,17 @@ export default function ExecutiveOverview() {
             accessorKey: header === "Geo" ? "metric" : header,
             header: header,
             enableSorting: true,
+            meta: {
+              className:
+                header === "Geo"
+                  ? ""
+                  : header === "YoY"
+                    ? "w-[80px]"
+                    : "w-[95px]",
+            },
           }))}
           data={performanceTableData.rows}
+          getRowClassName={() => "text-table-text-dark"}
         />
       </Card>
     </div>

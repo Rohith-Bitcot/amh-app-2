@@ -42,7 +42,7 @@ export default function ReusableTable<T>({
 
   return (
     <div className="overflow-x-auto">
-      <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
+      <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
         <table className="w-full border-collapse text-left">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -54,17 +54,20 @@ export default function ReusableTable<T>({
                   <th
                     key={header.id}
                     className={cn(
-                      "px-4 py-3 text-[13px] font-bold font-heading text-white border-white/10",
+                      "px-4 py-3 text-[13px] font-bold font-heading text-white border-white/20",
+                      i !== 0 && "border-l",
                       header.column.getCanSort() &&
                         "cursor-pointer select-none hover:bg-white/10",
                       "first:rounded-tl-lg last:rounded-tr-lg",
+                      (header.column.columnDef.meta as { className?: string })
+                        ?.className,
                     )}
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     <div
                       className={cn(
                         "flex items-center gap-2",
-                        i === 0 ? "justify-start" : "justify-center",
+                        i === 0 ? "justify-start" : "justify-end",
                       )}
                     >
                       {header.isPlaceholder
@@ -87,8 +90,7 @@ export default function ReusableTable<T>({
               <tr
                 key={row.id}
                 className={cn(
-                  "border-b border-neutral-100 last:border-0 transition-colors",
-                  index % 2 === 0 ? "bg-white" : "bg-table-alt",
+                  "border-b border-sentiment-border last:border-0 transition-colors bg-white text-neutral-800",
                   getRowClassName?.(row.original, index),
                 )}
               >
@@ -96,11 +98,13 @@ export default function ReusableTable<T>({
                   <td
                     key={cell.id}
                     className={cn(
-                      "px-4 py-3 text-[13px] font-heading border-neutral-100",
+                      "px-4 py-3 text-[13px] font-heading border-sentiment-border",
                       i === 0
-                        ? "text-neutral-600 font-medium whitespace-nowrap"
-                        : "text-neutral-800 font-normal text-center border-l",
+                        ? "font-medium whitespace-nowrap opacity-90"
+                        : "font-normal text-right border-l-[0.5px]",
                       compact && "py-2",
+                      (cell.column.columnDef.meta as { className?: string })
+                        ?.className,
                     )}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

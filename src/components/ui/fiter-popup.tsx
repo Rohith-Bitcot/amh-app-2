@@ -86,7 +86,7 @@ export default function FilterPopup({
                 alt="Checked state"
                 width={9}
                 height={9}
-                className="relative top-px"
+                className="relative top-px-1.5"
               />
             )}
           </div>
