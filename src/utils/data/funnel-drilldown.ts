@@ -1,3 +1,5 @@
+import { chartTheme } from "../chart-theme";
+
 // Funnel Conversation Drilldown mock data
 export const showingDrilldownData = [
   {
@@ -130,5 +132,19 @@ export const leadDrilldownData = [
     leadEmail: "anna@email.com",
     leadPhone: "552-865-1234",
     feedback: "AMH Website",
+  },
+];
+
+export const lineChartComponentData = [
+  {
+    dataKey: "returning",
+    color: chartTheme.colors.palette.returning,
+    name: "Returning",
+    dashed: true,
+  },
+  {
+    dataKey: "newLeads",
+    color: chartTheme.colors.palette.newLeads,
+    name: "New",
   },
 ];

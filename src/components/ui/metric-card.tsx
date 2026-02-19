@@ -102,7 +102,7 @@ export default function MetricCard({
               {kpiValue}
             </div>
           </div>
-          <div className="flex flex-col gap-1.5 flex items-center justify-between mr-15">
+          <div className="flex flex-col gap-1.5 items-center justify-between mr-15">
             {subMetrics.map((m) => (
               <div
                 key={m.label}

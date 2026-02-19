@@ -1,5 +1,7 @@
 // Communication & Engagement mock data - structured for API replacement
 
+import { createColumnHelper } from "@tanstack/react-table";
+
 export const interactionLevelsData = [
   {
     stage: "Lead",
@@ -228,3 +230,51 @@ export const activityLogData = [
     comment: "Post showing survey completed",
   },
 ];
+
+const msgColumnHelper = createColumnHelper<(typeof messageDrilldownData)[0]>();
+export const messageColumns = [
+  msgColumnHelper.accessor("propertyId", {
+    header: "Property ID",
+    enableSorting: true,
+  }),
+  msgColumnHelper.accessor("leadName", {
+    header: "Lead Info",
+    enableSorting: true,
+  }),
+  msgColumnHelper.accessor("date", { header: "Date", enableSorting: true }),
+  msgColumnHelper.accessor("messageType", { header: "Message Type" }),
+  msgColumnHelper.accessor("sentimentCategory", {
+    header: "Sentiment Category",
+  }),
+  msgColumnHelper.accessor("messageContent", { header: "Message Content" }),
+];
+
+const activityColumnHelper = createColumnHelper<(typeof activityLogData)[0]>();
+export const activityColumns = [
+  activityColumnHelper.accessor("propertyId", {
+    header: "Property ID",
+    enableSorting: true,
+  }),
+  activityColumnHelper.accessor("leadName", {
+    header: "Lead Info",
+    enableSorting: true,
+  }),
+  activityColumnHelper.accessor("date", {
+    header: "Date",
+    enableSorting: true,
+  }),
+  activityColumnHelper.accessor("event", { header: "Event" }),
+  activityColumnHelper.accessor("source", { header: "Source" }),
+  activityColumnHelper.accessor("comment", { header: "Comment" }),
+];
+
+export const sentimentFields = [
+  { key: "accessIssue", label: "Access Issue" },
+  { key: "propertyCond", label: "Property Cond." },
+  { key: "technicalIssue", label: "Technical Issue" },
+  { key: "priceConcern", label: "Price Concern" },
+  { key: "locationIssue", label: "Location Issue" },
+  { key: "amenityIssue", label: "Amenity Issue" },
+  { key: "maintenanceDelay", label: "Maint. Delay" },
+  { key: "other", label: "Other" },
+] as const;

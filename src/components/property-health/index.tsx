@@ -1,6 +1,6 @@
 "use client";
 
-import PageHeader from "@/components/layout/page-header";
+import PageHeader from "@/components/ui/page-header";
 import Card from "@/components/ui/cards";
 import StackedBarChart from "@/components/ui/charts/stacked-bar-chart";
 import FutureLeaseChart from "@/components/ui/charts/future-lease-chart";

@@ -1,70 +1,20 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import PageHeader from "@/components/layout/page-header";
+import PageHeader from "@/components/ui/page-header";
 import Card from "@/components/ui/cards";
 import DonutChart from "@/components/ui/charts/donut-chart";
 import DataTable from "@/components/tables/data-table";
-import { createColumnHelper } from "@tanstack/react-table";
 import { getHeatmapColor } from "@/utils/constants";
 import {
   interactionLevelsData,
   sentimentFeedbackData,
   messageDrilldownData,
   activityLogData,
+  messageColumns,
+  activityColumns,
+  sentimentFields,
 } from "@/utils/data/communication-engagement";
 import { cn } from "@/utils/helper-functions";
-
-// Message drilldown columns
-const msgColumnHelper = createColumnHelper<(typeof messageDrilldownData)[0]>();
-const messageColumns = [
-  msgColumnHelper.accessor("propertyId", {
-    header: "Property ID",
-    enableSorting: true,
-  }),
-  msgColumnHelper.accessor("leadName", {
-    header: "Lead Info",
-    enableSorting: true,
-  }),
-  msgColumnHelper.accessor("date", { header: "Date", enableSorting: true }),
-  msgColumnHelper.accessor("messageType", { header: "Message Type" }),
-  msgColumnHelper.accessor("sentimentCategory", {
-    header: "Sentiment Category",
-  }),
-  msgColumnHelper.accessor("messageContent", { header: "Message Content" }),
-];
-
-// Activity log columns
-const activityColumnHelper = createColumnHelper<(typeof activityLogData)[0]>();
-const activityColumns = [
-  activityColumnHelper.accessor("propertyId", {
-    header: "Property ID",
-    enableSorting: true,
-  }),
-  activityColumnHelper.accessor("leadName", {
-    header: "Lead Info",
-    enableSorting: true,
-  }),
-  activityColumnHelper.accessor("date", {
-    header: "Date",
-    enableSorting: true,
-  }),
-  activityColumnHelper.accessor("event", { header: "Event" }),
-  activityColumnHelper.accessor("source", { header: "Source" }),
-  activityColumnHelper.accessor("comment", { header: "Comment" }),
-];
-
-// Sentiment column keys
-const sentimentFields = [
-  { key: "accessIssue", label: "Access Issue" },
-  { key: "propertyCond", label: "Property Cond." },
-  { key: "technicalIssue", label: "Technical Issue" },
-  { key: "priceConcern", label: "Price Concern" },
-  { key: "locationIssue", label: "Location Issue" },
-  { key: "amenityIssue", label: "Amenity Issue" },
-  { key: "maintenanceDelay", label: "Maint. Delay" },
-  { key: "other", label: "Other" },
-] as const;
 
 export default function CommunicationEngagement() {
   return (

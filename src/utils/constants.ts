@@ -1,4 +1,6 @@
-const PUBLIC_PATH = {};
+const PUBLIC_PATH = {
+  LOGIN: "/login",
+};
 
 const PRIVATE_PATH = {
   EXECUTIVE_OVERVIEW: "/executive-overview",

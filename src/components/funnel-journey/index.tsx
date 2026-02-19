@@ -2,7 +2,7 @@
 
 import { chartTheme } from "@/utils/chart-theme";
 import { useState } from "react";
-import PageHeader from "@/components/layout/page-header";
+import PageHeader from "@/components/ui/page-header";
 import Card from "@/components/ui/cards";
 import TabGroup from "@/components/ui/tab-group";
 import ReusableTable from "@/components/ui/reusable-table";
@@ -27,11 +27,15 @@ import {
   approvalCancellationBySourceData,
   denialReasonData,
   denialReasonLegend,
-  websiteData,
   pageViewMarketData,
+  funnelTabs,
+  approvalCancellationBySourceBars,
+  websiteBars,
+  websiteData,
 } from "@/utils/data/funnel-journey";
 
 import MiniTable from "@/components/funnel-journey/MiniTable";
+import { lineChartComponentData } from "@/utils/data/funnel-drilldown";
 
 const FunnelJourney = () => {
   const [funnelTab, setFunnelTab] = useState("unique-showings");
@@ -87,19 +91,7 @@ const FunnelJourney = () => {
         <Card title="Leads: New vs. Returning">
           <LineChartComponent
             data={leadsNewReturningData}
-            lines={[
-              {
-                dataKey: "returning",
-                color: chartTheme.colors.palette.returning,
-                name: "Returning",
-                dashed: true,
-              },
-              {
-                dataKey: "newLeads",
-                color: chartTheme.colors.palette.newLeads,
-                name: "New",
-              },
-            ]}
+            lines={lineChartComponentData}
             xAxisKey="month"
             height={220}
             showLegend
@@ -162,7 +154,7 @@ const FunnelJourney = () => {
 
                     {/* Benchmark bar (dark/black) - sits on top, extends to benchmark */}
                     <div
-                      className="absolute top-3 left-10 h-2.5 z-[5]"
+                      className="absolute top-3 left-10 h-2.5 z-5"
                       style={{
                         backgroundColor: chartTheme.colors.palette.benchmark,
                         width: `${benchmarkPercent}%`,
@@ -412,11 +404,7 @@ const FunnelJourney = () => {
         }}
       >
         <TabGroup
-          tabs={[
-            { label: "Unique Showings", value: "unique-showings" },
-            { label: "Application", value: "application" },
-            { label: "Leases", value: "leases" },
-          ]}
+          tabs={funnelTabs}
           activeTab={funnelTab}
           onTabChange={setFunnelTab}
           variant="underline-dark"
@@ -635,18 +623,7 @@ const FunnelJourney = () => {
         <Card title="% Approval & Cancellation by Source">
           <BarChartComponent
             data={approvalCancellationBySourceData}
-            bars={[
-              {
-                dataKey: "approval",
-                color: chartTheme.colors.palette.approval,
-                name: "Approval",
-              },
-              {
-                dataKey: "cancellation",
-                color: chartTheme.colors.palette.cancellation,
-                name: "Cancellation",
-              },
-            ]}
+            bars={approvalCancellationBySourceBars}
             reverseLegend
             xAxisKey="source"
             height={300}
@@ -701,23 +678,7 @@ const FunnelJourney = () => {
         <Card title="Website">
           <StackedBarChart
             data={websiteData}
-            bars={[
-              {
-                dataKey: "google",
-                color: chartTheme.colors.palette.google,
-                name: "Google",
-              },
-              {
-                dataKey: "tiktok",
-                color: chartTheme.colors.palette.tiktok,
-                name: "Tiktok",
-              },
-              {
-                dataKey: "meta",
-                color: chartTheme.colors.palette.meta,
-                name: "Meta",
-              },
-            ]}
+            bars={websiteBars}
             xAxisKey="category"
             height={300}
             showLegend

@@ -1,6 +1,6 @@
 // Executive Overview mock data - structured for API replacement
 
-export const kpiCards = {
+export const KPI_CARD_DATA = {
   leasesSigned: {
     title: "Leases Signed (MTD)",
     value: "300",
@@ -419,3 +419,26 @@ export const performanceTableData = {
     },
   ],
 };
+
+export const radarData = [
+  {
+    dataKey: "application",
+    color: "var(--color-application)",
+    name: "Application",
+  },
+  {
+    dataKey: "leads",
+    color: "var(--color-leads)",
+    name: "Leads",
+  },
+  {
+    dataKey: "leases",
+    color: "var(--color-leases)",
+    name: "Leases",
+  },
+];
+
+export const demandOverviewTabs = [
+  { label: "Per posted day", value: "perPostedDay" },
+  { label: "Total counts", value: "totalCounts" },
+];

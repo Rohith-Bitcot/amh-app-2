@@ -1,5 +1,7 @@
 // Funnel Journey mock data - structured for API replacement
 
+import { chartTheme } from "../chart-theme";
+
 // Section 1: Lead Counts & Registration (horizontal progress bars)
 export const leadCountsData = [
   {
@@ -483,5 +485,42 @@ export const pageViewMarketData = [
     period2: "Dec 30, 2025",
     value2: 4.0,
     delta: "+13.2%",
+  },
+];
+
+export const funnelTabs = [
+  { label: "Unique Showings", value: "unique-showings" },
+  { label: "Application", value: "application" },
+  { label: "Leases", value: "leases" },
+];
+
+export const approvalCancellationBySourceBars = [
+  {
+    dataKey: "approval",
+    color: chartTheme.colors.palette.approval,
+    name: "Approval",
+  },
+  {
+    dataKey: "cancellation",
+    color: chartTheme.colors.palette.cancellation,
+    name: "Cancellation",
+  },
+];
+
+export const websiteBars = [
+  {
+    dataKey: "google",
+    color: chartTheme.colors.palette.google,
+    name: "Google",
+  },
+  {
+    dataKey: "tiktok",
+    color: chartTheme.colors.palette.tiktok,
+    name: "Tiktok",
+  },
+  {
+    dataKey: "meta",
+    color: chartTheme.colors.palette.meta,
+    name: "Meta",
   },
 ];

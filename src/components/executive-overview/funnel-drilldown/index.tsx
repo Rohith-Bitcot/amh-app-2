@@ -1,6 +1,6 @@
 "use client";
 
-import PageHeader from "@/components/layout/page-header";
+import PageHeader from "@/components/ui/page-header";
 import Card from "@/components/ui/cards";
 import ReusableTable from "@/components/ui/reusable-table";
 import { ColumnDef } from "@tanstack/react-table";

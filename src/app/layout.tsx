@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Familjen_Grotesk } from "next/font/google";
-import Sidebar from "@/components/layout/sidebar";
-import Header from "@/components/layout/header";
 import "./globals.css";
 
 const familjenGrotesk = Familjen_Grotesk({
@@ -24,11 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${familjenGrotesk.variable} antialiased`}>
-        <Sidebar />
-        <Header />
-        <main className="lg:ml-60 mt-14 h-[calc(100vh-56px)] overflow-y-auto content-scrollbar bg-slate-50">
-          <div className="p-3 sm:p-4 lg:p-5">{children}</div>
-        </main>
+        {children}
       </body>
     </html>
   );

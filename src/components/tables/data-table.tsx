@@ -10,7 +10,7 @@ import {
   type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { cn, FilterIcon } from "@/utils/helper-functions";
+import { cn } from "@/utils/helper-functions";
 import Image from "next/image";
 
 interface DataTableProps<T> {
@@ -44,7 +44,7 @@ export default function DataTable<T>({
           {table.getHeaderGroups().map((headerGroup) => (
             <tr
               key={headerGroup.id}
-              className="bg-gradient-to-r from-sky-700 to-sky-600 rounded-t-md"
+              className="bg-linear-to-r from-sky-700 to-sky-600 rounded-t-md"
             >
               {headerGroup.headers.map((header) => (
                 <th
