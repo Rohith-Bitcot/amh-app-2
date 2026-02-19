@@ -93,7 +93,7 @@ export default function MetricCard({
       {/* KPI Summary Box */}
       <div className="bg-linear-to-b from-metric-from to-metric-to rounded-xl p-3 text-white">
         {/* Top: label + big number + sub-metrics */}
-        <div className="flex items-center justify-start gap-4 mb-0.5 font-medium">
+        <div className="flex items-center justify-between gap-4 mb-1 font-medium">
           <div>
             <div className="text-[14px] font-heading font-medium mb-0.5">
               {kpiLabel}
@@ -102,12 +102,11 @@ export default function MetricCard({
               {kpiValue}
             </div>
           </div>
-          <div className="flex flex-col gap-2 mt-4">
-            {" "}
+          <div className="flex flex-col gap-1.5 flex items-center justify-between mr-15">
             {subMetrics.map((m) => (
               <div
                 key={m.label}
-                className="text-[17px] font-heading flex items-center gap-2 leading-tight"
+                className="text-[14px] font-heading flex items-center justify-end gap-2 leading-tight"
               >
                 <span className="opacity-90 whitespace-nowrap">{m.label}</span>
                 <span className="font-bold">{m.value}</span>

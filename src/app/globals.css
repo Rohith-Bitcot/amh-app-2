@@ -66,6 +66,17 @@
   --font-heading: var(--font-familjen);
   --font-familjen: var(--font-familjen);
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+
+  /* New Project Colors */
+  --color-title-gradient: linear-gradient(
+    89.67deg,
+    #16649b 0.29%,
+    #5cb4ea 118.99%
+  );
+  --color-filter-icon: #3f3f3f;
+  --color-radar-legend-text: #000000b5;
+  --color-table-text-dark: #1f1f22;
+  --font-size-kpi-title: 10px;
 }
 
 body {

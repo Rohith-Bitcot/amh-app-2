@@ -1,5 +1,6 @@
 import { useState } from "react";
 import FilterPopup from "@/components/ui/fiter-popup";
+import Image from "next/image";
 
 interface PageHeaderProps {
   title: string;
@@ -17,7 +18,10 @@ export default function PageHeader({
   return (
     <div className="flex items-center justify-between mb-5 relative">
       <div className="flex flex-col gap-0.5">
-        <h1 className="text-sky-700 text-xl sm:text-2xl lg:text-3xl font-bold font-heading capitalize leading-tight sm:leading-8">
+        <h1
+          className="text-xl sm:text-2xl lg:text-3xl font-bold font-heading capitalize leading-tight sm:leading-8 bg-clip-text text-transparent"
+          style={{ backgroundImage: "var(--color-title-gradient)" }}
+        >
           {title}
         </h1>
         <div className="flex items-center gap-1">
@@ -41,18 +45,17 @@ export default function PageHeader({
               setIsFilterOpen(!isFilterOpen);
               onFilterClick?.();
             }}
-            className="flex items-center gap-2 px-4 py-1.5 bg-white rounded-xl shadow-sm text-neutral-700 text-sm font-normal font-heading hover:shadow-md transition-shadow"
+            className="flex items-center gap-2 px-4 py-1 bg-white rounded-xl shadow-sm text-neutral-700 text-sm font-normal font-heading hover:shadow-md transition-shadow"
           >
             Filters
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 16 16"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path d="M2 4h12M4 8h8M6 12h4" strokeLinecap="round" />
-            </svg>
+            <div className="w-4 h-4">
+              <Image
+                src="/assets/svgs/filter-header.svg"
+                alt="Filter icon"
+                width={16}
+                height={16}
+              />
+            </div>
           </button>
 
           {isFilterOpen && (

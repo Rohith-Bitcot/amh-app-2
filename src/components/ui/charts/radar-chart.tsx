@@ -153,11 +153,15 @@ export default function RadarChartComponent({
             align="center"
             iconType="circle"
             iconSize={8}
+            formatter={(value) => (
+              <span style={{ color: "var(--color-radar-legend-text)" }}>
+                {value}
+              </span>
+            )}
             wrapperStyle={{
               paddingTop: "20px",
               fontSize: 12,
               fontWeight: 500,
-              color: "var(--color-foreground)",
               fontFamily: chartTheme.fontFamily,
             }}
           />

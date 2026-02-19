@@ -61,24 +61,37 @@ export default function Header() {
           className="opacity-50"
         />
 
-        {/* User info */}
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 relative rounded-full overflow-hidden border border-white/30">
+        {/* User info & Hamburger */}
+        <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 relative rounded-full overflow-hidden border border-white/30">
+              <Image
+                src="/assets/svgs/user-avatar.svg"
+                alt="User Avatar"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="text-left hidden sm:block">
+              <div className="text-white text-sm font-bold font-heading capitalize leading-tight">
+                Sarath
+              </div>
+              <div className="text-white/70 text-[11px] font-medium font-heading capitalize leading-tight">
+                Sales Manager
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={toggleSidebar}
+            className="p-1 hover:opacity-80 transition-opacity"
+          >
             <Image
-              src="/assets/svgs/user-avatar.svg"
-              alt="User Avatar"
-              fill
-              className="object-cover"
+              src="/assets/svgs/Hamburger.svg"
+              alt="Menu"
+              width={24}
+              height={24}
             />
-          </div>
-          <div className="text-left hidden sm:block">
-            <div className="text-white text-sm font-bold font-heading capitalize leading-tight">
-              Sarath
-            </div>
-            <div className="text-white/70 text-[11px] font-medium font-heading capitalize leading-tight">
-              Sales Manager
-            </div>
-          </div>
+          </button>
         </div>
       </div>
     </header>
