@@ -1,4 +1,4 @@
-import DataTable from "@/components/tables/data-table";
+import DataTable from "@/components/communication-engagement/table-data";
 import Card from "@/components/ui/cards";
 import { messageColumns, messageDrilldownData } from "@/utils/data/communication-engagement";
 

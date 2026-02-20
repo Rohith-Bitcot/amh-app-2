@@ -2,7 +2,7 @@
 
 import PageHeader from "@/components/ui/page-header";
 import Card from "@/components/ui/cards";
-import ReusableTable from "@/components/ui/reusable-table";
+import ReusableTable from "@/components/executive-overview/funnel-drilldown/table-data";
 import { ColumnDef } from "@tanstack/react-table";
 import {
   showingDrilldownData,

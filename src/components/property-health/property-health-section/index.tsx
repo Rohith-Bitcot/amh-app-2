@@ -1,6 +1,6 @@
 import Card from "@/components/ui/cards";
 import StackedBarChart from "@/components/ui/stacked-bar-chart";
-import { districtTableData, healthChartData, stackedBars } from "@/utils/data/property-health";
+import { districtTableColumns, districtTableData, healthChartData, stackedBars } from "@/utils/data/property-health";
 import { FilterIcon } from "@/utils/helper-functions";
 
 export const PropertyHealthComponent = () => {
@@ -40,34 +40,21 @@ export const PropertyHealthComponent = () => {
                     <table className="w-full text-sm text-center border-collapse">
                         <thead>
                             <tr className="bg-[#1F78B4] text-white">
-                                <th className="px-6 py-5 font-semibold text-left border-r border-white/20 whitespace-nowrap w-64 first:rounded-tl-xl">
-                                    Geo{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold border-r border-white/20 whitespace-nowrap w-24">
-                                    DOM Category{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold border-r border-white/20 whitespace-nowrap w-24">
-                                    Hold recent/app{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold border-r border-white/20 whitespace-nowrap w-24">
-                                    Hold recent/photos{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold border-r border-white/20 whitespace-nowrap w-24">
-                                    Marketing review{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold border-r border-white/20 whitespace-nowrap w-24">
-                                    Marketing old pics{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
-                                <th className="px-6 py-5 font-semibold whitespace-nowrap w-24 last:rounded-tr-xl">
-                                    Dispo review{" "}
-                                    <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
-                                </th>
+                                {districtTableColumns.map((col, index) => {
+                                    const isLast = index === districtTableColumns.length - 1;
+                                    return (
+                                        <th
+                                            key={col.label}
+                                            className={`px-6 py-5 font-semibold whitespace-nowrap ${col.isFirst
+                                                    ? "text-left w-64 first:rounded-tl-xl"
+                                                    : "w-24"
+                                                } ${isLast ? "last:rounded-tr-xl" : "border-r border-white/20"}`}
+                                        >
+                                            {col.label}{" "}
+                                            <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
+                                        </th>
+                                    );
+                                })}
                             </tr>
                         </thead>
                         {districtTableData.map((district, dIndex) => {
