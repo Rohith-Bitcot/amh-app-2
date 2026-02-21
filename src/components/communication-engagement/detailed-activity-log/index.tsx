@@ -22,19 +22,22 @@ const activityColumns = [
     }),
     activityColumnHelper.accessor("date", {
         header: "Date",
-        enableSorting: true,
+        enableSorting: false,
         meta: { className: "w-[15%]" },
     }),
     activityColumnHelper.accessor("event", {
         header: "Event",
+        enableSorting: false,
         meta: { className: "w-[20%]" },
     }),
     activityColumnHelper.accessor("source", {
         header: "Sender",
+        enableSorting: false,
         meta: { className: "w-[15%]" },
     }),
     activityColumnHelper.accessor("comment", {
         header: "Content",
+        enableSorting: false,
         meta: { className: "w-[20%]" },
     }),
 ];
