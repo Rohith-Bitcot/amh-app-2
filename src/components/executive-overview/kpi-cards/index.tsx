@@ -80,7 +80,7 @@ export const KpiCardsComponent = () => {
                 style={{
                   width: `${KPI_CARD_DATA.leasePacing.progressPercent}%`,
                   background:
-                    "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-chart-blue-main) 91.18%)",
+                                        "linear-gradient(90deg, var(--color-chart-blue-main) 0%, var(--color-purple-accent) 100%)",
                 }}
               />
             </div>
