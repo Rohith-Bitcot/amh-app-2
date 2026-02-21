@@ -16,10 +16,15 @@ export default function Sidebar() {
     <>
       {/* Mobile overlay */}
       {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" aria-hidden="true">
+          <button
+            type="button"
+            className="absolute inset-0 w-full h-full bg-transparent border-none appearance-none cursor-pointer"
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close sidebar overlay"
+            tabIndex={-1}
+          />
+        </div>
       )}
 
       <aside
@@ -53,7 +58,8 @@ export default function Sidebar() {
             const isActive =
               pathname === item.href ||
               (pathname.startsWith(item.href) && item.href !== "/") ||
-              (pathname === "/" && item.href === "/executive-overview");
+              (pathname === "/" && item.href === "/executive-overview") ||
+              (pathname === "/funnel-drilldown" && item.href === "/");
 
             return (
               <div key={item.href}>

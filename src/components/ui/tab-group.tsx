@@ -1,13 +1,7 @@
 "use client";
 
+import { TabGroupProps } from "@/types/common-types";
 import { cn } from "@/utils/helper-functions";
-
-interface TabGroupProps {
-  tabs: { label: string; value: string }[];
-  activeTab: string;
-  onTabChange: (value: string) => void;
-  variant?: "default" | "pill" | "underline-dark";
-}
 
 export default function TabGroup({
   tabs,
@@ -18,7 +12,7 @@ export default function TabGroup({
   if (variant === "underline-dark") {
     return (
       <div className="flex items-center border-b border-white/20">
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <button
             key={tab.value}
             onClick={() => onTabChange(tab.value)}

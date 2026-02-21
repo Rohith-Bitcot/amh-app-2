@@ -1,23 +1,21 @@
-const PUBLIC_PATH = {};
+import { NavItem } from "@/types/common-types";
+
+const PUBLIC_PATH = {
+  LOGIN: "/login",
+};
 
 const PRIVATE_PATH = {
-  EXECUTIVE_OVERVIEW: "/executive-overview",
+  EXECUTIVE_OVERVIEW: "/",
   FUNNEL_JOURNEY: "/funnel-journey",
   PROPERTY_HEALTH: "/property-health",
   COMMUNICATION_ENGAGEMENT: "/communication-engagement",
-  FUNNEL_DRILLDOWN: "/executive-overview/funnel-drilldown",
+  FUNNEL_DRILLDOWN: "/funnel-drilldown",
 };
 
 export const ROUTES_PATH = {
   ...PUBLIC_PATH,
   ...PRIVATE_PATH,
 };
-
-export interface NavItem {
-  label: string;
-  href: string;
-  icon: string;
-}
 
 export const NAV_ITEMS: NavItem[] = [
   {
@@ -40,6 +38,12 @@ export const NAV_ITEMS: NavItem[] = [
     href: ROUTES_PATH.COMMUNICATION_ENGAGEMENT,
     icon: "/assets/svgs/communication-engagement.svg",
   },
+];
+
+export const CURRENT_FULLY_MARKETED_INVENTORY_BAR_DATA = [
+  { id: "inv-bar-1", h: "46px" },
+  { id: "inv-bar-2", h: "34px" },
+  { id: "inv-bar-3", h: "46px", isSplit: true },
 ];
 
 export const LEASES_SIGNED_BAR_DATA = [
@@ -114,7 +118,7 @@ export const HEATMAP_COLORS = {
 };
 
 export function getHeatmapColor(value: number | string): string {
-  const numValue = typeof value === "string" ? parseFloat(value) : value;
+  const numValue = typeof value === "string" ? Number.parseFloat(value) : value;
   const border = "border border-[var(--color-sentiment-border)]";
   if (numValue >= 10) return `bg-[var(--color-table-shade-3)] ${border}`;
   if (numValue >= 5) return `bg-[var(--color-table-shade-2)] ${border}`;

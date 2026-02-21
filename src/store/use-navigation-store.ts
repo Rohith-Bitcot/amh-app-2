@@ -1,14 +1,7 @@
 "use client";
 
+import { NavigationState } from "@/types/common-types";
 import { create } from "zustand";
-
-interface NavigationState {
-  activePage: string;
-  sidebarOpen: boolean;
-  setActivePage: (page: string) => void;
-  setSidebarOpen: (open: boolean) => void;
-  toggleSidebar: () => void;
-}
 
 export const useNavigationStore = create<NavigationState>((set) => ({
   activePage: "/executive-overview",

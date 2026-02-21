@@ -1,16 +1,7 @@
 "use client";
 
+import { FilterState } from "@/types/common-types";
 import { create } from "zustand";
-
-interface FilterState {
-  demandViewMode: "perPostedDay" | "totalCounts";
-  funnelTab: "unique-showings" | "application" | "leases";
-  selectedDistricts: string[];
-  setDemandViewMode: (mode: "perPostedDay" | "totalCounts") => void;
-  setFunnelTab: (tab: "unique-showings" | "application" | "leases") => void;
-  setSelectedDistricts: (districts: string[]) => void;
-  resetFilters: () => void;
-}
 
 export const useFilterStore = create<FilterState>((set) => ({
   demandViewMode: "perPostedDay",

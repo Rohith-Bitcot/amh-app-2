@@ -12,36 +12,7 @@ import {
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
 import Image from "next/image";
-
-interface SubMetric {
-  label: string;
-  value: string;
-}
-
-interface ComparisonRow {
-  label: string;
-  total: string;
-  breakdowns: { label: string; value: string }[];
-}
-
-interface ChartPoint {
-  label: string;
-  current: number;
-  prior: number;
-}
-
-interface MetricCardProps {
-  title: string;
-  pills?: { label: string; color?: string }[];
-  kpiLabel: string;
-  kpiValue: string;
-  subMetrics: SubMetric[];
-  comparisons: ComparisonRow[];
-  chartTitle: string;
-  chartData: ChartPoint[];
-  isExpanded?: boolean;
-  onToggle?: () => void;
-}
+import { MetricCardProps } from "@/types/common-types";
 
 export default function MetricCard({
   title,
@@ -54,7 +25,7 @@ export default function MetricCard({
   chartData,
   isExpanded = false,
   onToggle,
-}: MetricCardProps) {
+}: Readonly<MetricCardProps>) {
   return (
     <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col gap-3 overflow-hidden relative">
       {/* Header */}
@@ -102,7 +73,7 @@ export default function MetricCard({
               {kpiValue}
             </div>
           </div>
-          <div className="flex flex-col gap-1.5 flex items-center justify-between mr-15">
+          <div className="flex flex-col gap-1.5 items-center justify-between mr-15">
             {subMetrics.map((m) => (
               <div
                 key={m.label}
