@@ -38,7 +38,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                         rowIdx % 2 === 0 ? "bg-white" : "bg-neutral-50/30",
                                     )}
                                 >
-                                    <td className="px-4 py-3 text-sm font-bold font-heading text-neutral-800 border-r border-neutral-200 text-left align-middle">
+                                    <td className="px-4 py-3 text-[14px] font-medium font-heading tracking-[0px] leading-[100%] text-neutral-800 border-r border-neutral-200 text-left align-middle">
                                         {row.district}
                                     </td>
                                     {sentimentFields.map((field, cellIdx) => {
