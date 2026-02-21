@@ -8,7 +8,7 @@ const messageColumns = [
     msgColumnHelper.accessor("propertyId", {
         header: "Property",
         enableSorting: true,
-        meta: { className: "w-[15%]" },
+        meta: { className: "w-[19%]" },
         cell: ({ getValue }) => (
             <span className="text-[14px] font-medium font-heading tracking-[0px] leading-[100%] text-neutral-800">
                 {getValue()}
@@ -16,26 +16,26 @@ const messageColumns = [
         ),
     }),
     msgColumnHelper.accessor("leadName", {
-        header: "Lead info",
+        header: "Lead Info",
         enableSorting: true,
         meta: { className: "w-[15%]" },
     }),
     msgColumnHelper.accessor("date", {
         header: "Date",
         enableSorting: true,
-        meta: { className: "w-[15%]" },
+        meta: { className: "w-[13%]" },
     }),
     msgColumnHelper.accessor("messageType", {
         header: "Message Type",
-        meta: { className: "w-[20%]" },
+        meta: { className: "w-[19%]" },
     }),
     msgColumnHelper.accessor("sentimentCategory", {
         header: "Sentiment Category",
-        meta: { className: "w-[15%]" },
+        meta: { className: "w-[14%]" },
     }),
     msgColumnHelper.accessor("messageContent", {
         header: "Message Content",
-        meta: { className: "w-[20%]" },
+        meta: { className: "w-[19%]" },
     }),
 ];
 
