@@ -8,17 +8,17 @@ export const CustomerSentimentFeedbackComponent = () => {
         <Card title="Customer Sentiment Feedback" noPadding>
             <div className="p-4">
                 <div className="overflow-x-auto rounded-lg border border-neutral-200">
-                    <table className="w-full border-collapse">
+                    <table className="w-full border-collapse table-fixed">
                         <thead>
                             <tr className="bg-[#1E6191]">
-                                <th className="px-4 py-3 text-white text-[12px] font-medium font-heading text-left border-r border-white/10 w-[200px]">
+                                <th className="px-4 py-3 text-white text-[12px] font-medium font-heading text-left border-r border-white/10 w-[20%]">
                                     Property
                                 </th>
                                 {sentimentFields.map((field, idx) => (
                                     <th
                                         key={field.key}
                                         className={cn(
-                                            "px-2 py-3 text-white text-[12px] font-medium font-heading text-center",
+                                            "px-2 py-3 text-white text-[12px] font-medium font-heading text-center w-[10%]",
                                             idx < sentimentFields.length - 1
                                                 ? "border-r border-white/10"
                                                 : "",
