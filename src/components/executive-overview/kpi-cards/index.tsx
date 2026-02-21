@@ -66,12 +66,12 @@ export const KpiCardsComponent = () => {
             <div className="text-4xl font-bold font-heading text-white">
               {KPI_CARD_DATA.leasePacing.value}
             </div>
-            <div className="text-[10px] font-heading text-white">
+            <div className="text-[12px] font-heading text-white">
               {KPI_CARD_DATA.leasePacing.subLabel}
             </div>
           </div>
           <div className="mt-1">
-            <div className="text-[10px] font-heading mb-0.5 text-white">
+            <div className="text-[12px] font-heading mb-0.5 text-white">
               {KPI_CARD_DATA.leasePacing.approvedApps} approved applications
             </div>
             <div className="bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
