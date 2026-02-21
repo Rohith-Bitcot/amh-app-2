@@ -18,7 +18,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                     <th
                                         key={field.key}
                                         className={cn(
-                                            "px-2 py-3 text-white text-[12px] font-medium font-heading text-center w-[10%]",
+                                            "px-4 py-3 text-white text-[12px] font-medium font-heading text-right align-middle w-[10%]",
                                             idx < sentimentFields.length - 1
                                                 ? "border-r border-white/10"
                                                 : "",
@@ -38,7 +38,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                         rowIdx % 2 === 0 ? "bg-white" : "bg-neutral-50/30",
                                     )}
                                 >
-                                    <td className="px-4 py-3 text-sm font-bold font-heading text-neutral-800 border-r border-neutral-200">
+                                    <td className="px-4 py-3 text-sm font-bold font-heading text-neutral-800 border-r border-neutral-200 text-left align-middle">
                                         {row.district}
                                     </td>
                                     {sentimentFields.map((field, cellIdx) => {
@@ -50,7 +50,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                             <td
                                                 key={field.key}
                                                 className={cn(
-                                                    "px-3 py-3 text-sm font-heading text-center text-neutral-700",
+                                                    "px-4 py-3 text-sm font-heading text-right align-middle text-neutral-700",
                                                     colorClass,
                                                     cellIdx < sentimentFields.length - 1
                                                         ? "border-r border-neutral-200"
