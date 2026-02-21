@@ -42,8 +42,8 @@ const colClass = (header: string) => {
                         <td
                           key={header}
                           className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${colClass(header)} ${i === 0
-                            ? "font-medium whitespace-nowrap opacity-90"
-                            : "font-normal text-right border-l-[0.5px]"
+                            ? "font-normal whitespace-nowrap opacity-90"
+                            : "font-medium text-right border-l-[0.5px]"
                             }`}
                         >
                           {value}
