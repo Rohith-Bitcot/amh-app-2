@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import Image from "next/image";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -29,15 +30,9 @@ export function formatCurrency(value: number): string {
 }
 
 export const FilterIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="white"
-    stroke="currentColor"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-  >
-    <line x1="4" y1="6" x2="20" y2="6" strokeLinecap="round" />
-    <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round" />
-    <line x1="10" y1="18" x2="14" y2="18" strokeLinecap="round" />
-  </svg>
+  <div className={`flex flex-col items-center ${className ?? ""}`} style={{ gap: "2px" }}>
+    <Image src="/assets/svgs/sort-1.svg" alt="sort line 1" width={14} height={2} />
+    <Image src="/assets/svgs/sort-2.svg" alt="sort line 2" width={8} height={2} />
+    <Image src="/assets/svgs/sort-3.svg" alt="sort line 3" width={4} height={2} />
+  </div>
 );

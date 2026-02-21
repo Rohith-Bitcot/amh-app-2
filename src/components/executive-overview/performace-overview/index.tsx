@@ -23,7 +23,7 @@ const colClass = (header: string) => {
                     >
                       <div className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-end"}`}>
                         {header}
-                        <FilterIcon className="w-3.5 h-3.5 opacity-80" />
+                        <FilterIcon />
                       </div>
                     </th>
                   ))}
