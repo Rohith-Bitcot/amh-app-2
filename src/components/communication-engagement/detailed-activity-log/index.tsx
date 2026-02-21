@@ -1,4 +1,4 @@
-import DataTable from "@/components/communication-engagement/table-data";
+import DataTable from "@/components/communication-engagement/reusable-table";
 import Card from "@/components/ui/cards";
 import { activityColumns, activityLogData } from "@/utils/data/communication-engagement";
 

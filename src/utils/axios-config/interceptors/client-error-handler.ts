@@ -8,9 +8,7 @@ interface ErrorType {
 }
 
 export default function clientErrorHandler(error: ErrorType) {
-  const message = error?.message
-    ? error.message
-    : "Seems like something went wrong!";
+  const message = error?.message || "Seems like something went wrong!";
   switch (error.status) {
     case 400:
       commonService.forError(message);
@@ -30,7 +28,7 @@ export default function clientErrorHandler(error: ErrorType) {
       commonService.forError(message);
       break;
     default:
-      commonService.forError(message ? message : "something went wrong");
+      commonService.forError(message);
       break;
   }
   return error;

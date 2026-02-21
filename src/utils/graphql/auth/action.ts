@@ -9,7 +9,7 @@ export const signInAction = async ({
   variables: { input: any };
 }): Promise<any> => {
   const res = await fetchGraphQLMutation<any>(SIGN_IN_MUTATION, variables);
-  return res as any;
+  return res;
 };
 
 export const refreshToken = async (refreshToken: string): Promise<any> => {

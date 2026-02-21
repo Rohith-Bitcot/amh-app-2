@@ -7,7 +7,6 @@ import {
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-  Cell,
   LabelList,
 } from "recharts";
 
@@ -19,20 +18,18 @@ interface LeadCountDataPoint {
   color: string;
 }
 
-interface LeadCountBarChartProps {
+interface LeadCountBarChartProps {  
   data: LeadCountDataPoint[];
-  height?: number;
 }
 
 export default function LeadCountBarChart({
   data,
-  height = 250,
-}: LeadCountBarChartProps) {
+}: Readonly<LeadCountBarChartProps>) {
   return (
     <div className="flex justify-center w-full">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
-          data={data}
+          data={data.map((d) => ({ ...d, fill: d.color }))}
           margin={{ top: 30, right: 20, bottom: 20, left: 20 }}
         >
           <CartesianGrid
@@ -64,9 +61,6 @@ export default function LeadCountBarChart({
             width={40}
           />
           <Bar dataKey="value" radius={[4, 4, 0, 0]} barSize={36}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.color} />
-            ))}
             <LabelList
               dataKey="value"
               position="top"

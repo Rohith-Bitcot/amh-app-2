@@ -26,13 +26,45 @@ interface RadarChartComponentProps {
   showLegend?: boolean;
 }
 
+const renderPolarAngleAxisTick = ({ x, y, payload, textAnchor, cx, cy }: any) => {
+  const radiusAdjustment = 25;
+  let dxAdjustment = 0;
+  if (x > cx) {
+    dxAdjustment = 10;
+  } else if (x < cx) {
+    dxAdjustment = -10;
+  }
+
+  return (
+    <text
+      x={x}
+      y={y}
+      dy={y > cy ? radiusAdjustment : -radiusAdjustment}
+      dx={dxAdjustment}
+      textAnchor={textAnchor}
+      fill="var(--color-axis-gray)"
+      fontSize={12}
+      fontWeight={500}
+      fontFamily={chartTheme.fontFamily}
+    >
+      {payload.value}
+    </text>
+  );
+};
+
+const formatLegendText = (value: string) => (
+  <span style={{ color: "var(--color-radar-legend-text)" }}>
+    {value}
+  </span>
+);
+
 export default function RadarChartComponent({
   data,
   radars,
   angleKey,
   height = 300,
   showLegend = true,
-}: RadarChartComponentProps) {
+}: Readonly<RadarChartComponentProps>) {
   // 1. Create background value of 100 for the solid blue pentagon base
   const chartData = data.map((item) => ({ ...item, bgValue: 100 }));
 
@@ -62,24 +94,7 @@ export default function RadarChartComponent({
         <PolarAngleAxis
           dataKey={angleKey}
           pointerEvents="none"
-          tick={({ x, y, payload, textAnchor, cx, cy }: any) => {
-            const radiusAdjustment = 25;
-            return (
-              <text
-                x={x}
-                y={y}
-                dy={y > cy ? radiusAdjustment : -radiusAdjustment}
-                dx={x > cx ? 10 : x < cx ? -10 : 0}
-                textAnchor={textAnchor}
-                fill="var(--color-axis-gray)"
-                fontSize={12}
-                fontWeight={500}
-                fontFamily={chartTheme.fontFamily}
-              >
-                {payload.value}
-              </text>
-            );
-          }}
+          tick={renderPolarAngleAxisTick}
         />
 
         {/* LAYER 4: Vertical Axis Percentage */}
@@ -153,11 +168,7 @@ export default function RadarChartComponent({
             align="center"
             iconType="circle"
             iconSize={8}
-            formatter={(value) => (
-              <span style={{ color: "var(--color-radar-legend-text)" }}>
-                {value}
-              </span>
-            )}
+            formatter={formatLegendText}
             wrapperStyle={{
               paddingTop: "20px",
               fontSize: 12,

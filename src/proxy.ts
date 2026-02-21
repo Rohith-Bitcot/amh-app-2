@@ -4,12 +4,6 @@ import {
   checkTokenExpired,
   handleTokenExpiration,
 } from "./utils/proxy-services";
-// import {
-//   checkTokenExpired,
-//   getRoleConfig,
-//   handleTokenExpiration,
-//   redirectToLogin,
-// } from "./utils/proxy-services";
 
 export default async function proxy(
   request: NextRequest,
@@ -22,20 +16,6 @@ export default async function proxy(
     const isTokenExpired = checkTokenExpired(token);
     if (isTokenExpired) return handleTokenExpiration(request);
 
-    // const userData = JSON.parse(request?.cookies?.get('user')?.value || '{}');
-    // const roleConfig = getRoleConfig(userData?.role?.toLowerCase());
-
-    // if (!roleConfig) {
-    //   return redirectToLogin(request);
-    // }
-
-    // if (PUBLIC_ROUTES.includes(path)) {
-    //   return NextResponse.redirect(new URL(roleConfig.dashboard, request.url));
-    // }
-
-    // if (!path.startsWith(roleConfig.prefix)) {
-    //   return NextResponse.redirect(new URL(roleConfig.dashboard, request.url));
-    // }
   } else if (!PUBLIC_ROUTES.includes(path)) {
     return NextResponse.redirect(new URL(ROUTES_PATH.LOGIN, request.url));
   }

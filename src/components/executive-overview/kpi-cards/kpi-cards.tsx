@@ -10,7 +10,7 @@ export default function KpiCard({
   children,
   className,
   leasesSigned,
-}: KpiCardProps) {
+}: Readonly<KpiCardProps>) {
   return (
     <div
       className={cn(

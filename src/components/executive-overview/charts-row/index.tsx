@@ -29,7 +29,7 @@ export const ChartsRowComponent = () => {
             </Card>
 
             <Card title="Lead Count By Days On Market">
-                <LeadCountBarChart data={leadCountByDOMData} height={300} />
+                <LeadCountBarChart data={leadCountByDOMData} />
             </Card>
         </div>
     )

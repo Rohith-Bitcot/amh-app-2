@@ -31,6 +31,15 @@ interface StackedBarChartProps {
   barSize?: number; // Optional custom bar size
 }
 
+// Helper to safely parse numbers from unknown props
+const parseNumeric = (val: unknown, isInt = false): number => {
+  if (typeof val === "number") return val;
+  if (typeof val === "string") {
+    return isInt ? Number.parseInt(val, 10) : Number.parseFloat(val);
+  }
+  return 0;
+};
+
 // Custom label renderer for showing values above bars with delta indicators
 const renderCustomLabel = (
   props: Record<string, unknown> & {
@@ -56,12 +65,10 @@ const renderCustomLabel = (
     return null;
   }
 
-  const xNum = typeof x === "number" ? x : Number.parseFloat(String(x));
-  const yNum = typeof y === "number" ? y : Number.parseFloat(String(y));
-  const widthNum =
-    typeof width === "number" ? width : Number.parseFloat(String(width));
-  const dataIndex =
-    typeof index === "number" ? index : Number.parseInt(String(index));
+  const xNum = parseNumeric(x);
+  const yNum = parseNumeric(y);
+  const widthNum = parseNumeric(width);
+  const dataIndex = parseNumeric(index, true);
 
   // Get the data point using the index
   const dataPoint = chartData[dataIndex];
@@ -81,8 +88,16 @@ const renderCustomLabel = (
     return null;
   }
 
+  // Safely parse mainValue to handle objects safely and fallback
+  let safeMainValue = "";
+  if (typeof mainValue === "string" || typeof mainValue === "number") {
+    safeMainValue = mainValue.toString();
+  } else {
+    safeMainValue = JSON.stringify(mainValue) || "";
+  }
+
   // Build label text
-  const labelText = `${mainValue}${suffix}`;
+  const labelText = `${safeMainValue}${suffix}`;
 
   if (delta !== null && delta !== undefined) {
     const arrow = deltaPositive ? "↑" : "↓";
@@ -119,6 +134,62 @@ const renderCustomLabel = (
     >
       {labelText}
     </text>
+  );
+};
+
+// Extracted Legend Component
+const CustomLegend = ({
+  bars,
+}: {
+  bars: { dataKey: string; color: string; name?: string }[];
+}) => {
+  // Use bars prop directly to ensure consistent order with stack
+  // Stack is rendered Bottom -> Top (0 -> N)
+  // Legend should be Top -> Bottom (N -> 0)
+  const reversedBars = [...bars].reverse();
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        paddingLeft: "20px",
+      }}
+    >
+      {reversedBars.map((bar) => (
+        <div
+          key={bar.dataKey}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "11px",
+              fontFamily: chartTheme.fontFamily,
+              color: "#1F2937",
+              fontWeight: 600,
+              writingMode: "vertical-rl",
+              transform: "rotate(180deg)",
+              textAlign: "center",
+            }}
+          >
+            {bar.name || bar.dataKey}
+          </span>
+          <div
+            style={{
+              width: "8px",
+              height: "8px",
+              borderRadius: "50%",
+              backgroundColor: bar.color,
+            }}
+          />
+        </div>
+      ))}
+    </div>
   );
 };
 
@@ -178,56 +249,7 @@ export default function StackedBarChart({
                 flexDirection: "column",
                 gap: "10px",
               }}
-              content={(props) => {
-                // Use bars prop directly to ensure consistent order with stack
-                // Stack is rendered Bottom -> Top (0 -> N)
-                // Legend should be Top -> Bottom (N -> 0)
-                const reversedBars = [...bars].reverse();
-                return (
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "24px",
-                      paddingLeft: "20px",
-                    }}
-                  >
-                    {reversedBars.map((bar, index) => (
-                      <div
-                        key={`legend-${index}`}
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          gap: "8px",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: "11px",
-                            fontFamily: chartTheme.fontFamily,
-                            color: "#1F2937",
-                            fontWeight: 600,
-                            writingMode: "vertical-rl",
-                            transform: "rotate(180deg)",
-                            textAlign: "center",
-                          }}
-                        >
-                          {bar.name || bar.dataKey}
-                        </span>
-                        <div
-                          style={{
-                            width: "8px",
-                            height: "8px",
-                            borderRadius: "50%",
-                            backgroundColor: bar.color,
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                );
-              }}
+              content={<CustomLegend bars={bars} />}
             />
           )}
           {bars.map((bar, index) => (

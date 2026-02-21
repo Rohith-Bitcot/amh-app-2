@@ -5,12 +5,9 @@ import { useState } from "react";
 import PageHeader from "@/components/ui/page-header";
 import TabGroup from "@/components/ui/tab-group";
 import {
-  showingCountsBySourceData,
-  conversionFromPrevStageData,
   funnelTabs,
 } from "@/utils/data/funnel-journey";
 
-import MiniTable from "@/components/ui/MiniTable";
 import { LeadCountsComponent } from "./lead-counts-registrations";
 import { NewVsReturningComponent } from "./new-vs-returning";
 import { TimingDistributionComponent } from "./timing-distribution";
@@ -22,7 +19,7 @@ import { AppStagesDuration } from "./app-stages-duration";
 import { CancellationApprovalDataComponent } from "./cancellation-approval-rate";
 import { ApprovalCancellationSource } from "./approval-cancellation-source";
 import { DenialReasonDistributionComponent } from "./denial-reason-distribution";
-import { WebsiteComponent } from "./website";
+import { WebsiteComponent } from "./website-bar";
 import { PageViewMarketComponent } from "./page-view-market";
 import { UniqueShowingsComponent } from "./unique-showings";
 import { ApplicationComponent } from "./application";

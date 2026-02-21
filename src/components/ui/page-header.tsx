@@ -12,7 +12,7 @@ export default function PageHeader({
   title,
   showFilter = true,
   onFilterClick,
-}: PageHeaderProps) {
+}: Readonly<PageHeaderProps>) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (

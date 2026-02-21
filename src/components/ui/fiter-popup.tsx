@@ -15,7 +15,7 @@ export default function FilterPopup({
   onApply,
   onDefault,
   className,
-}: FilterPopupProps) {
+}: Readonly<FilterPopupProps>) {
   const [timeRange, setTimeRange] = useState("Month");
   const [currentInventoryOnly, setCurrentInventoryOnly] = useState(true);
 
@@ -68,10 +68,13 @@ export default function FilterPopup({
         </div>
 
         {/* Checkbox */}
-        <div
-          className="flex items-center gap-2 cursor-pointer select-none"
-          onClick={() => setCurrentInventoryOnly(!currentInventoryOnly)}
-        >
+        <label className="flex items-center gap-2 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            className="sr-only"
+            checked={currentInventoryOnly}
+            onChange={(e) => setCurrentInventoryOnly(e.target.checked)}
+          />
           <div className="relative w-[15px] h-[15px] flex items-center justify-center">
             <Image
               src="/assets/svgs/Rectangle 3468541.svg"
@@ -93,7 +96,7 @@ export default function FilterPopup({
           <span className="text-[12px] text-neutral-700 font-medium">
             Current Inventory Only
           </span>
-        </div>
+        </label>
 
         {/* Buttons */}
         <div className="flex items-center gap-2 mt-1">

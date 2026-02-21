@@ -54,7 +54,7 @@ export default function MetricCard({
   chartData,
   isExpanded = false,
   onToggle,
-}: MetricCardProps) {
+}: Readonly<MetricCardProps>) {
   return (
     <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col gap-3 overflow-hidden relative">
       {/* Header */}

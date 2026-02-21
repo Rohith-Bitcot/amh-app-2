@@ -21,7 +21,7 @@ export const ApplicationMetricComponent = () => {
                                 {columns.map((col, i) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg ${i !== 0 ? "border-l border-white/20" : ""}`}
+                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l border-white/20"}`}
                                     >
                                         <div className="flex items-center justify-center gap-2">
                                             {col.header}
@@ -34,13 +34,13 @@ export const ApplicationMetricComponent = () => {
                         <tbody>
                             {applicationMatricData.map((row, rowIndex) => (
                                 <tr
-                                    key={rowIndex}
+                                    key={row.geo}
                                     className={`border-b border-sentiment-border last:border-0 transition-colors text-neutral-800 ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}
                                 >
                                     {columns.map((col, i) => (
                                         <td
                                             key={col.key}
-                                            className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${col.cellClass} ${i !== 0 ? "border-l-[0.5px]" : ""}`}
+                                            className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${col.cellClass} ${i === 0 ? "" : "border-l-[0.5px]"}`}
                                         >
                                             {row[col.key as keyof typeof row]}
                                         </td>

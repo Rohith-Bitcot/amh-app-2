@@ -24,7 +24,7 @@ export default function DataTable<T>({
     columns,
     data,
     compact,
-}: DataTableProps<T>) {
+}: Readonly<DataTableProps<T>>) {
     const [sorting, setSorting] = useState<SortingState>([]);
 
     // eslint-disable-next-line react-hooks/incompatible-library

@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp } from "lucide-react";
 import KpiCard from "./kpi-cards";
 import { KPI_CARD_DATA } from "@/utils/data/executive-overview";
-import { LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
+import { CURRENT_FULLY_MARKETED_INVENTORY_BAR_DATA, LEASES_SIGNED_BAR_DATA } from "@/utils/constants";
 
 export const KpiCardsComponent = () => {
   return (
@@ -32,13 +32,13 @@ export const KpiCardsComponent = () => {
           </div>
           <div className="flex items-end justify-center w-[120px] sm:w-[130px] h-full pb-1">
             <div className="flex items-end gap-[4px] sm:gap-[5px] h-full shrink-0">
-              {LEASES_SIGNED_BAR_DATA.map((bar, i) => (
+              {LEASES_SIGNED_BAR_DATA.map((bar) => (
                 <div
-                  key={i}
+                  key={bar.day}
                   className="flex flex-col items-center justify-end gap-1 h-full"
                 >
                   <div
-                    className={`w-[6px] rounded-full ${!bar.isSpecial ? "bg-white/70" : ""}`}
+                    className={`w-[6px] rounded-full ${bar.isSpecial ? "" : "bg-white/70"}`}
                     style={{
                       height: bar.h,
                       background: bar.isSpecial
@@ -136,10 +136,9 @@ export const KpiCardsComponent = () => {
           </div>
           <div className="flex items-center justify-center w-[70px] sm:w-[80px] h-[65px] self-end pr-2">
             <div className="flex items-end gap-[6px] h-full shrink-0">
-              {[{ h: "46px" }, { h: "34px" }, { h: "46px", isSplit: true }].map(
-                (bar, i) => (
+              {CURRENT_FULLY_MARKETED_INVENTORY_BAR_DATA.map((bar) => (
                   <div
-                    key={i}
+                    key={bar.id}
                     className="w-[8px] rounded-full"
                     style={{
                       height: bar.h,

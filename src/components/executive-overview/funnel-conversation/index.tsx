@@ -24,7 +24,7 @@ export default function FunnelConversionChart({
   data,
   height = 300,
   onBarClick,
-}: FunnelConversionChartProps) {
+}: Readonly<FunnelConversionChartProps>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -70,16 +70,23 @@ export default function FunnelConversionChart({
   // Funnel polygon points
   const funnelPoints =
     bars.length > 1
-      ? `${funnelTopPoints} ${bars[bars.length - 1].x + bars[bars.length - 1].w},${baseline} ${bars[0].x},${baseline}`
+      ? `${funnelTopPoints} ${bars.at(-1)!.x + bars.at(-1)!.w},${baseline} ${bars[0].x},${baseline}`
       : "";
 
   return (
     <div
       ref={containerRef}
       style={{ width: "100%", height }}
-      className={cn(onBarClick && "cursor-pointer")}
-      onClick={() => onBarClick?.("all")}
+      className={cn("relative", onBarClick && "cursor-pointer")}
     >
+      {onBarClick && (
+        <button
+          type="button"
+          className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer appearance-none border-none bg-transparent"
+          onClick={() => onBarClick("all")}
+          aria-label="View all funnel stages"
+        />
+      )}
       {width > 0 && (
         <svg width={width} height={height}>
           <defs>
@@ -95,8 +102,8 @@ export default function FunnelConversionChart({
           )}
 
           {/* Bars */}
-          {bars.map((bar, i) => (
-            <g key={`bar-${i}`}>
+          {bars.map((bar) => (
+            <g key={`bar-${bar.stage}`}>
               <rect
                 x={bar.x}
                 y={bar.y}
@@ -120,7 +127,7 @@ export default function FunnelConversionChart({
               {/* X-axis label */}
               {bar.stage.split("\n").map((line, li) => (
                 <text
-                  key={li}
+                  key={line}
                   x={bar.x + bar.w / 2}
                   y={baseline + 16 + li * 14}
                   textAnchor="middle"
@@ -145,7 +152,7 @@ export default function FunnelConversionChart({
             const labelY = (backdropTopAtCx + baseline) / 2;
 
             return (
-              <g key={`conv-${i}`}>
+              <g key={`conv-${bar.stage}`}>
                 <text
                   x={cx}
                   y={labelY}
@@ -178,7 +185,7 @@ export default function FunnelConversionChart({
           })}
 
           {/* Dashed callout boxes */}
-          {bars.map((bar, i) => {
+          {bars.map((bar) => {
             if (!bar.callout) return null;
             const boxW = bar.w;
             const boxH = 55;
@@ -186,7 +193,7 @@ export default function FunnelConversionChart({
             const boxY = bar.y - boxH;
 
             return (
-              <g key={`callout-${i}`}>
+              <g key={`callout-${bar.stage}`}>
                 {/* 3-sided dashed border (Left, Top, Right) */}
                 <polyline
                   points={`${boxX},${boxY + boxH} ${boxX},${boxY} ${boxX + boxW},${boxY} ${boxX + boxW},${boxY + boxH}`}

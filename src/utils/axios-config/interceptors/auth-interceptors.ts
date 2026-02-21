@@ -1,4 +1,3 @@
-// "use server";
 import { InternalAxiosRequestConfig } from "axios";
 import { cookies } from "next/headers";
 

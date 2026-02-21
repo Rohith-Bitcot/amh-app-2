@@ -105,7 +105,7 @@ export const LeasingConversionsComponent = () => {
                                     {/* Unique Showing values */}
                                     {row.uniqueShowing.map((val, vi) => (
                                         <td
-                                            key={`unique-${vi}`}
+                                            key={`unique-${row.geo}-${['T7', 'PW', 'PY'][vi]}`}
                                             className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center border-r border-neutral-100"
                                         >
                                             {val}
@@ -114,7 +114,7 @@ export const LeasingConversionsComponent = () => {
                                     {/* App Start to Submit values - Highlighted bg #F0F8FE */}
                                     {row.appStartSubmit.map((val, vi) => (
                                         <td
-                                            key={`app-${vi}`}
+                                            key={`app-${row.geo}-${['T7', 'PW', 'PY'][vi]}`}
                                             className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center bg-[#F0F8FE] border-r border-neutral-100"
                                         >
                                             {val}
@@ -123,7 +123,7 @@ export const LeasingConversionsComponent = () => {
                                     {/* Approval values */}
                                     {row.approval.map((val, vi) => (
                                         <td
-                                            key={`approval-${vi}`}
+                                            key={`approval-${row.geo}-${['T7', 'PW', 'PY'][vi]}`}
                                             className="px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center border-r border-neutral-100"
                                         >
                                             {val}
@@ -132,7 +132,7 @@ export const LeasingConversionsComponent = () => {
                                     {/* Approval to Lease values - Highlighted bg #F0F8FE */}
                                     {row.approvalToLease.map((val, vi) => (
                                         <td
-                                            key={`lease-${vi}`}
+                                            key={`lease-${row.geo}-${['T7', 'PW', 'PY'][vi]}`}
                                             className={cn(
                                                 "px-3 py-3 text-sm font-normal font-heading text-neutral-800 text-center bg-[#F0F8FE]",
                                                 vi < 2 ? "border-r border-neutral-100" : "",

@@ -1,7 +1,5 @@
 import { ROUTES_PATH } from "./constants";
-// import { refreshToken } from "./graphql/auth/action";
 import { NextRequest, NextResponse } from "next/server";
-// import { refreshToken } from "./graphql/auth/action";
 
 // Function to clear all authentication-related cookies
 export const clearAuthCookies = (response: NextResponse) => {
@@ -58,12 +56,6 @@ export const handleTokenExpiration = async (request: NextRequest) => {
   if (!refresh_token) {
     return redirectToLogin(request);
   }
-
-  //   const refreshResult = await refreshToken(refresh_token);
-  //   // If refresh token is valid, set the new access token in cookies
-  //   if (refreshResult?.refreshToken?.success) {
-  //     return setAccessTokenAndContinue(refreshResult?.refreshToken?.accessToken);
-  //   }
 
   // If refresh token fails, clear cookies and redirect to login
   return redirectToLogin(request);

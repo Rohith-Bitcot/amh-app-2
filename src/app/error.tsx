@@ -3,19 +3,16 @@
 import { useEffect } from "react";
 import { AlertCircle, RefreshCcw, Home } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
-/**
- * Premium Global Error Boundary Page.
- * Handles runtime crashes with a polished UI and clear recovery actions.
- */
-export default function Error({
+interface ErrorPageProps {
+  readonly error: Error & { digest?: string };
+  readonly reset: () => void;
+}
+
+export default function ErrorPage({
   error,
   reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+}: ErrorPageProps) {
   useEffect(() => {
     // Log application error to console for debugging
     console.error("Application runtime error:", error);

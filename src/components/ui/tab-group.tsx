@@ -18,7 +18,7 @@ export default function TabGroup({
   if (variant === "underline-dark") {
     return (
       <div className="flex items-center border-b border-white/20">
-        {tabs.map((tab, index) => (
+        {tabs.map((tab) => (
           <button
             key={tab.value}
             onClick={() => onTabChange(tab.value)}

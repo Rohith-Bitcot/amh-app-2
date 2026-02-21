@@ -1,6 +1,6 @@
 "use client";
 
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Tooltip } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
 
 interface DonutChartProps {
@@ -67,43 +67,18 @@ export default function DonutChart({
     centerValue,
     showLabels = false,
     children,
-}: DonutChartProps) {
-    return (
-        <div className="relative">
-            <ResponsiveContainer width="100%" height={height}>
-                <PieChart>
-                    <Pie
-                        data={data}
-                        cx="50%"
-                        cy="50%"
-                        innerRadius={innerRadius}
-                        outerRadius={outerRadius}
-                        paddingAngle={2}
-                        dataKey="value"
-                        strokeWidth={0}
-                        label={showLabels ? renderSegmentLabel : undefined}
-                        labelLine={false}
-                    >
-                        {data.map((_, index) => (
-                            <Cell
-                                key={`cell-${index}`}
-                                fill={colors[index % colors.length]}
-                            />
-                        ))}
-                    </Pie>
-                    {!showLabels && (
-                        <Tooltip
-                            contentStyle={chartTheme.tooltip.contentStyle}
-                            formatter={(value) => [`${value}%`]}
-                        />
-                    )}
-                </PieChart>
-            </ResponsiveContainer>
-            {children ? (
+}: Readonly<DonutChartProps>) {
+    const renderCenterContent = () => {
+        if (children) {
+            return (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     {children}
                 </div>
-            ) : centerLabel || centerValue ? (
+            );
+        }
+
+        if (centerLabel || centerValue) {
+            return (
                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                     {centerValue && (
                         <span className="text-xl font-bold font-heading text-neutral-800">
@@ -116,7 +91,40 @@ export default function DonutChart({
                         </span>
                     )}
                 </div>
-            ) : null}
+            );
+        }
+
+        return null;
+    };
+
+    return (
+        <div className="relative">
+            <ResponsiveContainer width="100%" height={height}>
+                <PieChart>
+                    <Pie
+                        data={data.map((entry, index) => ({
+                            ...entry,
+                            fill: colors[index % colors.length]
+                        }))}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={innerRadius}
+                        outerRadius={outerRadius}
+                        paddingAngle={2}
+                        dataKey="value"
+                        strokeWidth={0}
+                        label={showLabels ? renderSegmentLabel : undefined}
+                        labelLine={false}
+                    />
+                    {!showLabels && (
+                        <Tooltip
+                            contentStyle={chartTheme.tooltip.contentStyle}
+                            formatter={(value) => [`${value}%`]}
+                        />
+                    )}
+                </PieChart>
+            </ResponsiveContainer>
+            {renderCenterContent()}
         </div>
     );
 }

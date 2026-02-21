@@ -1,4 +1,4 @@
-import FunnelDrilldown from "@/components/executive-overview/funnel-drilldown";
+import FunnelDrilldown from "@/components/funnel-drilldown";
 
 export default function FunnelDrilldownPage() {
   return <FunnelDrilldown />;

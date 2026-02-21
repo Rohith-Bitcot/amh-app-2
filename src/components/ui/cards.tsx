@@ -16,7 +16,7 @@ export default function Card({
   subtitle,
   headerRight,
   noPadding,
-}: CardProps) {
+}: Readonly<CardProps>) {
   return (
     <div
       className={cn(

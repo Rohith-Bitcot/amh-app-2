@@ -31,7 +31,7 @@ const PropertyHealth = () => {
                     return (
                       <th
                         key={String(col.accessorKey ?? i)}
-                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg whitespace-nowrap ${i !== 0 ? "border-l border-white/20" : ""}`}
+                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg whitespace-nowrap ${i === 0 ? "" : "border-l border-white/20"}`}
                       >
                         <div className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-end"}`}>
                           {header}
@@ -45,7 +45,7 @@ const PropertyHealth = () => {
               <tbody>
                 {propertyDrilldownData.map((row, rowIndex) => (
                   <tr
-                    key={rowIndex}
+                    key={row.property}
                     className={`border-b border-sentiment-border last:border-0 transition-colors text-neutral-800 ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}
                   >
                     {drilldownColumns.map((col, i) => {

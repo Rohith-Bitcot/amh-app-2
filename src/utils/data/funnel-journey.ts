@@ -483,7 +483,7 @@ export const pageViewMarketData = [
     period1: "Nov 30, 2025",
     value1: 3.4,
     period2: "Dec 30, 2025",
-    value2: 4.0,
+    value2: 4,
     delta: "+13.2%",
   },
 ];

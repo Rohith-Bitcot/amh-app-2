@@ -28,9 +28,11 @@ export default function ReusableTable<T>({
     getRowClassName,
     headerClassName,
     showSortIcon = true,
-}: ReusableTableProps<T>) {
+}: Readonly<ReusableTableProps<T>>) {
+    "use no memo";
     const [sorting, setSorting] = useState<SortingState>([]);
 
+    // eslint-disable-next-line
     const table = useReactTable({
         data,
         columns,
