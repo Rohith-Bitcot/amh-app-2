@@ -6,25 +6,22 @@ import {
     getCoreRowModel,
     getSortedRowModel,
     flexRender,
-    type ColumnDef,
     type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
 import { cn } from "@/utils/helper-functions";
 import Image from "next/image";
+import { DataTableProps } from "@/types/common-types";
 
-interface DataTableProps<T> {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    columns: ColumnDef<T, any>[];
-    data: T[];
-    compact?: boolean;
-}
-
-export default function DataTable<T>({
+export default function DataTable<TData, TValue = unknown>({
     columns,
     data,
-    compact,
-}: Readonly<DataTableProps<T>>) {
+    compact = false,
+    getRowClassName,
+    headerClassName,
+    showSortIcon = true,
+    containerClassName,
+}: Readonly<DataTableProps<TData, TValue>>) {
     const [sorting, setSorting] = useState<SortingState>([]);
 
     // eslint-disable-next-line react-hooks/incompatible-library
@@ -38,33 +35,40 @@ export default function DataTable<T>({
     });
 
     return (
-        <div className="overflow-hidden rounded-lg">
-            <table className="w-full">
+        <div className={cn("overflow-x-auto rounded-lg", containerClassName)}>
+            <table className="w-full text-left border-collapse">
                 <thead>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr
                             key={headerGroup.id}
-                            className="bg-linear-to-r from-sky-700 to-sky-600 rounded-t-md"
+                            className={cn("bg-linear-to-r from-sky-700 to-sky-600 rounded-t-md", headerClassName)}
                         >
-                            {headerGroup.headers.map((header) => (
+                            {headerGroup.headers.map((header, i) => (
                                 <th
                                     key={header.id}
                                     className={cn(
-                                        "text-white text-xs font-medium font-heading text-left border-r border-white/20 last:border-r-0",
-                                        compact ? "px-3 py-2" : "px-5 py-3",
+                                        "text-white text-[13px] font-bold font-heading border-white/20",
+                                        compact ? "px-3 py-2" : "px-4 py-3",
+                                        i !== 0 && "border-l",
                                         header.column.getCanSort() &&
                                         "cursor-pointer select-none hover:bg-white/10",
+                                        "first:rounded-tl-lg last:rounded-tr-lg",
+                                        (header.column.columnDef.meta as { className?: string })
+                                            ?.className,
                                     )}
                                     onClick={header.column.getToggleSortingHandler()}
                                 >
-                                    <div className="flex items-center gap-1">
+                                    <div className={cn(
+                                        "flex items-center gap-2",
+                                        i === 0 ? "justify-start" : "justify-center",
+                                    )}>
                                         {header.isPlaceholder
                                             ? null
                                             : flexRender(
                                                 header.column.columnDef.header,
                                                 header.getContext(),
                                             )}
-                                        {header.column.getCanSort() && (
+                                        {showSortIcon && header.column.getCanSort() && (
                                             <span className="ml-1">
                                                 <Image
                                                     src="/assets/svgs/sort.svg"
@@ -86,16 +90,22 @@ export default function DataTable<T>({
                         <tr
                             key={row.id}
                             className={cn(
-                                "border-b border-neutral-200 transition-colors hover:bg-sky-50/50",
-                                rowIndex % 2 === 0 ? "bg-white" : "bg-sky-50",
+                                "border-b border-sentiment-border last:border-0 transition-colors text-neutral-800",
+                                rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]",
+                                getRowClassName?.(row.original, rowIndex)
                             )}
                         >
-                            {row.getVisibleCells().map((cell) => (
+                            {row.getVisibleCells().map((cell, i) => (
                                 <td
                                     key={cell.id}
                                     className={cn(
-                                        "text-neutral-800 text-sm font-normal font-heading border-r border-neutral-200 last:border-r-0",
-                                        compact ? "px-3 py-2" : "px-5 py-3",
+                                        "border-sentiment-border text-[13px] font-heading",
+                                        compact ? "px-3 py-2" : "px-4 py-3",
+                                        i === 0
+                                            ? "font-medium whitespace-nowrap opacity-90 text-left"
+                                            : "font-normal text-center border-l-[0.5px]",
+                                        (cell.column.columnDef.meta as { className?: string })
+                                            ?.className,
                                     )}
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

@@ -2,24 +2,20 @@
 
 import { PieChart, Pie, ResponsiveContainer, Tooltip } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
-
-interface DonutChartProps {
-    data: { name: string; value: number }[];
-    colors: string[];
-    height?: number;
-    innerRadius?: number;
-    outerRadius?: number;
-    centerLabel?: string;
-    centerValue?: string;
-    showLabels?: boolean;
-    children?: React.ReactNode;
-}
+import { DonutChartProps, SegmentLabelProps } from "@/types/communication-engagement-types";
 
 const RADIAN = Math.PI / 180;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function renderSegmentLabel(props: any) {
-    const { cx, cy, midAngle, innerRadius, outerRadius, name, value } = props;
+function renderSegmentLabel(props: SegmentLabelProps) {
+    const { 
+        cx = 0, 
+        cy = 0, 
+        midAngle = 0, 
+        innerRadius = 0, 
+        outerRadius = 0, 
+        name = "", 
+        value = 0 
+    } = props;
 
     // Position text at the midpoint between inner and outer radius
     const radius = innerRadius + (outerRadius - innerRadius) / 2;

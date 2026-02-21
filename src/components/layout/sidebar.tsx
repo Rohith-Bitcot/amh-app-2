@@ -58,7 +58,8 @@ export default function Sidebar() {
             const isActive =
               pathname === item.href ||
               (pathname.startsWith(item.href) && item.href !== "/") ||
-              (pathname === "/" && item.href === "/executive-overview");
+              (pathname === "/" && item.href === "/executive-overview") ||
+              (pathname === "/funnel-drilldown" && item.href === "/");
 
             return (
               <div key={item.href}>

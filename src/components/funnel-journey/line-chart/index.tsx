@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -14,12 +13,14 @@ import {
     AreaChart,
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
+import { LineChartComponentProps, LineChartLegendItem } from "@/types/funnel-journey-types";
+
 
 const CustomLegend = ({
     items,
     type = "circle",
 }: {
-    items: any[];
+    items: LineChartLegendItem[];
     type?: "circle" | "line";
 }) => {
     return (
@@ -58,18 +59,6 @@ const CustomLegend = ({
         </div>
     );
 };
-
-interface LineChartComponentProps {
-    data: Record<string, unknown>[];
-    lines: { dataKey: string; color: string; name?: string; dashed?: boolean }[];
-    xAxisKey: string;
-    height?: number;
-    showGrid?: boolean;
-    showLegend?: boolean;
-    showArea?: boolean;
-    yAxisTicks?: number[]; // Optional custom Y-axis ticks
-    reverseLegend?: boolean;
-}
 
 export default function LineChartComponent({
     data,

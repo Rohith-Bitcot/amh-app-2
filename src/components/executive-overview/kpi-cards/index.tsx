@@ -32,9 +32,9 @@ export const KpiCardsComponent = () => {
           </div>
           <div className="flex items-end justify-center w-[120px] sm:w-[130px] h-full pb-1">
             <div className="flex items-end gap-[4px] sm:gap-[5px] h-full shrink-0">
-              {LEASES_SIGNED_BAR_DATA.map((bar) => (
+              {LEASES_SIGNED_BAR_DATA.map((bar, index) => (
                 <div
-                  key={bar.day}
+                  key={`lease-bar-${bar.day}-${index}`}
                   className="flex flex-col items-center justify-end gap-1 h-full"
                 >
                   <div

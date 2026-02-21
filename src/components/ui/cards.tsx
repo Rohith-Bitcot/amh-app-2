@@ -1,13 +1,5 @@
+import { CardProps } from "@/types/common-types";
 import { cn } from "@/utils/helper-functions";
-
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  title?: string;
-  subtitle?: string;
-  headerRight?: React.ReactNode;
-  noPadding?: boolean;
-}
 
 export default function Card({
   children,

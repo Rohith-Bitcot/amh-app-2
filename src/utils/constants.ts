@@ -1,9 +1,11 @@
+import { NavItem } from "@/types/common-types";
+
 const PUBLIC_PATH = {
   LOGIN: "/login",
 };
 
 const PRIVATE_PATH = {
-  EXECUTIVE_OVERVIEW: "/executive-overview",
+  EXECUTIVE_OVERVIEW: "/",
   FUNNEL_JOURNEY: "/funnel-journey",
   PROPERTY_HEALTH: "/property-health",
   COMMUNICATION_ENGAGEMENT: "/communication-engagement",
@@ -14,12 +16,6 @@ export const ROUTES_PATH = {
   ...PUBLIC_PATH,
   ...PRIVATE_PATH,
 };
-
-export interface NavItem {
-  label: string;
-  href: string;
-  icon: string;
-}
 
 export const NAV_ITEMS: NavItem[] = [
   {

@@ -1,5 +1,4 @@
 "use server";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { GraphQLClient } from "graphql-request";
 import { cookies } from "next/headers";
@@ -29,16 +28,17 @@ export const fetchGraphQLQuery = async <
 >(
   query: DocumentNode,
   variables?: V,
-): Promise<any> => {
+): Promise<T> => {
   try {
     const res = await (
       await graphqlClient()
     ).request<T>(query, variables ?? ({} as V));
     return res;
-  } catch (error: any) {
-    if (error?.response) {
-      const graphqlError = error?.response?.errors?.[0];
-      throw new Error(graphqlError.message);
+  } catch (error: unknown) {
+    const err = error as { response?: { errors?: { message: string }[] } };
+    if (err?.response) {
+      const graphqlError = err?.response?.errors?.[0];
+      throw new Error(graphqlError?.message || "GraphQL Error");
     } else {
       throw new Error("Network Error: Unable to connect to the server");
     }
@@ -51,15 +51,16 @@ export const fetchGraphQLMutation = async <
 >(
   mutation: DocumentNode,
   variables?: V,
-): Promise<any> => {
+): Promise<T | { success: boolean; message: string }> => {
   try {
     const client = await graphqlClient();
     const res = await client.request<T>(mutation, variables ?? ({} as V));
     return res;
-  } catch (error: any) {
-    if (error?.response) {
-      const graphqlError = error?.response?.errors?.[0];
-      return { success: false, message: graphqlError.message };
+  } catch (error: unknown) {
+    const err = error as { response?: { errors?: { message: string }[] } };
+    if (err?.response) {
+      const graphqlError = err?.response?.errors?.[0];
+      return { success: false, message: graphqlError?.message || "GraphQL Error" };
     } else {
       return {
         success: false,

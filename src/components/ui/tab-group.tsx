@@ -1,13 +1,7 @@
 "use client";
 
+import { TabGroupProps } from "@/types/common-types";
 import { cn } from "@/utils/helper-functions";
-
-interface TabGroupProps {
-  tabs: { label: string; value: string }[];
-  activeTab: string;
-  onTabChange: (value: string) => void;
-  variant?: "default" | "pill" | "underline-dark";
-}
 
 export default function TabGroup({
   tabs,

@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { DialogState } from "@/types/common-types";
 import { toast } from "react-toastify";
 import { BehaviorSubject } from "rxjs";
 
 // for global loader service
 export const isLoading = new BehaviorSubject<boolean>(false);
 
-export const isDialogOpen = new BehaviorSubject<any>({
+export const isDialogOpen = new BehaviorSubject<DialogState>({
   open: false,
   data: { message: "Are you Sure?", title: "" },
   cancelText: "Cancel",

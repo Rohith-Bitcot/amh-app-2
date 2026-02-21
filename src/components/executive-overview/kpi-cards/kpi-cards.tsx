@@ -1,10 +1,5 @@
+import { KpiCardProps } from "@/types/executive-overview-types";
 import { cn } from "@/utils/helper-functions";
-
-interface KpiCardProps {
-  children: React.ReactNode;
-  className?: string;
-  leasesSigned?: boolean;
-}
 
 export default function KpiCard({
   children,

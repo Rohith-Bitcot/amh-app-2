@@ -1,12 +1,7 @@
 import { useState } from "react";
 import FilterPopup from "@/components/ui/fiter-popup";
 import Image from "next/image";
-
-interface PageHeaderProps {
-  title: string;
-  showFilter?: boolean;
-  onFilterClick?: () => void;
-}
+import { PageHeaderProps } from "@/types/common-types";
 
 export default function PageHeader({
   title,

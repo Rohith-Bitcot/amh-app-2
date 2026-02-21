@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -12,26 +11,19 @@ import {
   Tooltip,
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
+import { PolarAngleAxisTickProps, RadarChartComponentProps } from "@/types/executive-overview-types";
 
-interface RadarChartComponentProps {
-  data: Record<string, unknown>[];
-  radars: {
-    dataKey: string;
-    color: string;
-    name?: string;
-    fillOpacity?: number;
-  }[];
-  angleKey: string;
-  height?: number;
-  showLegend?: boolean;
-}
-
-const renderPolarAngleAxisTick = ({ x, y, payload, textAnchor, cx, cy }: any) => {
+const renderPolarAngleAxisTick = ({ x, y, payload, textAnchor, cx = 0, cy = 0 }: PolarAngleAxisTickProps) => {
   const radiusAdjustment = 25;
   let dxAdjustment = 0;
-  if (x > cx) {
+  const xVal = Number(x);
+  const cxVal = Number(cx);
+  const yVal = Number(y);
+  const cyVal = Number(cy);
+
+  if (xVal > cxVal) {
     dxAdjustment = 10;
-  } else if (x < cx) {
+  } else if (xVal < cxVal) {
     dxAdjustment = -10;
   }
 
@@ -39,7 +31,7 @@ const renderPolarAngleAxisTick = ({ x, y, payload, textAnchor, cx, cy }: any) =>
     <text
       x={x}
       y={y}
-      dy={y > cy ? radiusAdjustment : -radiusAdjustment}
+      dy={yVal > cyVal ? radiusAdjustment : -radiusAdjustment}
       dx={dxAdjustment}
       textAnchor={textAnchor}
       fill="var(--color-axis-gray)"
@@ -158,7 +150,7 @@ export default function RadarChartComponent({
             border: "none",
             boxShadow: "0px 4px 12px var(--color-card-shadow)",
           }}
-          formatter={(value: any) => [`${value}%`]}
+          formatter={(value: number | string | undefined) => [`${value || 0}%`]}
           cursor={false}
         />
 

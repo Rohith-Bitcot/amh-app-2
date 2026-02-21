@@ -4,12 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/utils/helper-functions";
 import { ChevronDown } from "lucide-react";
-
-interface FilterPopupProps {
-  onApply?: () => void;
-  onDefault?: () => void;
-  className?: string;
-}
+import { FilterPopupProps } from "@/types/common-types";
 
 export default function FilterPopup({
   onApply,

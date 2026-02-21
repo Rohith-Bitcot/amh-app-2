@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -12,8 +11,10 @@ import {
     Legend,
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
+import { BarChartComponentProps, LegendItem } from "@/types/funnel-journey-types";
 
-const CustomLegend = ({ items }: { items: any[] }) => {
+
+const CustomLegend = ({ items }: { items: LegendItem[] }) => {
     return (
         <div
             style={{
@@ -44,21 +45,6 @@ const CustomLegend = ({ items }: { items: any[] }) => {
         </div>
     );
 };
-
-interface BarChartComponentProps {
-    data: Record<string, unknown>[];
-    bars: { dataKey: string; color: string; name?: string }[];
-    xAxisKey: string;
-    height?: number;
-    showGrid?: boolean;
-    showLegend?: boolean;
-    layout?: "horizontal" | "vertical";
-    xAxisTicks?: number[]; // Optional custom X-axis ticks
-    yAxisFormatter?: (value: number) => string; // Optional Y-axis formatter
-    showLabels?: boolean; // Show labels on top of bars
-    barSize?: number; // Optional custom bar size
-    reverseLegend?: boolean;
-}
 
 // Custom tick component for vertical Y-axis labels
 const VerticalYAxisTick = (props: {

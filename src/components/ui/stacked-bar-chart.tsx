@@ -12,24 +12,7 @@ import {
   Legend,
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
-
-interface StackedBarChartProps {
-  data: Record<string, unknown>[];
-  bars: { dataKey: string; color: string; name?: string }[];
-  xAxisKey: string;
-  height?: number;
-  yAxisTicks?: number[]; // Optional custom Y-axis ticks
-  yAxisDomain?: [number, number] | [string, string]; // Optional custom Y-axis domain
-  yAxisFormatter?: (value: number) => string; // Optional Y-axis formatter
-  showLegend?: boolean; // Show legend
-  customLabel?: {
-    valueKey: string; // e.g., "totalDays"
-    deltaKey?: string; // e.g., "delta"
-    deltaPositiveKey?: string; // e.g., "deltaPositive"
-    suffix?: string; // e.g., "d" for days
-  };
-  barSize?: number; // Optional custom bar size
-}
+import { StackedBarChartProps } from "@/types/common-types";
 
 // Helper to safely parse numbers from unknown props
 const parseNumeric = (val: unknown, isInt = false): number => {

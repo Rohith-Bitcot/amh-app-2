@@ -3,22 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import { chartTheme } from "@/utils/chart-theme";
 import { cn } from "@/utils/helper-functions";
+import { FunnelConversionChartProps } from "@/types/executive-overview-types";
 
-interface FunnelDataPoint {
-  stage: string;
-  value: number;
-  color: string;
-  conversionPct: string | null;
-  priorYearPct: string | null;
-  pyPositive?: boolean;
-  callout?: { label: string; value: number };
-}
-
-interface FunnelConversionChartProps {
-  data: FunnelDataPoint[];
-  height?: number;
-  onBarClick?: (stage: string) => void;
-}
 
 export default function FunnelConversionChart({
   data,

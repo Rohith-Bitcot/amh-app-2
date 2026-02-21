@@ -12,36 +12,7 @@ import {
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
 import Image from "next/image";
-
-interface SubMetric {
-  label: string;
-  value: string;
-}
-
-interface ComparisonRow {
-  label: string;
-  total: string;
-  breakdowns: { label: string; value: string }[];
-}
-
-interface ChartPoint {
-  label: string;
-  current: number;
-  prior: number;
-}
-
-interface MetricCardProps {
-  title: string;
-  pills?: { label: string; color?: string }[];
-  kpiLabel: string;
-  kpiValue: string;
-  subMetrics: SubMetric[];
-  comparisons: ComparisonRow[];
-  chartTitle: string;
-  chartData: ChartPoint[];
-  isExpanded?: boolean;
-  onToggle?: () => void;
-}
+import { MetricCardProps } from "@/types/common-types";
 
 export default function MetricCard({
   title,

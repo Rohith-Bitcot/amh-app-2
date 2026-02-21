@@ -1,6 +1,6 @@
 "use client";
 
-import PageHeader from "@/components/ui/page-header";
+import PageHeader from "@/components/ui/page-header/page-header";
 import { InteractionLevelComponent } from "./interaction-levels";
 import { CustomerSentimentFeedbackComponent } from "./customer-sentiment-feedback";
 import { MessageSentimentSurveryComponent } from "./messages-sentiment-survey";

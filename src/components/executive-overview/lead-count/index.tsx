@@ -11,16 +11,7 @@ import {
 } from "recharts";
 
 import { chartTheme } from "@/utils/chart-theme";
-
-interface LeadCountDataPoint {
-  range: string;
-  value: number;
-  color: string;
-}
-
-interface LeadCountBarChartProps {  
-  data: LeadCountDataPoint[];
-}
+import { LeadCountBarChartProps } from "@/types/executive-overview-types";
 
 export default function LeadCountBarChart({
   data,

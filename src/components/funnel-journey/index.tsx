@@ -2,7 +2,7 @@
 
 import { chartTheme } from "@/utils/chart-theme";
 import { useState } from "react";
-import PageHeader from "@/components/ui/page-header";
+import PageHeader from "@/components/ui/page-header/page-header";
 import TabGroup from "@/components/ui/tab-group";
 import {
   funnelTabs,

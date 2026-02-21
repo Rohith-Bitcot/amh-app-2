@@ -11,11 +11,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 import { chartTheme } from "@/utils/chart-theme";
-
-interface FutureLeaseChartProps {
-    data: Record<string, unknown>[];
-    height?: number;
-}
+import { FutureLeaseChartProps } from "@/types/property-health-types";
 
 export default function FutureLeaseChart({
     data,
