@@ -1,7 +1,5 @@
 // Communication & Engagement mock data - structured for API replacement
 
-import { createColumnHelper } from "@tanstack/react-table";
-
 export const interactionLevelsData = [
   {
     stage: "Lead",
@@ -231,67 +229,6 @@ export const activityLogData = [
   },
 ];
 
-const msgColumnHelper = createColumnHelper<(typeof messageDrilldownData)[0]>();
-export const messageColumns = [
-  msgColumnHelper.accessor("propertyId", {
-    header: "Property",
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  msgColumnHelper.accessor("leadName", {
-    header: "Lead info",
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  msgColumnHelper.accessor("date", { 
-    header: "Date", 
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  msgColumnHelper.accessor("messageType", { 
-    header: "Message Type",
-    meta: { className: "w-[20%]" },
-  }),
-  msgColumnHelper.accessor("sentimentCategory", {
-    header: "Sentiment Category",
-    meta: { className: "w-[15%]" },
-  }),
-  msgColumnHelper.accessor("messageContent", { 
-    header: "Message Content",
-    meta: { className: "w-[20%]" },
-  }),
-];
-
-const activityColumnHelper = createColumnHelper<(typeof activityLogData)[0]>();
-export const activityColumns = [
-  activityColumnHelper.accessor("propertyId", {
-    header: "Property",
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  activityColumnHelper.accessor("leadName", {
-    header: "Lead info",
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  activityColumnHelper.accessor("date", {
-    header: "Date",
-    enableSorting: true,
-    meta: { className: "w-[15%]" },
-  }),
-  activityColumnHelper.accessor("event", { 
-    header: "Event",
-    meta: { className: "w-[20%]" }, 
-  }),
-  activityColumnHelper.accessor("source", { 
-    header: "Sender",
-    meta: { className: "w-[15%]" },
-  }),
-  activityColumnHelper.accessor("comment", { 
-    header: "Content",
-    meta: { className: "w-[20%]" },
-  }),
-];
 
 export const sentimentFields = [
   { key: "accessIssue", label: "Access Issue" },
