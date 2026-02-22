@@ -20,7 +20,7 @@ export default function FutureLeaseChart({
     return (
         <div>
             {/* Legend */}
-            <div className="flex items-center justify-end gap-5 mb-3 text-xs font-heading text-neutral-600">
+            <div className="flex items-center justify-end gap-5 mb-3 text-[12.64px] font-heading font-normal leading-[18px] tracking-[0px] text-neutral-600">
                 <span className="flex items-center gap-1.5">
                     <span
                         className="w-2.5 h-2.5 rounded-full"
