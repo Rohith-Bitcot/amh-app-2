@@ -84,7 +84,7 @@ export default function FutureLeaseChart({
                         </pattern>
                     </defs>
                     <CartesianGrid {...chartTheme.grid} vertical={false} />
-                    <ReferenceLine y={22} stroke={chartTheme.colors.grid} strokeDasharray="3 3" />
+                    <ReferenceLine y={22} stroke={chartTheme.colors.grid} />
                     <XAxis
                         dataKey="month"
                         tick={chartTheme.axis.tick}

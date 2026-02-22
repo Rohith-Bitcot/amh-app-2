@@ -12,7 +12,7 @@ export const PropertyHealthComponent = () => {
         >
             <div className="p-6 pb-2">
                 <div className="flex flex-wrap items-center justify-end gap-4 mb-2">
-                    {stackedBars.map((bar) => (
+                    {[...stackedBars].reverse().map((bar) => (
                         <div key={bar.dataKey} className="flex items-center gap-2">
                             <span
                                 className="w-2.5 h-2.5 rounded-full"

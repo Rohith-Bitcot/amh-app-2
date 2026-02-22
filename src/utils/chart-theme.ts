@@ -42,7 +42,6 @@ export const chartTheme = {
   },
   grid: {
     stroke: "var(--color-grid-gray)",
-    strokeDasharray: "3 3",
   },
   tooltip: {
     contentStyle: {
