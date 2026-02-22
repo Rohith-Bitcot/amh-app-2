@@ -37,11 +37,9 @@ export const PropertyDrilldownTable = () => {
                 </tr>
               </thead>
               <tbody>
-                {propertyDrilldownData.map((row, rowIndex) => (
-                  <tr
-                    key={row.property}
-                    className={`border-b border-sentiment-border last:border-0 transition-colors text-neutral-800 ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}
-                  >
+                {propertyDrilldownData.map((row, rowIndex) => {
+                  return (
+                    <tr key={row.property} className={`border-b border-sentiment-border last:border-0 transition-colors text-text-black ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}>
                     {drilldownColumns.map((col, i) => {
                       const key = String(col.accessorKey ?? "");
                       const value = row[key as keyof typeof row];
@@ -54,10 +52,10 @@ export const PropertyDrilldownTable = () => {
                         >
                           {value}
                         </td>
-                      );
-                    })}
+                    );
+                  })}
                   </tr>
-                ))}
+                )})}
               </tbody>
             </table>
           </div>

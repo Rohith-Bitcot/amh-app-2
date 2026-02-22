@@ -37,7 +37,7 @@ export const PropertyHealthComponent = () => {
             {/* District Table */}
             <div className="mt-4 p-6 ">
                 <div className="overflow-x-auto bg-[#F5FAFF]">
-                    <table className="w-full text-sm text-center border-collapse">
+                    <table className="w-full text-sm text-left border-collapse">
                         <thead>
                             <tr className="bg-[#1F78B4] text-white">
                                 {districtTableColumns.map((col, index) => {
@@ -45,8 +45,8 @@ export const PropertyHealthComponent = () => {
                                     return (
                                         <th
                                             key={col.label}
-                                            className={`px-6 py-5 font-semibold whitespace-nowrap ${col.isFirst
-                                                    ? "text-left w-64 first:rounded-tl-xl"
+                                            className={`px-6 py-5 font-semibold text-left whitespace-nowrap ${col.isFirst
+                                                    ? "w-64 first:rounded-tl-xl"
                                                     : "w-24"
                                                 } ${isLast ? "last:rounded-tr-xl" : "border-r border-white/20"}`}
                                         >
@@ -82,27 +82,27 @@ export const PropertyHealthComponent = () => {
                                                 className={`${baseBgClass} ${separatorClass}`}
                                             >
                                                 <td
-                                                    className={`px-6 py-5 font-bold text-left text-neutral-800 border-r border-[#E2E8F0] w-64 ${rIndex === 0 ? "bg-[#F0F9FF]" : "bg-white"
+                                                    className={`px-6 py-5 font-bold text-left text-text-black border-r border-[#E2E8F0] w-64 ${rIndex === 0 ? "bg-[#F0F9FF]" : "bg-white"
                                                         }`}
                                                 >
                                                     {rIndex === 0 ? district.district : ""}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-600 border-r border-[#E2E8F0] w-24">
+                                                <td className="px-6 py-5 text-text-black border-r border-[#E2E8F0] w-24 text-left">
                                                     {row.domRange}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className="px-6 py-5 text-text-black border-r border-[#E2E8F0] w-24 text-left">
                                                     {row.holdRecentApp}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className="px-6 py-5 text-text-black border-r border-[#E2E8F0] w-24 text-left">
                                                     {row.holdRecentPhotos}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className="px-6 py-5 text-text-black border-r border-[#E2E8F0] w-24 text-left">
                                                     {row.marketingReview}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className="px-6 py-5 text-text-black border-r border-[#E2E8F0] w-24 text-left">
                                                     {row.marketingOldPics}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 w-24">
+                                                <td className="px-6 py-5 text-text-black w-24 text-left">
                                                     {row.dispoReview}
                                                 </td>
                                             </tr>
