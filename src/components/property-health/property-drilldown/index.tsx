@@ -7,7 +7,7 @@ export const PropertyDrilldownTable = () => {
 
               <Card title="Property Drilldown" noPadding>
         <div className="overflow-x-auto">
-          <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
+          <div className="overflow-hidden rounded-xl border-[0.5px] border-sentiment-border m-4 mt-0">
             <table className="w-full border-collapse text-left table-fixed">
               <thead>
                 <tr className="bg-primary-blue text-white text-[13px] font-heading">
@@ -39,7 +39,7 @@ export const PropertyDrilldownTable = () => {
               <tbody>
                 {propertyDrilldownData.map((row, rowIndex) => {
                   return (
-                    <tr key={row.property} className={`border-b border-sentiment-border last:border-0 transition-colors text-text-black ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}>
+                    <tr key={row.property} className={`border-b-[0.5px] border-sentiment-border last:border-0 transition-colors text-text-black ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}>
                     {drilldownColumns.map((col, i) => {
                       const key = String(col.accessorKey ?? "");
                       const value = row[key as keyof typeof row];
