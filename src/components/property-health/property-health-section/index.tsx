@@ -86,7 +86,7 @@ export const PropertyHealthComponent = () => {
                                                 </td>
                                                 <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass} relative`}>
                                                     {isFirstRowOfDistrict && (
-                                                        <div className="absolute top-[-3px] left-0 w-[601%] h-[2px] bg-[var(--color-dark-blue)] z-20 pointer-events-none" />
+                                                        <div className="absolute top-[-3px] left-0 w-[601%] h-[2px] bg-(--color-dark-blue) z-20 pointer-events-none" />
                                                     )}
                                                     {row.domRange}
                                                 </td>
