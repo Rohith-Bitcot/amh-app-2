@@ -18,7 +18,7 @@ export const PropertyHealthComponent = () => {
                                 className="w-2.5 h-2.5 rounded-full"
                                 style={{ backgroundColor: bar.color }}
                             />
-                            <span className="text-xs font-medium font-heading text-neutral-600">
+                            <span className="text-xs font-heading text-neutral-600">
                                 {bar.name}
                             </span>
                         </div>
