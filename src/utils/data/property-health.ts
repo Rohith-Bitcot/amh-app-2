@@ -487,9 +487,9 @@ export const categoryHeaders = [
 export const districtTableColumns = [
   { label: "Geo", isFirst: true },
   { label: "DOM Category", isFirst: false },
-  { label: "Hold recent/app", isFirst: false },
-  { label: "Hold recent/photos", isFirst: false },
-  { label: "Marketing review", isFirst: false },
-  { label: "Marketing old pics", isFirst: false },
-  { label: "Dispo review", isFirst: false },
+  { label: "Hold recent app", isFirst: false },
+  { label: "Hold recent photos", isFirst: false },
+  { label: "marketing review", isFirst: false },
+  { label: "marketing old pics", isFirst: false },
+  { label: "dispo review", isFirst: false },
 ];
