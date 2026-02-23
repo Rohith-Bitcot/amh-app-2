@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Card from "@/components/ui/cards"
 import { leadCountsData } from "@/utils/data/funnel-journey"
 
@@ -24,11 +25,18 @@ export const LeadCountsComponent = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between text-[10px] font-heading">
-              <span style={{ color: item.color }} className="font-semibold">
+            <div className="flex items-center gap-1 font-heading">
+              <span style={{ color: item.color }} className="text-[12px] font-semibold">
                 {item.regRate}% Reg. Rate
               </span>
-              <span className="text-neutral-500">
+              <Image 
+                src="/assets/svgs/divider-funnel.svg" 
+                alt="divider" 
+                width={1} 
+                height={12} 
+                className="mx-1"
+              />
+              <span className="w-[225px] h-[12px] text-[12px] leading-[12px] font-normal text-[#000000B5] opacity-100 flex items-center">
                 Avg Time to AMH Account Confirmation {item.avgConfirmTime}
               </span>
             </div>
