@@ -19,7 +19,8 @@ const colClass = (header: string) => {
                   {headers.map((header, i) => (
                     <th
                       key={header}
-                      className={`px-4 py-3 text-[13px] font-bold font-heading text-white border-white/20 cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
+                      className={`px-4 py-3 text-[13px] font-heading text-white border-white/20 cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
+                      style={{ fontWeight:500}}
                     >
                       <div className={`flex items-center gap-1 flex-nowrap ${i === 0 ? "justify-start" : "justify-end"}`}>
                         {header}
