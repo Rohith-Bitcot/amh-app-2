@@ -52,8 +52,8 @@ export const PropertyHealthComponent = () => {
                                             key={col.label}
                                             className={`px-3 py-3 font-semibold text-left whitespace-nowrap border-b-[0.5px] border-sentiment-border ${widthClass} ${index === 0 ? "first:rounded-tl-xl" : ""} ${isLast ? "" : "border-r-[0.5px] border-white/20"}`}
                                         >
-                                            <div className="flex items-center gap-1.5">
-                                                <span>{col.label}</span>
+                                            <div className="flex items-center gap-1.5 flex-nowrap leading-none h-full">
+                                                <span className="shrink-0">{col.label}</span>
                                                 <FilterIcon/>
                                             </div>
                                         </th>

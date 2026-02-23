@@ -35,7 +35,7 @@ export const PropertyDrilldownTable = () => {
                                     >
                                         <div className="flex items-center gap-2 justify-start flex-nowrap">
                                             <span className="leading-tight">{renderHeader(header)}</span>
-                                            <div className="relative">
+                                            <div className="relative shrink-0">
                                                 <button 
                                                     type="button"
                                                     className="cursor-pointer p-0.5 rounded transition-colors flex items-center justify-end"
