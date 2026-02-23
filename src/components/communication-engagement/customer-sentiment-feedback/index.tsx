@@ -1,7 +1,7 @@
 import Card from "@/components/ui/cards";
 import { getHeatmapColor } from "@/utils/constants";
 import { sentimentFields, sentimentFeedbackData } from "@/utils/data/communication-engagement";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 
 export const CustomerSentimentFeedbackComponent = () => {
     return (

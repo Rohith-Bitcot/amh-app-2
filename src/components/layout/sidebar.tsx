@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogOut, X } from "lucide-react";
 import { NAV_ITEMS } from "@/utils/constants";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 import { useNavigationStore } from "@/store/use-navigation-store";
 
 export default function Sidebar() {

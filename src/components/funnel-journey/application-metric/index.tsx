@@ -1,6 +1,6 @@
 import Card from "@/components/ui/cards";
 import { applicationMatricData } from "@/utils/data/funnel-journey";
-import { FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
 
 const columns = [
     { key: "geo", header: "Geo", cellClass: "text-center font-semibold" },

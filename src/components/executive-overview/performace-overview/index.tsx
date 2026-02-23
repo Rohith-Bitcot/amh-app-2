@@ -1,6 +1,6 @@
 import Card from "@/components/ui/cards";
 import { performanceTableData } from "@/utils/data/executive-overview";
-import { FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
 export const PerformanceOverviewComponent = () => {
     const { headers, rows } = performanceTableData;
 
@@ -11,9 +11,9 @@ const colClass = (header: string) => {
 };
     return(
              <Card title="Performance Overview" noPadding>
-        <div className="overflow-x-auto">
-          <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
-            <table className="w-full border-collapse text-left">
+        <div className="">
+          <div className="overflow-x-auto rounded-xl border border-sentiment-border m-4 mt-0">
+            <table className="w-full border-collapse text-left min-w-[600px]">
               <thead>
                 <tr className="bg-primary-blue text-white">
                   {headers.map((header, i) => (
