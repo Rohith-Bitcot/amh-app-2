@@ -38,7 +38,7 @@ export const PropertyDrilldownTable = () => {
                                             <div className="relative shrink-0">
                                                 <button 
                                                     type="button"
-                                                    className="cursor-pointer p-0.5 rounded transition-colors flex items-center justify-end"
+                                                    className="cursor-pointer p-0.5 rounded transition-colors flex items-center mt-1 justify-end"
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         if (isProperty) {
@@ -49,7 +49,7 @@ export const PropertyDrilldownTable = () => {
                                                     }}
                                                     aria-label={isProperty ? "Search Property" : "Sort Category"}
                                                 >
-                                                    <FilterIcon className="text-white brightness-200 opacity-90 shrink-0 mt-0" />
+                                                    <FilterIcon className="text-white brightness-200 opacity-90 shrink-0" />
                                                 </button>
 
                                                 {isProperty && showSearch && (
