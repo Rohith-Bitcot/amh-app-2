@@ -1,5 +1,5 @@
 import { CardProps } from "@/types/common-types";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 
 export default function Card({
   children,

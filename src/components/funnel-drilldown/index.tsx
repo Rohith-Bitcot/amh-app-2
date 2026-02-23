@@ -15,18 +15,27 @@ const drilldownColumns: ColumnDef<(typeof showingDrilldownData)[0]>[] = [
     header: "Property",
     enableSorting: true,
     meta: { className: "w-[20%]" },
+    cell: ({ getValue }) => (
+      <span className="text-[15px] font-medium font-heading">{getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "date",
     header: "Date",
     enableSorting: true,
     meta: { className: "w-[12%]" },
+    cell: ({ getValue }) => (
+      <span className="text-[14px] font-normal font-heading">{getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "leadName",
     header: "Lead Name",
     enableSorting: true,
     meta: { className: "w-[15%]" },
+    cell: ({ getValue }) => (
+      <span className="text-[15px] font-medium font-heading">{getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "leadEmail",
@@ -44,12 +53,18 @@ const drilldownColumns: ColumnDef<(typeof showingDrilldownData)[0]>[] = [
     header: "Lead Phone",
     enableSorting: true,
     meta: { className: "w-[15%]" },
+    cell: ({ getValue }) => (
+      <span className="text-[14px] font-normal font-heading">{getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "feedback",
     header: "Feedback",
     enableSorting: true,
     meta: { className: "w-[18%]" },
+    cell: ({ getValue }) => (
+      <span className="text-[14px] font-normal font-heading">{getValue() as string}</span>
+    ),
   },
 ];
 

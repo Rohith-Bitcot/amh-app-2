@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { chartTheme } from "@/utils/chart-theme";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 import { FunnelConversionChartProps } from "@/types/executive-overview-types";
 
 

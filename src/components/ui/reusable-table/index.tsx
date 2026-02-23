@@ -9,9 +9,9 @@ import {
     type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { cn } from "@/utils/helper-functions";
-import Image from "next/image";
+import { cn } from "@/utils/common-services";
 import { DataTableProps } from "@/types/common-types";
+import { FilterIcon } from "../filterIcon";
 
 export default function DataTable<TData, TValue = unknown>({
     columns,
@@ -59,7 +59,7 @@ export default function DataTable<TData, TValue = unknown>({
                                     onClick={header.column.getToggleSortingHandler()}
                                 >
                                     <div className={cn(
-                                        "flex items-center gap-2",
+                                        "flex items-center gap-1",
                                         i === 0 ? "justify-start" : "justify-center",
                                     )}>
                                         {header.isPlaceholder
@@ -69,15 +69,7 @@ export default function DataTable<TData, TValue = unknown>({
                                                 header.getContext(),
                                             )}
                                         {showSortIcon && header.column.getCanSort() && (
-                                            <span className="ml-1">
-                                                <Image
-                                                    src="/assets/svgs/sort.svg"
-                                                    alt="Sort"
-                                                    width={12}
-                                                    height={12}
-                                                    className="opacity-70"
-                                                />
-                                            </span>
+                                            <FilterIcon />
                                         )}
                                     </div>
                                 </th>

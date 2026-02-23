@@ -1,7 +1,7 @@
 "use client";
 
 import { TabGroupProps } from "@/types/common-types";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 
 export default function TabGroup({
   tabs,

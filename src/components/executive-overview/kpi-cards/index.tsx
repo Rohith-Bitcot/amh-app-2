@@ -66,12 +66,12 @@ export const KpiCardsComponent = () => {
             <div className="text-4xl font-bold font-heading text-white">
               {KPI_CARD_DATA.leasePacing.value}
             </div>
-            <div className="text-[10px] font-heading text-white">
+            <div className="text-[12px] font-heading text-white">
               {KPI_CARD_DATA.leasePacing.subLabel}
             </div>
           </div>
           <div className="mt-1">
-            <div className="text-[10px] font-heading mb-0.5 text-white">
+            <div className="text-[12px] font-heading mb-0.5 text-white">
               {KPI_CARD_DATA.leasePacing.approvedApps} approved applications
             </div>
             <div className="bg-white/60 rounded-full overflow-hidden w-[167px] h-[5px]">
@@ -80,7 +80,7 @@ export const KpiCardsComponent = () => {
                 style={{
                   width: `${KPI_CARD_DATA.leasePacing.progressPercent}%`,
                   background:
-                    "linear-gradient(179.15deg, var(--color-purple-accent) -41.63%, var(--color-chart-blue-main) 91.18%)",
+                                        "linear-gradient(90deg, var(--color-chart-blue-main) 0%, var(--color-purple-accent) 100%)",
                 }}
               />
             </div>

@@ -1,6 +1,6 @@
 import Card from "@/components/ui/cards";
 import { performanceTableData } from "@/utils/data/executive-overview";
-import { FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
 export const PerformanceOverviewComponent = () => {
     const { headers, rows } = performanceTableData;
 
@@ -11,9 +11,9 @@ const colClass = (header: string) => {
 };
     return(
              <Card title="Performance Overview" noPadding>
-        <div className="overflow-x-auto">
-          <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
-            <table className="w-full border-collapse text-left">
+        <div className="">
+          <div className="overflow-x-auto rounded-xl border border-sentiment-border m-4 mt-0">
+            <table className="w-full border-collapse text-left min-w-[600px]">
               <thead>
                 <tr className="bg-primary-blue text-white">
                   {headers.map((header, i) => (
@@ -21,9 +21,9 @@ const colClass = (header: string) => {
                       key={header}
                       className={`px-4 py-3 text-[13px] font-bold font-heading text-white border-white/20 cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
                     >
-                      <div className={`flex items-center gap-2 ${i === 0 ? "justify-start" : "justify-end"}`}>
+                      <div className={`flex items-center gap-1 ${i === 0 ? "justify-start" : "justify-end"}`}>
                         {header}
-                        <FilterIcon className="w-3.5 h-3.5 opacity-80" />
+                        <FilterIcon />
                       </div>
                     </th>
                   ))}
@@ -42,8 +42,8 @@ const colClass = (header: string) => {
                         <td
                           key={header}
                           className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${colClass(header)} ${i === 0
-                            ? "font-medium whitespace-nowrap opacity-90"
-                            : "font-normal text-right border-l-[0.5px]"
+                            ? "font-normal whitespace-nowrap opacity-90"
+                            : "font-medium text-right border-l-[0.5px]"
                             }`}
                         >
                           {value}
