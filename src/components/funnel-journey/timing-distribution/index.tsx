@@ -4,22 +4,23 @@ import { timingDistributionData } from "@/utils/data/funnel-journey";
 
 export const TimingDistributionComponent = () => {
     return (
-        <Card title="Timing Distribution (Day/Hs)">
-            {/* Legend at top right */}
-            <div className="flex items-center justify-end gap-4 mb-6 text-xs font-heading">
-                <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
-                </span>
-                <span className="flex items-center gap-1.5">
-                    <span
-                        className="w-2.5 h-2.5 rounded-full"
-                        style={{ backgroundColor: chartTheme.colors.palette.actual }}
-                    />{" "}
-                    Actual
-                </span>
-            </div>
-
-            {/* Chart area */}
+        <Card 
+            title="Timing Distribution (Day/Hs)"
+            headerRight={
+                <div className="flex items-center gap-4 text-xs font-heading">
+                    <span className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-black" /> Benchmark
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                        <span
+                            className="w-2.5 h-2.5 rounded-full"
+                            style={{ backgroundColor: chartTheme.colors.palette.actual }}
+                        />{" "}
+                        Actual
+                    </span>
+                </div>
+            }
+        >            {/* Chart area */}
             <div className="space-y-6">
                 {timingDistributionData.map((item) => {
                     const maxScale = 24; // Fixed 24-hour scale for all bars
@@ -60,7 +61,7 @@ export const TimingDistributionComponent = () => {
 
                                 {/* Actual value label - positioned above the actual bar */}
                                 <div
-                                    className="absolute -top-5 text-xs font-heading font-semibold text-neutral-800"
+                                    className="absolute -top-5 text-xs font-heading font-semibold text-[#000000B5]"
                                     style={{
                                         left: `${actualPercent}%`,
                                         transform: "translateX(-50%)",
