@@ -17,11 +17,11 @@ export default function LeadCountBarChart({
   data,
 }: Readonly<LeadCountBarChartProps>) {
   return (
-    <div className="flex justify-center w-full">
+    <div className="flex justify-center w-full ">
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data.map((d) => ({ ...d, fill: d.color }))}
-          margin={{ top: 30, right: 20, bottom: 20, left: 20 }}
+          margin={{ top: 30, right: 20, bottom: 20, left: 0 }}
         >
           <CartesianGrid
             vertical={false}

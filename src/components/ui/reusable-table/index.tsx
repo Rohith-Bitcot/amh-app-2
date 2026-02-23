@@ -9,7 +9,7 @@ import {
     type SortingState,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 import Image from "next/image";
 import { DataTableProps } from "@/types/common-types";
 

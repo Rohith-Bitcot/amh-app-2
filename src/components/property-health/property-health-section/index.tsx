@@ -1,7 +1,7 @@
 import Card from "@/components/ui/cards";
 import StackedBarChart from "@/components/ui/stacked-bar-chart";
 import { districtTableColumns, districtTableData, healthChartData, stackedBars } from "@/utils/data/property-health";
-import { FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
 
 export const PropertyHealthComponent = () => {
     return (

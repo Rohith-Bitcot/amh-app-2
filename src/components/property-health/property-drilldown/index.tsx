@@ -1,5 +1,5 @@
 import Card from "@/components/ui/cards";
-import { FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
 import { drilldownColumns, propertyDrilldownData } from "@/utils/data/property-health";
 
 export const PropertyDrilldownTable = () => {
