@@ -1,6 +1,7 @@
 import Card from "@/components/ui/cards";
 import { leasingConversionsData } from "@/utils/data/funnel-journey";
-import { cn, FilterIcon } from "@/utils/helper-functions";
+import { FilterIcon } from "@/components/ui/filterIcon";
+import { cn } from "@/utils/common-services";
 
 export const LeasingConversionsComponent = () => {
     return (

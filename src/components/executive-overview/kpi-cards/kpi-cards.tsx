@@ -1,5 +1,5 @@
 import { KpiCardProps } from "@/types/executive-overview-types";
-import { cn } from "@/utils/helper-functions";
+import { cn } from "@/utils/common-services";
 
 export default function KpiCard({
   children,
