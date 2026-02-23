@@ -61,6 +61,7 @@
   --color-chart-segment-rest: #ffffff;
 
   /* Table Shading */
+  --colour-dark-strong-blue-gradient:linear-gradient(90deg, #19689F 0%, #2C88C9 100%);
   --color-table-shade-1: #ffebeb;
   --color-table-shade-2: #ffd8d8;
   --color-table-shade-3: #ffc5c5;
