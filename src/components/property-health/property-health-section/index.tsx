@@ -24,20 +24,24 @@ export const PropertyHealthComponent = () => {
                         </div>
                     ))}
                 </div>
-                <StackedBarChart
-                    data={healthChartData}
-                    bars={stackedBars}
-                    xAxisKey="property"
-                    height={400}
-                    yAxisTicks={Array.from({ length: 13 }, (_, i) => i * 2)}
-                    yAxisDomain={[0, 24]}
-                />
+                <div className="max-md:overflow-x-auto">
+                    <div className="max-md:min-w-[800px]">
+                        <StackedBarChart
+                            data={healthChartData}
+                            bars={stackedBars}
+                            xAxisKey="property"
+                            height={400}
+                            yAxisTicks={Array.from({ length: 13 }, (_, i) => i * 2)}
+                            yAxisDomain={[0, 24]}
+                        />
+                    </div>
+                </div>
             </div>
 
             {/* District Table */}
             <div className="mt-4 p-6 ">
-                <div className="overflow-x-auto bg-[#F5FAFF] rounded-xl border-[0.5px] border-sentiment-border">
-                    <table className="w-full text-sm text-left border-collapse table-fixed">
+                <div className="max-md:overflow-x-auto bg-[#F5FAFF] rounded-xl border-[0.5px] border-sentiment-border">
+                    <table className="w-full text-sm text-left border-collapse md:table-fixed max-md:min-w-[1000px]">
                         <thead>
                             <tr className="bg-[#1F78B4] text-white">
                                 {districtTableColumns.map((col, index) => {
@@ -48,8 +52,10 @@ export const PropertyHealthComponent = () => {
                                             key={col.label}
                                             className={`px-3 py-3 font-semibold text-left whitespace-nowrap border-b-[0.5px] border-sentiment-border ${widthClass} ${index === 0 ? "first:rounded-tl-xl" : ""} ${isLast ? "" : "border-r-[0.5px] border-white/20"}`}
                                         >
-                                            {col.label}{" "}
-                                            <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
+                                            <div className="flex items-center gap-1.5">
+                                                <span>{col.label}</span>
+                                                <FilterIcon/>
+                                            </div>
                                         </th>
                                     );
                                 })}

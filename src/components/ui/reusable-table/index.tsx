@@ -51,7 +51,7 @@ export default function DataTable<TData, TValue = unknown>({
                                         compact ? "px-3 py-2" : "px-4 py-3",
                                         i !== 0 && "border-l",
                                         header.column.getCanSort() &&
-                                        "cursor-pointer select-none hover:bg-white/10",
+                                        "cursor-pointer select-none",
                                         "first:rounded-tl-lg last:rounded-tr-lg",
                                         (header.column.columnDef.meta as { className?: string })
                                             ?.className,
