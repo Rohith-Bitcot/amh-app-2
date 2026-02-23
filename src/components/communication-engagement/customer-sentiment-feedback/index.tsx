@@ -7,18 +7,18 @@ export const CustomerSentimentFeedbackComponent = () => {
     return (
         <Card title="Customer Sentiment Feedback" noPadding>
             <div className="p-4">
-                <div className="overflow-x-auto rounded-lg border border-neutral-200">
-                    <table className="w-full border-collapse">
+                <div className="max-md:overflow-x-auto rounded-lg border border-neutral-200">
+                    <table className="w-full border-collapse md:table-fixed max-md:min-w-[1000px]">
                         <thead>
                             <tr className="bg-[#1E6191]">
-                                <th className="px-4 py-3 text-white text-[12px] font-medium font-heading text-left border-r border-white/10 w-[200px]">
+                                <th className="px-4 py-3 text-white text-[12px] font-medium font-heading text-left border-r border-white/10 md:w-[20%] whitespace-nowrap">
                                     Property
                                 </th>
                                 {sentimentFields.map((field, idx) => (
                                     <th
                                         key={field.key}
                                         className={cn(
-                                            "px-2 py-3 text-white text-[12px] font-medium font-heading text-center",
+                                            "px-4 py-3 text-white text-[12px] font-medium font-heading text-right align-middle md:w-[10%] whitespace-nowrap",
                                             idx < sentimentFields.length - 1
                                                 ? "border-r border-white/10"
                                                 : "",
@@ -38,7 +38,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                         rowIdx % 2 === 0 ? "bg-white" : "bg-neutral-50/30",
                                     )}
                                 >
-                                    <td className="px-4 py-3 text-sm font-bold font-heading text-neutral-800 border-r border-neutral-200">
+                                    <td className="px-4 py-3 text-[14px] font-medium font-heading tracking-[0px] leading-[100%] text-neutral-800 border-r border-neutral-200 text-left align-middle md:w-[20%] whitespace-nowrap">
                                         {row.district}
                                     </td>
                                     {sentimentFields.map((field, cellIdx) => {
@@ -50,7 +50,7 @@ export const CustomerSentimentFeedbackComponent = () => {
                                             <td
                                                 key={field.key}
                                                 className={cn(
-                                                    "px-3 py-3 text-sm font-heading text-center text-neutral-700",
+                                                    "px-4 py-3 text-sm font-heading text-right align-middle text-neutral-700 md:w-[10%]",
                                                     colorClass,
                                                     cellIdx < sentimentFields.length - 1
                                                         ? "border-r border-neutral-200"
