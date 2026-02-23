@@ -2,7 +2,7 @@
 
 @theme {
   --color-background: #f8fafc;
-  --color-foreground: #262626;
+  --color-foreground: #000000;
   --color-sidebar: #075985;
   --color-sidebar-hover: #0369a1;
   --color-header-from: #075985;
@@ -44,6 +44,7 @@
 
   /* Stage Colors */
   --color-stage-leads: #1b3a5c;
+  --color-lead-bar-label-value:#000000;
   --color-stage-showings: #e8975d;
   --color-stage-applications: #7bb3d6;
   --color-stage-approved: #7bc47f;

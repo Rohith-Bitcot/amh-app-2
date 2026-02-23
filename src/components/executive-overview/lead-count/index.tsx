@@ -56,8 +56,8 @@ export default function LeadCountBarChart({
               dataKey="value"
               position="top"
               style={{
-                fontSize: 13,
-                fontWeight: 700,
+                fontSize: 12,
+                fontWeight: 500,
                 fontFamily: chartTheme.fontFamily,
                 fill: "var(--color-foreground)",
               }}
