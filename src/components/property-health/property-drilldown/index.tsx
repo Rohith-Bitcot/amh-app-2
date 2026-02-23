@@ -10,7 +10,7 @@ export const PropertyDrilldownTable = () => {
     const [showSort, setShowSort] = useState(false);
 
     return (
-        <Card title="Property Drilldown" noPadding>
+        <Card title="Property Drilldown " noPadding>
             <div className="max-md:overflow-x-auto rounded-xl border-[0.5px] border-sentiment-border m-4 mt-0 min-h-[400px]">
                 <table className="w-full border-collapse text-left md:table-fixed max-md:min-w-[1200px]">
                     <thead>
@@ -34,7 +34,7 @@ export const PropertyDrilldownTable = () => {
                                         className={`px-2 py-1.5 border-white/20 select-none first:rounded-tl-lg last:rounded-tr-lg whitespace-nowrap ${widthClass} ${i === 0 ? "" : "border-l"} relative`}
                                     >
                                         <div className="flex items-center gap-2 justify-start flex-nowrap">
-                                            <span className="leading-tight">{renderHeader(header)}</span>
+                                            <span className="leading-tight truncate">{renderHeader(header)}</span>
                                             <div className="relative shrink-0">
                                                 <button 
                                                     type="button"
