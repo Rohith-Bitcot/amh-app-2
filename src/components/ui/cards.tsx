@@ -6,6 +6,7 @@ export default function Card({
   className,
   title,
   subtitle,
+  subtitleClassName,
   headerRight,
   noPadding,
 }: Readonly<CardProps>) {
@@ -23,9 +24,9 @@ export default function Card({
               {title}
             </h3>
             {subtitle && (
-              <p className="text-[10px] font-heading text-neutral-500">
+              <div className={cn("text-[10px] font-heading text-neutral-500", subtitleClassName)}>
                 {subtitle}
-              </p>
+              </div>
             )}
           </div>
           {headerRight}

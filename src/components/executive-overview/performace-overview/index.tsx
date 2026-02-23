@@ -19,9 +19,9 @@ const colClass = (header: string) => {
                   {headers.map((header, i) => (
                     <th
                       key={header}
-                      className={`px-4 py-3 text-[13px] font-bold font-heading text-white border-white/20 cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
+                      className={`px-4 py-3 text-[13px] font-bold font-heading text-white border-white/20 cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
                     >
-                      <div className={`flex items-center gap-1 ${i === 0 ? "justify-start" : "justify-end"}`}>
+                      <div className={`flex items-center gap-1 flex-nowrap ${i === 0 ? "justify-start" : "justify-end"}`}>
                         {header}
                         <FilterIcon />
                       </div>

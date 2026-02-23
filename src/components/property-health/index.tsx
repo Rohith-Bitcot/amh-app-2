@@ -23,9 +23,14 @@ const PropertyHealth = () => {
       {/* Future Leases Expiration & Upcoming Delivery */}
       <Card
         title="Future Lease Expiration & Upcoming Delivery (T 13M)"
-        subtitle="Vs. Projected Absorption"
+        subtitle="vs. projected absorption"
+        subtitleClassName="font-heading font-normal text-[12.64px] leading-[18px] tracking-[0px] capitalize text-[#0077CA]"
       >
-        <FutureLeaseChart data={futureExpirationData} height={400} />
+        <div className="max-md:overflow-x-auto">
+          <div className="max-md:min-w-[800px]">
+            <FutureLeaseChart data={futureExpirationData} height={400} />
+          </div>
+        </div>
       </Card>
     </div>
   );

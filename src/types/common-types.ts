@@ -4,7 +4,8 @@ export type CardProps = {
   children: React.ReactNode;
   className?: string;
   title?: string;
-  subtitle?: string;
+  subtitle?: React.ReactNode;
+  subtitleClassName?: string;
   headerRight?: React.ReactNode;
   noPadding?: boolean;
 }

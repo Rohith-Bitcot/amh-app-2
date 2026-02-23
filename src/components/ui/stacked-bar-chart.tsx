@@ -196,7 +196,6 @@ export default function StackedBarChart({
         >
           {/* Horizontal dashed lines only */}
           <CartesianGrid
-            strokeDasharray="3 3"
             vertical={false}
             horizontal={true}
             stroke="#e5e5e5"

@@ -12,46 +12,50 @@ export const PropertyHealthComponent = () => {
         >
             <div className="p-6 pb-2">
                 <div className="flex flex-wrap items-center justify-end gap-4 mb-2">
-                    {stackedBars.map((bar) => (
+                    {[...stackedBars].reverse().map((bar) => (
                         <div key={bar.dataKey} className="flex items-center gap-2">
                             <span
                                 className="w-2.5 h-2.5 rounded-full"
                                 style={{ backgroundColor: bar.color }}
                             />
-                            <span className="text-xs font-medium font-heading text-neutral-600">
+                            <span className="text-xs font-heading text-neutral-600">
                                 {bar.name}
                             </span>
                         </div>
                     ))}
                 </div>
-                <StackedBarChart
-                    data={healthChartData}
-                    bars={stackedBars}
-                    xAxisKey="property"
-                    height={400}
-                    yAxisTicks={Array.from({ length: 13 }, (_, i) => i * 2)}
-                    yAxisDomain={[0, 24]}
-                />
+                <div className="max-md:overflow-x-auto">
+                    <div className="max-md:min-w-[800px]">
+                        <StackedBarChart
+                            data={healthChartData}
+                            bars={stackedBars}
+                            xAxisKey="property"
+                            height={400}
+                            yAxisTicks={Array.from({ length: 13 }, (_, i) => i * 2)}
+                            yAxisDomain={[0, 24]}
+                        />
+                    </div>
+                </div>
             </div>
 
             {/* District Table */}
             <div className="mt-4 p-6 ">
-                <div className="overflow-x-auto bg-[#F5FAFF]">
-                    <table className="w-full text-sm text-center border-collapse">
+                <div className="max-md:overflow-x-auto bg-[#F5FAFF] rounded-xl border-[0.5px] border-sentiment-border">
+                    <table className="w-full text-sm text-left border-collapse md:table-fixed max-md:min-w-[1000px]">
                         <thead>
                             <tr className="bg-[#1F78B4] text-white">
                                 {districtTableColumns.map((col, index) => {
                                     const isLast = index === districtTableColumns.length - 1;
+                                    const widthClass = index === 0 ? "w-[20%]" : "w-[13.33%]";
                                     return (
                                         <th
                                             key={col.label}
-                                            className={`px-6 py-5 font-semibold whitespace-nowrap ${col.isFirst
-                                                    ? "text-left w-64 first:rounded-tl-xl"
-                                                    : "w-24"
-                                                } ${isLast ? "last:rounded-tr-xl" : "border-r border-white/20"}`}
+                                            className={`px-3 py-3 font-semibold text-left whitespace-nowrap border-b-[0.5px] border-sentiment-border ${widthClass} ${index === 0 ? "first:rounded-tl-xl" : ""} ${isLast ? "" : "border-r-[0.5px] border-white/20"}`}
                                         >
-                                            {col.label}{" "}
-                                            <FilterIcon className="text-white/80 inline w-3 h-3 ml-1" />
+                                            <div className="flex items-center gap-1.5 flex-nowrap leading-none h-full">
+                                                <span className="shrink-0">{col.label}</span>
+                                                <FilterIcon/>
+                                            </div>
                                         </th>
                                     );
                                 })}
@@ -72,37 +76,39 @@ export const PropertyHealthComponent = () => {
                                         const baseBgClass = isEvenRow
                                             ? "bg-[#F5FAFF]"
                                             : "bg-white";
-                                        const separatorClass = isFirstRowOfDistrict
-                                            ? "border-t-2 border-[#D0D7E2]"
-                                            : "";
+                                        
+                                        // Keep standard grey border for the grid
+                                        const borderClass = "border-t-[0.5px] border-sentiment-border";
 
                                         return (
                                             <tr
                                                 key={row.domRange}
-                                                className={`${baseBgClass} ${separatorClass}`}
+                                                className={baseBgClass}
                                             >
                                                 <td
-                                                    className={`px-6 py-5 font-bold text-left text-neutral-800 border-r border-[#E2E8F0] w-64 ${rIndex === 0 ? "bg-[#F0F9FF]" : "bg-white"
-                                                        }`}
+                                                    className={`px-3 py-3 font-bold text-left text-text-black w-[20%] border-r-[0.5px] border-sentiment-border ${rIndex === 0 ? "bg-[#F0F9FF]" : "bg-white"}`}
                                                 >
                                                     {rIndex === 0 ? district.district : ""}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-600 border-r border-[#E2E8F0] w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass} relative`}>
+                                                    {isFirstRowOfDistrict && (
+                                                        <div className="absolute top-[-3px] left-0 w-[601%] h-[2px] bg-(--color-dark-blue) z-20 pointer-events-none" />
+                                                    )}
                                                     {row.domRange}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass}`}>
                                                     {row.holdRecentApp}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass}`}>
                                                     {row.holdRecentPhotos}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass}`}>
                                                     {row.marketingReview}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 border-r border-[#E2E8F0] w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left border-r-[0.5px] ${borderClass}`}>
                                                     {row.marketingOldPics}
                                                 </td>
-                                                <td className="px-6 py-5 text-neutral-800 w-24">
+                                                <td className={`px-3 py-3 text-text-black w-[13.33%] text-left ${borderClass}`}>
                                                     {row.dispoReview}
                                                 </td>
                                             </tr>

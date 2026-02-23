@@ -21,7 +21,7 @@ export const ApplicationMetricComponent = () => {
                                 {columns.map((col, i) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none hover:bg-white/10 first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l border-white/20"}`}
+                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l border-white/20"}`}
                                     >
                                         <div className="flex items-center justify-center gap-2">
                                             {col.header}
