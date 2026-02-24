@@ -44,7 +44,8 @@ const FunnelJourney = () => {
       </div>
 
       {/* Section 2: Performance Overview heading */}
-      <h2 className="text-sky-700 text-xl font-bold font-heading capitalize">
+      <h2 className="text-xl font-bold font-heading"
+      style={{ color: "var(--color-title-gradient)" }}>
         Performance Overview
       </h2>
 

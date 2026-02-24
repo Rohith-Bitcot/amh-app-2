@@ -17,10 +17,12 @@ export default function MiniTable({
 }>) {
     const [activeToggle, setActiveToggle] = useState(toggle?.active ?? 0);
     return (
-        <div className="bg-white rounded-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.10)] p-3 sm:p-4 flex flex-col h-full">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 mb-3 min-h-[52px]">
+        <div className="bg-white rounded-2xl shadow-card p-3 sm:p-4 flex flex-col h-full">
+            <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 min-h-[32px]">
                 <div>
-                    <h3 className="text-sm font-bold font-heading text-neutral-800">
+                    <h3 className="text-sm font-heading text-(--color-foreground) absolute top-0 left-0 right-1" style={{
+                        fontWeight:500
+                    }}>
                         {title}
                     </h3>
                     {subtitle && (
@@ -46,13 +48,16 @@ export default function MiniTable({
             </div>
             <div className="overflow-x-auto flex-1 border border-neutral-200 rounded-lg">
                 <table className="w-full h-full border-collapse">
-                    <thead>
-                        <tr className="bg-gradient-to-r from-sky-700 to-sky-500">
+                    <thead style={{
+                        background: "var(--colour-dark-strong-blue-gradient)"
+                    }}>
+                        <tr className="">
                             {columns.map((col, idx) => (
                                 <th
                                     key={col}
-                                    className={`px-4 py-3 text-white text-sm font-semibold font-heading whitespace-nowrap border-r border-sky-600 last:border-r-0 ${idx === 0 ? "text-left" : "text-center"
+                                    className={`px-4 py-3 text-white text-sm font-heading whitespace-nowrap last:border-r-0 ${idx === 0 ? "text-left" : "text-center"
                                         }`}
+                                    style={{ fontWeight: 500 }}
                                 >
                                     {col}
                                 </th>
@@ -69,7 +74,7 @@ export default function MiniTable({
                                 {columns.map((col, colIdx) => (
                                     <td
                                         key={col}
-                                        className={`px-4 py-4 text-sm font-heading text-neutral-700 whitespace-nowrap border-r border-t border-neutral-200 last:border-r-0 ${colIdx === 0 ? "text-left font-semibold" : "text-center"
+                                        className={`px-4 py-4 text-sm font-heading text-(--color-text-black) whitespace-nowrap border-r border-t border-neutral-200 last:border-r-0 ${colIdx === 0 ? "text-left font-semibold" : "text-center"
                                             }`}
                                     >
                                         {row[col]}
