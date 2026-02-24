@@ -51,7 +51,21 @@ export const timingDistributionData = [
     max: 24,
     actual: 8,
     benchmark: 10,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "338px",
+        height: "19px",
+        top:"0px",
+        left:"70px",
+      },
+      benchmarkBar: {
+        width: "211px",
+        height: "6px",
+        top:"6px",
+        left:"70px",
+      },
+    }
   },
   {
     stage: "Showing to Application",
@@ -59,7 +73,21 @@ export const timingDistributionData = [
     max: 12,
     actual: 6.2,
     benchmark: 7,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "244px",
+        height: "19px",
+        top:"0px",
+        left:"120px",
+      },
+      benchmarkBar: {
+        width: "148px",
+        height: "6px",
+        top:"6px",
+        left:"135px",
+      },
+  }
   },
   {
     stage: "Application to Approval",
@@ -67,7 +95,21 @@ export const timingDistributionData = [
     max: 30,
     actual: 13,
     benchmark: 16,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "288px",
+        height: "19px",
+        top:"0px",
+        left:"110px",
+      },
+      benchmarkBar: {
+        width: "257px",
+        height: "6px",
+        top:"6px",
+        left:"75px",
+      },
+    }
   },
 ];
 

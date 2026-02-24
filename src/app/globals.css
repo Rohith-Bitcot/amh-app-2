@@ -53,6 +53,10 @@
   --color-stage-leases: #6b5b8a;
   --color-range-old: #e8918e;
 
+  /* Funnel Journey Charts colours */
+  --colour-vivid-blue:#20A4FF;
+  --colour-dark-grayish-blue:#838689;
+
   /* Communication & Engagement Chart Colors */
   --color-chart-blue-main: #01497b;
   --color-chart-red-main: #b72828;
