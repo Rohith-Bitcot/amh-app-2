@@ -70,6 +70,7 @@ export default function LineChartComponent({
     showArea = false,
     yAxisTicks,
     reverseLegend = false,
+    dashedGrid = false
 }: Readonly<LineChartComponentProps>) {
     if (showArea) {
         return (
@@ -82,11 +83,11 @@ export default function LineChartComponent({
                     <XAxis
                         dataKey={xAxisKey}
                         tick={chartTheme.axis.tick}
-                        axisLine={{ stroke: "#e5e5e5" }}
+                        axisLine={{ stroke: "--color-axis-gray", fontWeight: 500 }}
                     />
                     <YAxis
                         tick={chartTheme.axis.tick}
-                        axisLine={{ stroke: "#e5e5e5" }}
+                        axisLine={{ stroke: "--color-axis-gray", fontWeight: 500 }}
                         {...(yAxisTicks && { ticks: yAxisTicks })}
                     />
                     <Tooltip
@@ -103,6 +104,7 @@ export default function LineChartComponent({
                                     type="line"
                                 />
                             }
+                            wrapperStyle={{ top: 0, right: 0 }}
                         />
                     )}
                     {lines.map((line) => (
@@ -125,16 +127,34 @@ export default function LineChartComponent({
 
     return (
         <ResponsiveContainer width="100%" height={height}>
-            <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                {showGrid && <CartesianGrid {...chartTheme.grid} vertical={false} />}
+            <LineChart data={data} margin={{ top: 5, right: 20, bottom: -13, left: -30 }}>
+                {showGrid && <CartesianGrid {...chartTheme.grid} vertical={false} stroke="var(--color-axis-border)" strokeWidth={dashedGrid ? 0.4 : 0.3} strokeDasharray={dashedGrid ? "4 4" : undefined}/>}
                 <XAxis
                     dataKey={xAxisKey}
-                    tick={chartTheme.axis.tick}
-                    axisLine={{ stroke: "#e5e5e5" }}
+                    domain={[0,100]}
+                    tick={{
+                        fill: "var(--color-axis-gray)",
+                        fontSize: 10,
+                        fontFamily: "var(--font-familjen)",
+                        fontWeight: 500,
+                        fontStyle: "medium"
+                    }}
+                    tickLine={false}
+                    axisLine={{ stroke: "var(--color-axis-border)" }}
                 />
                 <YAxis
-                    tick={chartTheme.axis.tick}
-                    axisLine={{ stroke: "#e5e5e5" }}
+                type="number"
+                domain={[0,100]}
+                tickCount={11}
+                interval={0}
+                tick={{      fill: "var(--color-axis-gray)",
+                            fontSize: 10,
+                            fontFamily: "var(--font-familjen)",
+                            fontWeight: 500,
+                            }}
+                    axisLine={{ stroke: "var(--color-axis-border)" , strokeWidth: dashedGrid ? 0.5 : undefined}}
+                    tickLine={false}
+                    tickFormatter={(value) => value % 2 === 0 ? value : ""}
                     {...(yAxisTicks && { ticks: yAxisTicks })}
                 />
                 <Tooltip
@@ -151,15 +171,16 @@ export default function LineChartComponent({
                                 type="circle"
                             />
                         }
+                        wrapperStyle={{ top: -10, right: 0 }}
                     />
                 )}
                 {lines.map((line) => (
                     <Line
                         key={line.dataKey}
-                        type="natural"
+                        type="monotone"
                         dataKey={line.dataKey}
                         stroke={line.color}
-                        strokeWidth={2}
+                        strokeWidth={3}
                         dot={false}
                         name={line.name || line.dataKey}
                         strokeDasharray={line.dashed ? "5 5" : undefined}

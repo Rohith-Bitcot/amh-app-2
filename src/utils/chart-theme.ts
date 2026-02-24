@@ -31,13 +31,17 @@ export const chartTheme = {
   axis: {
     tick: {
       fill: "var(--color-axis-gray)",
-      fontSize: 11,
+      fontSize: 10,
       fontFamily: "var(--font-familjen)",
+      fontWeight: 500,
+      fontStyle: "medium"
     },
     label: {
       fill: "var(--color-axis-gray)",
       fontSize: 12,
       fontFamily: "var(--font-familjen)",
+      fontWeight: 500,
+      fontStyle: "medium"
     },
   },
   grid: {

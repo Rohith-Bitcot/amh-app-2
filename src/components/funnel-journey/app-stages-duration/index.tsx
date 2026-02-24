@@ -1,3 +1,4 @@
+import { ChartActions } from "@/components/executive-overview/chart-actions";
 import Card from "@/components/ui/cards";
 import StackedBarChart from "@/components/ui/stacked-bar-chart";
 import { appStagesDurationData, appStagesDurationLegend } from "@/utils/data/funnel-journey";
@@ -6,19 +7,22 @@ export const AppStagesDuration = () => {
     return (
 
         <Card>
-            <div className="flex flex-col gap-1 mb-3">
-                <h3 className="text-black text-sm font-medium font-heading capitalize">
-                    App Stages Duration
-                </h3>
-                <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-heading text-neutral-500">
+            <div className="flex flex-col mb-3">
+                <div className="flex items-start justify-between">
+                    <h3 className="text-black text-sm font-medium font-heading capitalize">
+                        App Stages Duration
+                    </h3>
+                    <ChartActions filter={false} />
+                </div>
+                <div className="flex items-center justify-between mb-1 mt-1">
+                    <span className="text-[12px] font-heading text-(--color-text-black) capitalize -mt-2 font-medium opacity-60">
                         Performance across active listings
                     </span>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-3 mt-2 sm:mt-0">
                         {appStagesDurationLegend.map((item) => (
                             <span
                                 key={item.key}
-                                className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600"
+                                className="flex items-center gap-1.5 text-[12px] font-heading text-radar-legend-text capitalize font-medium opacity-60"
                             >
                                 <span
                                     className="w-2.5 h-2.5 rounded-full"

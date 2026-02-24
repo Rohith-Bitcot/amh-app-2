@@ -12,20 +12,20 @@ const columns = [
 
 export const ApplicationMetricComponent = () => {
     return (
-        <Card title="Application metric" noPadding>
+        <Card title="Application matric" noPadding>
             <div className="overflow-x-auto">
                 <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
                     <table className="w-full border-collapse text-left">
                         <thead>
                             <tr className="bg-primary-blue text-white">
-                                {columns.map((col, i) => (
+                                {columns.map((col) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l border-white/20"}`}
+                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg`}
                                     >
                                         <div className="flex items-center justify-center gap-2">
                                             {col.header}
-                                            <FilterIcon className="w-3.5 h-3.5 opacity-80" />
+                                            <FilterIcon />
                                         </div>
                                     </th>
                                 ))}

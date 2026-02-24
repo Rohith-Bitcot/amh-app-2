@@ -11,16 +11,16 @@ export default function TabGroup({
 }: Readonly<TabGroupProps>) {
   if (variant === "underline-dark") {
     return (
-      <div className="flex items-center border-b border-white/20">
+      <div className="flex items-center -mt-5 gap-[15px]">
         {tabs.map((tab) => (
           <button
             key={tab.value}
             onClick={() => onTabChange(tab.value)}
             className={cn(
-              "flex-1 py-3 text-sm font-medium font-heading transition-all duration-300 capitalize whitespace-nowrap relative",
+              "flex-1 py-3 text-[15px] font-medium transition-all duration-300 capitalize whitespace-nowrap text-left border-b-[2.67px]",
               activeTab === tab.value
-                ? "text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:bg-white after:transition-all after:duration-300"
-                : "text-white/60 hover:text-white/80",
+                ? "text-white border-white"
+                : "text-white/60 hover:text-white/80 border-white/20",
             )}
           >
             {tab.label}

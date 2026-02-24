@@ -9,7 +9,7 @@ export const PageViewMarketComponent = () => {
             <div className="space-y-6">
                 {pageViewMarketData.map((item) => (
                     <div key={item.label} className="space-y-2">
-                        <div className="text-sm font-heading font-semibold text-neutral-800">
+                        <div className="text-sm font-heading font-semibold text-neutral-800 capitalize">
                             {item.label}
                         </div>
                         <div className="space-y-2">
@@ -26,10 +26,10 @@ export const PageViewMarketComponent = () => {
                                         {item.period2}
                                     </span>
                                 </div>
-                                <span className="text-xs font-heading font-medium text-neutral-700">
+                                <span className="text-[14px] font-heading font-medium text-(--color-foreground)">
                                     {item.value2} Views
                                 </span>
-                                <span className="text-xs font-heading font-bold text-green-500">
+                                <span className="text-[14px] font-heading text-green-500 font-medium">
                                     {item.delta}
                                 </span>
                             </div>
@@ -46,7 +46,7 @@ export const PageViewMarketComponent = () => {
                                         {item.period1}
                                     </span>
                                 </div>
-                                <span className="text-xs font-heading font-medium text-neutral-700">
+                                <span className="text-[14px] font-heading font-medium text-(--color-foreground)">
                                     {item.value1} Views
                                 </span>
                             </div>

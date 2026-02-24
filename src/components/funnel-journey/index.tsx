@@ -44,10 +44,11 @@ const FunnelJourney = () => {
       </div>
 
       {/* Section 2: Performance Overview heading */}
-      <h2 className="text-xl font-bold font-heading"
-      style={{ color: "var(--color-title-gradient)" }}>
-        Performance Overview
-      </h2>
+<h2 className="text-[30px] font-bold font-heading 
+               bg-[linear-gradient(89.67deg,#16649B_0.29%,#5CB4EA_118.99%)] 
+               bg-clip-text text-transparent">
+  Performance Overview
+</h2>
 
       {/* Section 3: Timing Distribution + Lead Counts by Source */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -94,7 +95,7 @@ const FunnelJourney = () => {
         </div>
       </div>
 
-      {/* Section 7: Application Metric */}
+      {/* Section 7: Application Matric */}
       <ApplicationMetricComponent />
 
       {/* Section 8: App Stages Duration */}

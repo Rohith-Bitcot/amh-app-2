@@ -12,6 +12,7 @@ export const NewVsReturningComponent = () => {
                 xAxisKey="month"
                 height={220}
                 showLegend
+                dashedGrid
             />
         </Card>
     );

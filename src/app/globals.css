@@ -31,6 +31,7 @@
   --color-axis-border: #c9cbcd;
   --color-grid-gray: #e5e7eb;
   --color-text-black: #1f1f22;
+  --color-gray-border:#C4C4C4;
 
   /* Gradients */
   --color-metric-from: #6ca9d3;
@@ -79,11 +80,7 @@
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
 
   /* New Project Colors */
-  --color-title-gradient: linear-gradient(
-    89.67deg,
-    #16649b 0.29%,
-    #5cb4ea 118.99%
-  );
+  --color-title-gradient: linear-gradient(89.67deg, #16649B 0.29%, #5CB4EA 118.99%);
   --color-filter-icon: #3f3f3f;
   --color-radar-legend-text: #000000b5;
   --color-table-text-dark: #1f1f22;
