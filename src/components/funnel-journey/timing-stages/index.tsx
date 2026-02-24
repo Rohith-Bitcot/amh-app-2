@@ -14,18 +14,15 @@ export const TimingStagesComponent = () => {
                 <h3 className="text-black text-sm font-medium font-heading capitalize">
                     Timing Stages
                 </h3>
-                <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-heading text-(--color-text-black) capitalize w-[270px] h-[18px]" style={{
-                        fontWeight:400,
-                        opacity:0.6
-                    }}>
+                <div className="flex flex-colitems md:flex-row md:items-center justify-between gap-3">
+                    <span className="text-[12px] font-heading font-medium opacity-60 text-(--color-text-black) capitalize">
                         Performance across active listings
                     </span>
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 md:justify-end">
                         {timingStagesLegend.map((item) => (
                             <span
                                 key={item.key}
-                                className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600"
+                                className="flex items-center gap-1.5 text-[10px] font-heading text-neutral-600 sm:text-xs shrink-0"
                             >
                                 <span
                                     className="w-2.5 h-2.5 rounded-full"
@@ -37,7 +34,9 @@ export const TimingStagesComponent = () => {
                     </div>
                 </div>
             </div>
-            <StackedBarChart
+            <div className="overflow-x-auto w-full pb-2 sm:pb-0">
+                <div className="min-w-[600px]">
+                    <StackedBarChart
                 data={timingStagesData}
                 bars={timingStagesBars}
                 yAxisTicks={[0, 20, 40, 60, 80, 100]}
@@ -51,6 +50,9 @@ export const TimingStagesComponent = () => {
                     suffix: "d",
                 }}
             />
+                </div>
+            </div>
+
         </Card>
     );
 }
