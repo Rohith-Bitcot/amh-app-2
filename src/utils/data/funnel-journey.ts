@@ -146,7 +146,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "Feb 25",
@@ -159,7 +159,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Mar 25",
@@ -171,8 +171,8 @@ export const timingStagesData = [
     leaveStart: 22,
     leaveSign: 10,
     totalDays: 35,
-    delta: 3,
-    deltaPositive: true,
+    delta: 5,
+    deltaPositive: false,
   },
   {
     month: "Apr 25",
@@ -185,7 +185,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "May 25",
@@ -198,7 +198,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Jun 25",
@@ -211,7 +211,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 35,
     delta: 5,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Jul 25",
@@ -224,7 +224,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "Aug 25",
@@ -237,7 +237,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Sep 25",
@@ -250,7 +250,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 35,
     delta: 5,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Oct 25",
@@ -261,9 +261,9 @@ export const timingStagesData = [
     appDecision: 25,
     leaveStart: 16,
     leaveSign: 10,
-    totalDays: 40,
-    delta: 5,
-    deltaPositive: false,
+    totalDays: 42,
+    delta: 7,
+    deltaPositive: true,
   },
   {
     month: "Nov 25",
@@ -274,7 +274,7 @@ export const timingStagesData = [
     appDecision: 8,
     leaveStart: 20,
     leaveSign: 10,
-    totalDays: 42,
+    totalDays: 40,
     delta: 2,
     deltaPositive: false,
   },
@@ -287,9 +287,9 @@ export const timingStagesData = [
     appDecision: 10,
     leaveStart: 18,
     leaveSign: 10,
-    totalDays: 38,
-    delta: 4,
-    deltaPositive: true,
+    totalDays: 35,
+    delta: 5,
+    deltaPositive: false,
   },
 ];
 

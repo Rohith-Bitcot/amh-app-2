@@ -84,7 +84,7 @@ const renderCustomLabel = (
 
   if (delta !== null && delta !== undefined) {
     const arrow = deltaPositive ? "↑" : "↓";
-    const deltaColor = deltaPositive ? "#66EA9D" : "#F66969";
+    const deltaColor = deltaPositive ? "var(--color-soft-red-lead-chart-bar)" : "var(--color-green-success)"; 
     const deltaText = ` ${arrow}${Math.abs(Number(delta))}`;
 
     return (
