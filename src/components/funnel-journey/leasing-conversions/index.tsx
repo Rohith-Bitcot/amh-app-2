@@ -1,5 +1,5 @@
 import Card from "@/components/ui/cards";
-import { leasingConversionsData } from "@/utils/data/funnel-journey";
+import { leasingConversionsData, mainHeaders } from "@/utils/data/funnel-journey";
 import { FilterIcon } from "@/components/ui/filterIcon";
 import { cn } from "@/utils/common-services";
 
@@ -9,84 +9,96 @@ export const LeasingConversionsComponent = () => {
             <div className="overflow-x-auto">
                 <div className="overflow-hidden rounded-xl border border-neutral-200 m-4 mt-0">
                     <table className="w-full border-collapse">
-                        <thead>
+                        <thead style={{
+                            background:"var(--colour-dark-strong-blue-gradient)"
+                        }}>
                             {/* First row: Main category headers with distinct shades of blue */}
-                            <tr className="text-white">
-                                <th className="px-4 py-3 text-sm font-semibold font-heading text-center border-r border-white/10 first:rounded-tl-lg bg-[#1E6191]">
-                                    <div className="flex items-center justify-center gap-2">
-                                        Geo
-                                        <FilterIcon className="w-4 h-4" />
-                                    </div>
-                                </th>
-                                <th
-                                    colSpan={3}
-                                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
-                                >
-                                    Unique Showing
-                                </th>
-                                <th
-                                    colSpan={3}
-                                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
-                                >
-                                    App Start to Submit
-                                </th>
-                                <th
-                                    colSpan={3}
-                                    className="px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10 bg-[#1E6191]"
-                                >
-                                    Approval
-                                </th>
-                                <th
-                                    colSpan={3}
-                                    className="px-3 py-2 text-sm font-semibold font-heading text-center last:rounded-tr-lg bg-[#1E6191]"
-                                >
-                                    Approval to Lease
-                                </th>
-                            </tr>
+<tr className="text-white">
+  {mainHeaders.map((header, idx) => (
+    <th
+      key={header.label}
+      colSpan={header.colSpan}
+      className={`px-3 py-2 text-sm font-semibold font-heading text-center border-r border-white/10
+        ${idx === 0 ? "first:rounded-tl-lg px-4 py-3" : ""} 
+        ${idx === mainHeaders.length - 1 ? "last:rounded-tr-lg border-r-0" : ""}`}
+    >
+      <div className={`flex items-center justify-center gap-2 ${header.hasFilter ? "" : "w-full"}`}>
+        {header.label}
+        {header.hasFilter && <FilterIcon className="w-4 h-4" />}
+      </div>
+    </th>
+  ))}
+</tr>
                             {/* Second row: Sub-column headers */}
                             <tr className="bg-white border-b border-neutral-200">
                                 {/* District under Geo */}
-                                <th className="px-4 py-2 text-[#1F1F22] text-[10px] font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-4 py-2 text-[#1F1F22] text-[14px] font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     District
                                 </th>
                                 {/* Unique Showing sub-columns */}
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     T7
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PW
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PY
                                 </th>
                                 {/* App Start to Submit sub-columns - Highlighted bg #F0F8FE */}
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     T7
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PW
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PY
                                 </th>
                                 {/* Approval sub-columns */}
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     T7
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PW
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PY
                                 </th>
                                 {/* Approval to Lease sub-columns - Highlighted bg #F0F8FE */}
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     T7
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center border-r border-neutral-200 bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PW
                                 </th>
-                                <th className="px-3 py-2 text-[#1F1F22] text-[10px] uppercase font-medium font-heading text-center bg-[#F0F8FE]">
+                                <th className="px-3 py-2 text-[#1F1F22] text-[14px] uppercase font-medium font-heading text-center bg-[#F0F8FE]" style={{
+                                    fontWeight:500
+                                }}>
                                     PY
                                 </th>
                             </tr>
@@ -96,11 +108,10 @@ export const LeasingConversionsComponent = () => {
                                 <tr
                                     key={row.geo}
                                     className={cn(
-                                        "border-b border-neutral-100 last:border-0",
-                                        idx % 2 === 0 ? "bg-white" : "bg-table-alt",
+                                        "border-b border-neutral-100 last:border-0 bg-white",
                                     )}
                                 >
-                                    <td className="px-4 py-3 text-sm font-medium font-heading text-neutral-600 text-left border-r border-neutral-100">
+                                    <td className="px-4 py-3 text-sm font-medium font-heading text-[#1F1F22] text-[14px] text-center border-r border-neutral-100">
                                         {row.geo}
                                     </td>
                                     {/* Unique Showing values */}

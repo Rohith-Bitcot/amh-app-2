@@ -303,6 +303,14 @@ export const timingStagesLegend = [
   { key: "leaveSign", label: "Leave sign", color: "#F66969" },
 ];
 
+export const mainHeaders = [
+  { label: "Geo", colSpan: 1, hasFilter: true,grade:false },
+  { label: "Unique Showing", colSpan: 3,grade:false },
+  { label: "App Start to Submit", colSpan: 3,grade:true },
+  { label: "Approval", colSpan: 3,grade:false },
+  { label: "Approval to Lease", colSpan: 3,grade:true },
+];
+
 // Section 5: Leasing Conversions by Geo & Stage
 export const leasingConversionsData = {
   headers: [

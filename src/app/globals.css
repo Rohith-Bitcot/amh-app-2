@@ -57,6 +57,7 @@
   /* Funnel Journey Charts colours */
   --colour-vivid-blue:#20A4FF;
   --colour-dark-grayish-blue:#838689;
+  --colout-light-grayish-blue:#F0F8FE;
 
   /* Communication & Engagement Chart Colors */
   --color-chart-blue-main: #01497b;
@@ -67,6 +68,7 @@
 
   /* Table Shading */
   --colour-dark-strong-blue-gradient:linear-gradient(90deg, #19689F 0%, #2C88C9 100%);
+  --colour-white-gray-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
   --color-table-shade-1: #ffebeb;
   --color-table-shade-2: #ffd8d8;
   --color-table-shade-3: #ffc5c5;
