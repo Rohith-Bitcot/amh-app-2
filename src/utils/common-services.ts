@@ -32,6 +32,12 @@ export function formatCurrency(value: number): string {
   }).format(value);
 }
 
+export const toPercentage = (pixelValue: number | string | undefined) => {
+    if (!pixelValue) return "0%";
+    const num = typeof pixelValue === "string" ? Number.parseFloat(pixelValue) : pixelValue;
+    return `${(num / 580) * 100}%`;
+};
+
 // for global loader service
 export const isLoading = new BehaviorSubject<boolean>(false);
 
