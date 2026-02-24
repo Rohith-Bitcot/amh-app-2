@@ -54,7 +54,7 @@
   --color-stage-approved: #7bc47f;
   --color-stage-leases: #6b5b8a;
   --color-range-old: #e8918e;
-
+  --colour-dark-blue-gradient:linear-gradient(90deg, #004F86 0%, #123E5D 100%);
   /* Funnel Journey Charts colours */
   --colour-vivid-blue:#20A4FF;
   --colour-dark-grayish-blue:#838689;

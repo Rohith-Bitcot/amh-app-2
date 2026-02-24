@@ -67,10 +67,7 @@ const FunnelJourney = () => {
 
       {/* Section 6: Dark Lead Funnel with tabs */}
       <div
-        className="rounded-2xl p-3 sm:p-6"
-        style={{
-          background: `linear-gradient(to right, ${chartTheme.colors.palette.gradientStart}, ${chartTheme.colors.palette.gradientEnd})`,
-        }}
+        className="rounded-2xl p-3 sm:p-6 bg-linear-to-r from-[#004F86] to-[#123E5D]"
       >
         <TabGroup
           tabs={funnelTabs}
