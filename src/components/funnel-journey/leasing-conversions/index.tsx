@@ -104,7 +104,7 @@ export const LeasingConversionsComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {leasingConversionsData.rows.map((row, idx) => (
+                            {leasingConversionsData.rows.map((row) => (
                                 <tr
                                     key={row.geo}
                                     className={cn(
