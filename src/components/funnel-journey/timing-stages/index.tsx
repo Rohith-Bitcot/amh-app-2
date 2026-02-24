@@ -15,7 +15,10 @@ export const TimingStagesComponent = () => {
                     Timing Stages
                 </h3>
                 <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-heading text-neutral-500">
+                    <span className="text-[12px] font-heading text-(--color-text-black) capitalize w-[270px] h-[18px]" style={{
+                        fontWeight:400,
+                        opacity:0.6
+                    }}>
                         Performance across active listings
                     </span>
                     <div className="flex flex-wrap gap-3">
