@@ -5,6 +5,8 @@ import { websiteData, websiteBars } from "@/utils/data/funnel-journey"
 export const WebsiteComponent = () => {
     return (
         <Card title="Website">
+            <div className="overflow-x-auto w-full pb-2 sm:pb-0">
+                <div className="min-w-[500px] overflow-hidden">
             <StackedBarChart
                 data={websiteData}
                 bars={websiteBars}
@@ -18,6 +20,8 @@ export const WebsiteComponent = () => {
                     suffix: "M",
                 }}
             />
+            </div>
+            </div>
         </Card>
     )
 }

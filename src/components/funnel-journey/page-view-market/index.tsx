@@ -6,6 +6,8 @@ export const PageViewMarketComponent = () => {
     return (
 
         <Card title="Page View / Market">
+            <div className="overflow-x-auto w-full pb-2 sm:pb-0">
+                <div className="min-w-[550px] overflow-hidden">
             <div className="space-y-6">
                 {pageViewMarketData.map((item) => (
                     <div key={item.label} className="space-y-2">
@@ -53,6 +55,8 @@ export const PageViewMarketComponent = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            </div>
             </div>
         </Card>
     )

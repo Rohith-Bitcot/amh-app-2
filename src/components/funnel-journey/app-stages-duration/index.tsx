@@ -34,6 +34,8 @@ export const AppStagesDuration = () => {
                     </div>
                 </div>
             </div>
+            <div className="overflow-x-auto w-full pb-2 sm:pb-0">
+                <div className="min-w-[1000px] overflow-hidden">
             <StackedBarChart
                 data={appStagesDurationData}
                 bars={appStagesDurationLegend.map((l) => ({
@@ -45,6 +47,8 @@ export const AppStagesDuration = () => {
                 height={400}
                 yAxisTicks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]}
             />
+            </div>
+            </div>
         </Card>
     );
 }

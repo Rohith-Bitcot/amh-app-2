@@ -35,7 +35,7 @@ export const TimingStagesComponent = () => {
                 </div>
             </div>
             <div className="overflow-x-auto w-full pb-2 sm:pb-0">
-                <div className="min-w-[800px] overflow-hidden">
+                <div className="min-w-[1000px] overflow-hidden">
                     <StackedBarChart
                 data={timingStagesData}
                 bars={timingStagesBars}
