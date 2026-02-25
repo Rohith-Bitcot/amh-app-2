@@ -14,13 +14,12 @@ const colClass = (header: string) => {
         <div className="">
           <div className="overflow-x-auto rounded-xl border border-sentiment-border m-4 mt-0">
             <table className="w-full border-collapse text-left min-w-[600px]">
-              <thead style={{background: "var(--colour-dark-strong-blue-gradient)"}}>
+              <thead className="bg-(image:--colour-dark-strong-blue-gradient)">
                 <tr className="text-white">
                   {headers.map((header, i) => (
                     <th
                       key={header}
-                      className={`px-4 py-3 text-[13px] font-heading text-white border-white/20 cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
-                      style={{ fontWeight:500}}
+                      className={`px-4 py-3 text-[13px] font-medium font-heading text-white border-white/20 cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg ${i === 0 ? "" : "border-l"} ${colClass(header)}`}
                     >
                       <div className={`flex items-center gap-1 flex-nowrap ${i === 0 ? "justify-start" : "justify-end"}`}>
                         {header}
