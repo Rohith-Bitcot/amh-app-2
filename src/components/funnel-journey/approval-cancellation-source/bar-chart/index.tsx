@@ -61,9 +61,12 @@ const VerticalYAxisTick = (props: {
                 x={0}
                 y={0}
                 textAnchor="middle"
-                fill="#666"
-                fontSize={11}
-                fontFamily={chartTheme.fontFamily}
+                style={{
+                    fill: "var(--color-axis-gray)",
+                    fontWeight: 500,
+                    fontSize: 11,
+                    fontFamily: chartTheme.fontFamily
+                }}
                 transform="rotate(270)"
             >
                 {payload.value}
@@ -72,7 +75,8 @@ const VerticalYAxisTick = (props: {
     );
 };
 
-export default function BarChartComponent({
+export default function 
+BarChartComponent({
     data,
     bars,
     xAxisKey,
@@ -93,13 +97,14 @@ export default function BarChartComponent({
                     margin={{ top: 5, right: 20, bottom: 5, left: 10 }}
                 >
                     {showGrid && (
-                        <CartesianGrid {...chartTheme.grid} horizontal={false} />
+                        <CartesianGrid {...chartTheme.grid} horizontal={false} strokeDasharray="5 5"/>
                     )}
                     <XAxis
                         type="number"
                         tick={chartTheme.axis.tick}
-                        tickFormatter={(value) => `${value}%`}
+                        tickFormatter={(value) => value % 20 === 0 ? `${value}%` : ""}
                         {...(xAxisTicks && { ticks: xAxisTicks })}
+                        tickLine={false}
                     />
                     <YAxis
                         type="category"
@@ -120,6 +125,7 @@ export default function BarChartComponent({
                                     items={reverseLegend ? [...bars].reverse() : bars}
                                 />
                             }
+                            wrapperStyle={{ top: -10, right: 0 }}
                         />
                     )}
                     {bars.map((bar) => (

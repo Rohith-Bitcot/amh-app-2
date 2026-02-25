@@ -36,4 +36,5 @@ export type LineChartComponentProps = {
     showArea?: boolean;
     yAxisTicks?: number[]; // Optional custom Y-axis ticks
     reverseLegend?: boolean;
+    dashedGrid?: boolean;
 }

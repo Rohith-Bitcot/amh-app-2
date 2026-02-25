@@ -2,7 +2,7 @@
 
 @theme {
   --color-background: #f8fafc;
-  --color-foreground: #262626;
+  --color-foreground: #000000;
   --color-sidebar: #075985;
   --color-sidebar-hover: #0369a1;
   --color-header-from: #075985;
@@ -31,6 +31,7 @@
   --color-axis-border: #c9cbcd;
   --color-grid-gray: #e5e7eb;
   --color-text-black: #1f1f22;
+  --color-gray-border:#C4C4C4;
 
   /* Gradients */
   --color-metric-from: #6ca9d3;
@@ -43,12 +44,21 @@
   --color-funnel-base-to: #cadfff;
 
   /* Stage Colors */
+  --color-dark-blue-lead-chart-bar:#01497B;
+  --color-soft-red-lead-chart-bar:#F66969;
+  --colour-light-red-timing-chart:#FF4F4F;
   --color-stage-leads: #1b3a5c;
+  --color-lead-bar-label-value:#000000;
   --color-stage-showings: #e8975d;
   --color-stage-applications: #7bb3d6;
   --color-stage-approved: #7bc47f;
   --color-stage-leases: #6b5b8a;
   --color-range-old: #e8918e;
+  --colour-dark-blue-gradient:linear-gradient(90deg, #004F86 0%, #123E5D 100%);
+  /* Funnel Journey Charts colours */
+  --colour-vivid-blue:#20A4FF;
+  --colour-dark-grayish-blue:#838689;
+  --colout-light-grayish-blue:#F0F8FE;
 
   /* Communication & Engagement Chart Colors */
   --color-chart-blue-main: #01497b;
@@ -58,6 +68,8 @@
   --color-chart-segment-rest: #ffffff;
 
   /* Table Shading */
+  --colour-dark-strong-blue-gradient:linear-gradient(90deg, #19689F 0%, #2C88C9 100%);
+  --colour-white-gray-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
   --color-table-shade-1: #ffebeb;
   --color-table-shade-2: #ffd8d8;
   --color-table-shade-3: #ffc5c5;
@@ -68,11 +80,7 @@
   --shadow-card: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
 
   /* New Project Colors */
-  --color-title-gradient: linear-gradient(
-    89.67deg,
-    #16649b 0.29%,
-    #5cb4ea 118.99%
-  );
+  --color-title-gradient: linear-gradient(89.67deg, #16649B 0.29%, #5CB4EA 118.99%);
   --color-filter-icon: #3f3f3f;
   --color-radar-legend-text: #000000b5;
   --color-table-text-dark: #1f1f22;

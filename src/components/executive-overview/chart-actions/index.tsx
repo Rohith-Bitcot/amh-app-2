@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 
-export const ChartActions = () => (
+export const ChartActions = ({
+  filter
+}: {
+  filter: boolean;
+}) => (
   <div className="flex items-center gap-1">
     <button className="p-1 hover:opacity-80 transition-opacity">
       <Image
@@ -20,7 +24,8 @@ export const ChartActions = () => (
         height={18}
       />
     </button>
-    <button className="bg-primary-blue text-white flex items-center gap-2 px-3 py-1.5 rounded-xl ml-2 text-[12px] font-medium hover:opacity-90 transition-colors">
+    {filter &&
+        <button className="bg-primary-blue text-white flex items-center gap-2 px-3 py-1.5 rounded-xl ml-2 text-[12px] font-medium hover:opacity-90 transition-colors">
       <Image
         src="/assets/svgs/filter 1.svg"
         alt="Filter"
@@ -29,5 +34,6 @@ export const ChartActions = () => (
       />
       Weekly
     </button>
+    }
   </div>
 );

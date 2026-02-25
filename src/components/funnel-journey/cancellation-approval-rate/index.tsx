@@ -6,6 +6,8 @@ import { cancellationApprovalData } from "@/utils/data/funnel-journey";
 export const CancellationApprovalDataComponent = () => {
     return (
         <Card title="Cancellation/Dropout Rate & Approval Rate">
+            <div className="overflow-x-auto overflow-y-hidden w-full">
+                <div className="min-w-[550px] overflow-hidden pt-4 px-2 pb-2">
             <LineChartComponent
                 data={cancellationApprovalData}
                 lines={[
@@ -26,6 +28,8 @@ export const CancellationApprovalDataComponent = () => {
                 showLegend
                 yAxisTicks={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
             />
+            </div>
+            </div>
         </Card>
     )
 }

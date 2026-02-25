@@ -51,7 +51,21 @@ export const timingDistributionData = [
     max: 24,
     actual: 8,
     benchmark: 10,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "338px",
+        height: "19px",
+        top:"0px",
+        left:"70px",
+      },
+      benchmarkBar: {
+        width: "211px",
+        height: "6px",
+        top:"6px",
+        left:"70px",
+      },
+    }
   },
   {
     stage: "Showing to Application",
@@ -59,7 +73,21 @@ export const timingDistributionData = [
     max: 12,
     actual: 6.2,
     benchmark: 7,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "244px",
+        height: "19px",
+        top:"0px",
+        left:"120px",
+      },
+      benchmarkBar: {
+        width: "148px",
+        height: "6px",
+        top:"6px",
+        left:"135px",
+      },
+  }
   },
   {
     stage: "Application to Approval",
@@ -67,7 +95,21 @@ export const timingDistributionData = [
     max: 30,
     actual: 13,
     benchmark: 16,
-    unit: "hrs",
+    unit: "Hrs",
+    dimensions:{
+      actualBar: {
+        width: "288px",
+        height: "19px",
+        top:"0px",
+        left:"110px",
+      },
+      benchmarkBar: {
+        width: "257px",
+        height: "6px",
+        top:"6px",
+        left:"75px",
+      },
+    }
   },
 ];
 
@@ -104,7 +146,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "Feb 25",
@@ -117,7 +159,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Mar 25",
@@ -129,8 +171,8 @@ export const timingStagesData = [
     leaveStart: 22,
     leaveSign: 10,
     totalDays: 35,
-    delta: 3,
-    deltaPositive: true,
+    delta: 5,
+    deltaPositive: false,
   },
   {
     month: "Apr 25",
@@ -143,7 +185,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "May 25",
@@ -156,7 +198,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Jun 25",
@@ -169,7 +211,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 35,
     delta: 5,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Jul 25",
@@ -182,7 +224,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 42,
     delta: 7,
-    deltaPositive: false,
+    deltaPositive: true,
   },
   {
     month: "Aug 25",
@@ -195,7 +237,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 40,
     delta: 2,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Sep 25",
@@ -208,7 +250,7 @@ export const timingStagesData = [
     leaveSign: 10,
     totalDays: 35,
     delta: 5,
-    deltaPositive: true,
+    deltaPositive: false,
   },
   {
     month: "Oct 25",
@@ -219,9 +261,9 @@ export const timingStagesData = [
     appDecision: 25,
     leaveStart: 16,
     leaveSign: 10,
-    totalDays: 40,
-    delta: 5,
-    deltaPositive: false,
+    totalDays: 42,
+    delta: 7,
+    deltaPositive: true,
   },
   {
     month: "Nov 25",
@@ -232,7 +274,7 @@ export const timingStagesData = [
     appDecision: 8,
     leaveStart: 20,
     leaveSign: 10,
-    totalDays: 42,
+    totalDays: 40,
     delta: 2,
     deltaPositive: false,
   },
@@ -245,9 +287,9 @@ export const timingStagesData = [
     appDecision: 10,
     leaveStart: 18,
     leaveSign: 10,
-    totalDays: 38,
-    delta: 4,
-    deltaPositive: true,
+    totalDays: 35,
+    delta: 5,
+    deltaPositive: false,
   },
 ];
 
@@ -259,6 +301,14 @@ export const timingStagesLegend = [
   { key: "appDecision", label: "App decision", color: "#F7D256" },
   { key: "leaveStart", label: "Leave start", color: "#F69F69" },
   { key: "leaveSign", label: "Leave sign", color: "#F66969" },
+];
+
+export const mainHeaders = [
+  { label: "Geo", colSpan: 1, hasFilter: true,grade:false },
+  { label: "Unique Showing", colSpan: 3,grade:false },
+  { label: "App Start to Submit", colSpan: 3,grade:true },
+  { label: "Approval", colSpan: 3,grade:false },
+  { label: "Approval to Lease", colSpan: 3,grade:true },
 ];
 
 // Section 5: Leasing Conversions by Geo & Stage

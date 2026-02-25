@@ -62,8 +62,7 @@ export default function FunnelConversionChart({
   return (
     <div
       ref={containerRef}
-      style={{ width: "100%", height }}
-      className={cn("relative", onBarClick && "cursor-pointer")}
+      className={cn("relative", onBarClick && "cursor-pointer w-full")}
     >
       {onBarClick && (
         <button

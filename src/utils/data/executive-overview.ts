@@ -97,12 +97,12 @@ export const radarChartData = [
 ];
 
 export const leadCountByDOMData = [
-  { range: "0-7", value: 20, color: "var(--color-stage-leads)" },
-  { range: "8-14", value: 16, color: "var(--color-stage-leads)" },
-  { range: "15-30", value: 11, color: "var(--color-stage-leads)" },
-  { range: "30+", value: 7, color: "var(--color-range-old)" },
-  { range: "60+", value: 5, color: "var(--color-range-old)" },
-  { range: "90+", value: 3, color: "var(--color-range-old)" },
+  { range: "0-7", value: 20, color: "var(--color-dark-blue-lead-chart-bar)" },
+  { range: "8-14", value: 16, color: "var(--color-dark-blue-lead-chart-bar)" },
+  { range: "15-30", value: 11, color: "var(--color-dark-blue-lead-chart-bar)" },
+  { range: "30+", value: 7, color: "var(--color-soft-red-lead-chart-bar)" },
+  { range: "60+", value: 5, color: "var(--color-soft-red-lead-chart-bar)" },
+  { range: "90+", value: 3, color: "var(--color-soft-red-lead-chart-bar)" },
 ];
 
 export const demandOverviewData = [

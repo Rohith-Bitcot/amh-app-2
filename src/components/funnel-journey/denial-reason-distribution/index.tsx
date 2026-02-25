@@ -29,6 +29,8 @@ export const DenialReasonDistributionComponent = () => {
                     </div>
                 </div>
             </div>
+            <div className="overflow-x-auto w-full pb-2 sm:pb-0">
+                <div className="min-w-[1000px] overflow-hidden">
             <StackedBarChart
                 data={denialReasonData}
                 bars={denialReasonLegend.map((l) => ({
@@ -40,7 +42,8 @@ export const DenialReasonDistributionComponent = () => {
                 xAxisKey="month"
                 height={400}
             />
+            </div>
+            </div>
         </Card>
-
     )
 }

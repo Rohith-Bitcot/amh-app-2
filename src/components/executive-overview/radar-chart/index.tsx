@@ -45,8 +45,8 @@ const renderPolarAngleAxisTick = ({ x, y, payload, textAnchor, cx = 0, cy = 0 }:
 };
 
 const formatLegendText = (value: string) => (
-  <span style={{ color: "var(--color-radar-legend-text)" }}>
-    {value}
+<span className="text-radar-legend-text">
+      {value}
   </span>
 );
 
