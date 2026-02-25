@@ -14,7 +14,7 @@ export const TimingStagesComponent = () => {
                 <h3 className="text-black text-sm font-medium font-heading capitalize">
                     Timing Stages
                 </h3>
-                <div className="flex flex-colitems md:flex-row md:items-center justify-between gap-3">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <span className="text-[12px] font-heading font-medium opacity-60 text-(--color-text-black) capitalize">
                         Performance across active listings
                     </span>
@@ -35,7 +35,7 @@ export const TimingStagesComponent = () => {
                 </div>
             </div>
             <div className="overflow-x-auto w-full pb-2 sm:pb-0">
-                <div className="min-w-[600px]">
+                <div className="min-w-[800px] overflow-hidden">
                     <StackedBarChart
                 data={timingStagesData}
                 bars={timingStagesBars}
