@@ -13,15 +13,15 @@ const columns = [
 export const ApplicationMetricComponent = () => {
     return (
         <Card title="Application matric" noPadding>
-            <div className="overflow-x-auto">
                 <div className="overflow-hidden rounded-xl border border-sentiment-border m-4 mt-0">
-                    <table className="w-full border-collapse text-left">
+            <div className="overflow-x-auto w-full">
+                    <table className="w-full min-w-[1000px]  border-collapse">
                         <thead>
                             <tr className="bg-primary-blue text-white">
                                 {columns.map((col) => (
                                     <th
                                         key={col.key}
-                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg`}
+                                        className={`px-4 py-3 text-[13px] font-bold font-heading text-white cursor-pointer select-none first:rounded-tl-lg last:rounded-tr-lg whitespace-nowrap`}
                                     >
                                         <div className="flex items-center justify-center gap-2">
                                             {col.header}
@@ -32,21 +32,24 @@ export const ApplicationMetricComponent = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {applicationMatricData.map((row, rowIndex) => (
+                            {applicationMatricData.map((row, rowIndex) => {
+                                const isLastRow = rowIndex === applicationMatricData.length - 1;
+                                const borderB = isLastRow ? "border-b-0" : "border-b border-sentiment-border";
+                                return (
                                 <tr
                                     key={row.geo}
-                                    className={`border-b border-sentiment-border last:border-0 transition-colors text-neutral-800 ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}
+                                    className={`${borderB} transition-colors text-neutral-800 ${rowIndex % 2 === 0 ? "bg-white" : "bg-[#F0F8FE]"}`}
                                 >
                                     {columns.map((col, i) => (
                                         <td
                                             key={col.key}
-                                            className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${col.cellClass} ${i === 0 ? "" : "border-l-[0.5px]"}`}
+                                            className={`px-4 py-3 text-[13px] font-heading border-sentiment-border ${col.cellClass} ${i === 0 ? "" : "border-l-[0.5px]  border-sentiment-border"}`}
                                         >
                                             {row[col.key as keyof typeof row]}
                                         </td>
                                     ))}
                                 </tr>
-                            ))}
+)})}
                         </tbody>
                     </table>
                 </div>
